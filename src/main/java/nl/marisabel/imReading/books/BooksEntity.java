@@ -1,24 +1,29 @@
 package nl.marisabel.imReading.books;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
+@Builder
 public class BooksEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String isbn;
     private String title;
-    private long pageCount;
+    private String author;
+
     private String thumbnailUrl;
     private String shortDescription;
-    private String longDescription;
-    private String status;
-    private Long authorId;
-    private Long categoryId;
-    private String date;
+    private String mainGenre;
+    private String secondaryGenre;
+
 }
