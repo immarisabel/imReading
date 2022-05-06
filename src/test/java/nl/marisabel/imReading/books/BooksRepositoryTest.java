@@ -1,23 +1,25 @@
 package nl.marisabel.imReading.books;
 
-import org.assertj.core.api.Assertions;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import java.awt.print.Book;
 import java.util.List;
 
-@DataJpaTest //only scans repositories
+import static org.junit.jupiter.api.Assertions.*;
+
+@Slf4j
+@DataJpaTest
 class BooksRepositoryTest {
 
     @Autowired
     private BooksRepository booksRepository;
 
 
-    @BeforeEach
-    public BooksEntity bookSample(){
+    @Test
+    public void saveBookTest() {
         BooksEntity book = BooksEntity.builder()
                 .isbn("0-345-24223-8")
                 .author("M Munoz")
@@ -27,27 +29,42 @@ class BooksRepositoryTest {
                 .shortDescription("blah blah")
                 .thumbnailUrl("http://")
                 .build();
-        return book;
+        booksRepository.save(book);
+        assertNotNull(book.getIsbn());
+
+        log.info(book.getTitle());
     }
 
     @Test
-    public void saveBookTest() {
-
-        booksRepository.save(bookSample());
-        Assertions.assertThat(bookSample().getIsbn()).isNotEmpty();
+    public void getBookTest() {
+        BooksEntity book = BooksEntity.builder()
+                .isbn("0-345-24223-8")
+                .author("M Munoz")
+                .title("My life")
+                .mainGenre("Biography")
+                .secondaryGenre("Feel Good")
+                .shortDescription("blah blah")
+                .thumbnailUrl("http://")
+                .build();
+        assertNotNull(booksRepository.findById("0-345-24223-8"));
+        assertEquals(book.getIsbn(), "0-345-24223-8");
     }
 
     @Test
-    public void getBookTest(){
-        BooksEntity book = booksRepository.findById("0-345-24223-8").get();
+    public void getBooksTest() {
 
-        Assertions.assertThat(book.getIsbn()).isEqualTo("0-345-24223-8");
-    }
+        BooksEntity book = BooksEntity.builder()
+                .isbn("0-345-24223-8")
+                .author("M Munoz")
+                .title("My life")
+                .mainGenre("Biography")
+                .secondaryGenre("Feel Good")
+                .shortDescription("blah blah")
+                .thumbnailUrl("http://")
+                .build();
+        booksRepository.save(book);
 
-    @Test
-    public void getBooksTest(){
         List<BooksEntity> books = booksRepository.findAll();
-
-        Assertions.assertThat(books.size()).isGreaterThan(0);
+        assertNotEquals(0, books.size());
     }
 }
