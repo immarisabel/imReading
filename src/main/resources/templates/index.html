@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <header th:replace="header :: header">static header</header>
 <body>
-<p class="text-uppercase" th:text="#{label.title}">text</p>
-<p th:text="#{form.welcome}">Welcome!</p>
 
+<div class="container my-sm-5">
+
+    <h1 class="text-uppercase" th:text="#{label.title}">text</h1>
+    <div th:replace="book-log-form :: form">form</div>
+    <p></p>
+    <div th:replace="currently-reading">currently reading</div>
+
+</div>
 </body>
 </html>
