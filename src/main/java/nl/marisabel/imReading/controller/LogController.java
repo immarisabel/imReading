@@ -3,8 +3,7 @@ package nl.marisabel.imReading.controller;
 import nl.marisabel.imReading.dto.LogDto;
 import nl.marisabel.imReading.entities.BooksEntity;
 import nl.marisabel.imReading.entities.LogEntity;
-import nl.marisabel.imReading.services.Books;
-import nl.marisabel.imReading.services.Logs;
+import nl.marisabel.imReading.services.LogsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,9 +19,7 @@ import java.util.List;
 public class LogController {
 
     @Autowired
-    Books books;
-    @Autowired
-    Logs logs;
+    LogsService logsService;
 
     @ModelAttribute("logDto")
     public LogDto logForm() {
@@ -37,14 +34,13 @@ public class LogController {
 
     @RequestMapping("/index")
     String index(Model model) {
-
         return "index";
     }
 
     @RequestMapping("/new-log")
     String post(Model model,  @ModelAttribute("log") LogEntity log) {
-        List<LogEntity> l = logs.getLogs();
-        model.addAttribute("logs", l);
+        List<LogEntity> list = logsService.getLogs();
+        model.addAttribute("logs", list);
         return "temp";
     }
 
@@ -52,30 +48,10 @@ public class LogController {
     String log(Model model, @ModelAttribute("log") LogEntity log) {
         List<String> books = Arrays.asList("Harry Potter", "Touch", "My life");
         model.addAttribute("booksList", books);
-        logs.saveOrUpdate(log);
+        logsService.saveOrUpdate(log);
         return "new-log";
     }
 
-    @GetMapping("/books")
-    private List<BooksEntity> getAllReadBooks() {
-        return books.getReadBooks();
-    }
-
-    @GetMapping("/books/{isbn}")
-    private BooksEntity getBook(@PathVariable("isbn") String isbn) {
-        return books.getBookbyIsbn(isbn);
-    }
-
-    @DeleteMapping("/books/{isbn}")
-    private void deleteBook(@PathVariable("isbn") String isbn) {
-        books.delete(isbn);
-    }
-
-    @PostMapping("/books")
-    private String saveBook(@RequestBody BooksEntity newBook) {
-        books.saveOrUpdate(newBook);
-        return newBook.getIsbn();
-    }
 
 
 }

@@ -1,5 +1,7 @@
 package nl.marisabel.imReading;
 
+import nl.marisabel.imReading.services.LogServiceImp;
+import nl.marisabel.imReading.services.LogsService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,6 +24,10 @@ public class ImReadingApplication {
 		return messageSource;
 	}
 
+	@Bean
+	public LogsService logsService(){
+		return new LogServiceImp();
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(ImReadingApplication.class, args);
