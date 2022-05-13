@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<header th:replace="fragments/header :: header">static header</header>
+<body>
+
+<div class="container my-sm-5">
+
+    <h1 class="text-uppercase" th:text="#{label.title}">title page</h1>
+    <p></p>
+    <div th:replace="fragments/main-navigation">navigation</div>
+
+    <p th:text="${log.content}"></p>
+    <p th:text="${log.book}"></p>
+    <p th:text="${log.mood}"></p>
+    <p th:text="${log.page}"></p>
+    <p th:text="${log.date}"></p>
+
+</div>
+</body>
+</html>

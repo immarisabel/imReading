@@ -24,12 +24,12 @@ public class BooksEntity {
 
     private String thumbnailUrl;
     private String shortDescription;
-    @ManyToOne
-    @JoinColumn(name = "genre_id")
-    private GenreEntity genre;
-    @ManyToOne
-    @JoinColumn(name = "tags_id")
-    private TagsEntity tags;
+//    @ManyToOne
+//    @JoinColumn(name = "genre_id")
+//    private GenreEntity genre;
+//    @ManyToOne
+//    @JoinColumn(name = "tags_id")
+//    private TagsEntity tags;
     private String status; // ENUM?
     private int rating = 0; // default is 0, update when finished
 }

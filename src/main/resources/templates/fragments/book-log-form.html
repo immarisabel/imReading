@@ -1,4 +1,10 @@
-<form class="form my-sm-5">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<header></header>
+
+
+<form class="form my-sm-5" method="post" th:action="@{new-log}" th:object="${logDto}">
 
     <!--    Auto generate options for book currently reading.
     Store the text with date on the correct book.
@@ -7,10 +13,10 @@
 
     <div class="row">
         <div class="col-sm">
-            <select class="form-control col-md-2 my-sm-1 col-xs-2" name="currently-reading-books" id="cr-books">
-                <option value="exmple 1">Book one by Author Name</option>
-                <option value="exmple 2">Book two by Author Name</option>
+            <select th:field="*{book}" class="form-control col-md-2 my-sm-1 col-xs-2" name="currently-reading-books" id="cr-books">
+               <option th:each="book : ${booksList}" th:value="${book}" th:text="${book}" />
             </select></div>
+        <p></p>
         <div class="col-sm">
             <input type="button" value="add a book" class="btn btn-primary"/>
         </div>
@@ -21,19 +27,19 @@
 
 
     <p></p>
-    <textarea cols="60" rows="10" class="form-control">Test</textarea>
+    <textarea  th:field="*{content}" cols="60" rows="10" class="form-control">Test</textarea>
     <p></p>
     <div class="row my-sm-5">
         <div class="col-sm  col-lg-2">
 
             <div class="form-floating">
-                <input type="number" class="form-control" id="page" placeholder="#" value="#">
+                <input type="number" th:field="*{page}" class="form-control" id="page" placeholder="#" value="#">
                 <label for="page">Page</label>
             </div>
         </div>
-        <div class="col-sm col-lg-1 form-floatig">
+        <div class="col-sm col-lg-1">
             <label for="moods">Mood</label>
-            <select class="form-control py-sm-0 text-sm-start border-0" name="mood" id="moods">
+            <select th:field="*{mood}" class="form-control py-sm-0 text-sm-start border-0" name="mood" id="moods">
                 <option value="Excited">&#129321;</option>
                 <option value="Happy">&#128512;</option>
                 <option value="Ok">&#128578;</option>
@@ -44,8 +50,15 @@
             </select>
 
         </div>
-        <div class="col-sm form-floating-match text-sm-end"><input type="submit" value="submit" class="btn btn-primary"/>
+        <div class="col-sm"></div><div class="col-sm"></div>
+        <div class="col-sm align-text-bottom form-floating-match">
+            <input th:field="*{date}" type="date" class="form-control" id="date"/>
+        </div>
+        <div class="col-sm form-floating-match col-lg-1 text-sm-end">
+            <input type="submit" value="submit" class="btn btn-primary "/>
         </div>
         <p></p>
     </div>
 </form>
+
+</html>
