@@ -21,7 +21,7 @@
     --bs-white: #fff;
     --bs-gray: #6c757d;
     --bs-gray-dark: #343a40;
-    --bs-primary: #0d6efd;
+    --bs-primary: #8FD4CA;
     --bs-secondary: #6c757d;
     --bs-success: #198754;
     --bs-info: #0dcaf0;
@@ -2516,10 +2516,19 @@ textarea.form-control-lg {
     position: relative
 }
 
+.form-floating-match{
+    height: calc(3.5rem + 2px);
+    line-height: 1.25;
+    position: relative;
+    padding: 1rem .75rem;
+    border: 0px;
+}
+
 .form-floating>.form-control,
 .form-floating>.form-select {
     height: calc(3.5rem + 2px);
     line-height: 1.25
+
 }
 
 .form-floating>label {
@@ -2941,21 +2950,21 @@ fieldset:disabled .btn {
 
 .btn-primary {
     color: #fff;
-    background-color: #0d6efd;
-    border-color: #0d6efd
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary)
 }
 
 .btn-primary:hover {
     color: #fff;
-    background-color: #0b5ed7;
-    border-color: #0a58ca
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary)
 }
 
 .btn-check:focus+.btn-primary,
 .btn-primary:focus {
     color: #fff;
-    background-color: #0b5ed7;
-    border-color: #0a58ca;
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
     box-shadow: 0 0 0 .25rem rgba(49, 132, 253, .5)
 }
 
@@ -7119,6 +7128,11 @@ fieldset:disabled .btn {
 .w-50 {
     width: 50%!important
 }
+
+.w-60 {
+    width: 60%!important
+}
+
 
 .w-75 {
     width: 75%!important

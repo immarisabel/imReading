@@ -1,4 +1,4 @@
-package nl.marisabel.imReading.journal;
+package nl.marisabel.imReading.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,18 +12,21 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class EntryEntity {
-
+@Table(name="logs")
+public class LogEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "journal_id")
-    private JournalEntity journal;
-
+    @JoinColumn(name = "book_isbn")
+    private BooksEntity book;
+    private int rating;
+    private boolean favorite;
+    private String shelf;
     private String content;
     private String date;
-
+    private int mood;
+    private int page;
 
 }
