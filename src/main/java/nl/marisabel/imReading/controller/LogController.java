@@ -42,7 +42,9 @@ public class LogController {
     }
 
     @RequestMapping("/new-log")
-    String post(Model model,@ModelAttribute("log") LogEntity log ) {
+    String post(Model model,  @ModelAttribute("log") LogEntity log) {
+        List<LogEntity> l = logs.getLogs();
+        model.addAttribute("logs", l);
         return "temp";
     }
 
