@@ -1,11 +1,15 @@
 package nl.marisabel.imReading.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "logs")
 public class LogEntity {
     @Id
@@ -21,6 +25,5 @@ public class LogEntity {
     private String date;
     private String mood;
     private int page;
-
 
 }

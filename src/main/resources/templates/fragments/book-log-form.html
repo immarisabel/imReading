@@ -4,7 +4,7 @@
 <header></header>
 
 
-<form class="form my-sm-5" method="post" th:action="@{new-log}" th:object="${logDto}">
+<form class="form my-sm-5" method="post" th:action="@{new-log}" th:object="${logEntity}">
 
     <!--    Auto generate options for book currently reading.
     Store the text with date on the correct book.
@@ -13,9 +13,12 @@
 
     <div class="row">
         <div class="col-sm">
+
+
             <select th:field="*{book}" class="form-control col-md-2 my-sm-1 col-xs-2" name="currently-reading-books" id="cr-books">
                <option th:each="book : ${booksList}" th:value="${book}" th:text="${book}" />
-            </select></div>
+            </select>
+        </div>
         <p></p>
         <div class="col-sm">
             <input type="button" value="add a book" class="btn btn-primary"/>

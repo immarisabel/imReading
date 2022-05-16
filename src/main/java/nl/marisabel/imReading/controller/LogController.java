@@ -21,9 +21,9 @@ public class LogController {
     @Autowired
     LogsService logsService;
 
-    @ModelAttribute("logDto")
-    public LogDto logForm() {
-        return new LogDto();
+    @ModelAttribute("logEntity")
+    public LogEntity logForm() {
+        return new LogEntity();
     }
 
     public void addInterceptors(InterceptorRegistry registry) {
@@ -37,17 +37,18 @@ public class LogController {
         return "index";
     }
 
-    @RequestMapping("/new-log")
+    @PostMapping("/new-log")
     String post(Model model,  @ModelAttribute("log") LogEntity log) {
         List<LogEntity> list = logsService.getLogs();
         model.addAttribute("logs", list);
         return "temp";
     }
 
-    @RequestMapping("/log")
+    @GetMapping("/log")
     String log(Model model, @ModelAttribute("log") LogEntity log) {
         List<String> books = Arrays.asList("Harry Potter", "Touch", "My life");
         model.addAttribute("booksList", books);
+        System.out.println("TEST:" + log);
         logsService.saveOrUpdate(log);
         return "new-log";
     }
