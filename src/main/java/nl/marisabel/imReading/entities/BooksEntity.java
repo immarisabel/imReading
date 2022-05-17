@@ -16,20 +16,13 @@ import javax.persistence.*;
 public class BooksEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String isbn;
+    private int id;
+    private int isbn;
     private String title;
-    @ManyToOne
-    @JoinColumn(name = "author_id")
-    private AuthorEntity author;
-
+    private String author;
     private String thumbnailUrl;
     private String shortDescription;
-//    @ManyToOne
-//    @JoinColumn(name = "genre_id")
-//    private GenreEntity genre;
-//    @ManyToOne
-//    @JoinColumn(name = "tags_id")
-//    private TagsEntity tags;
     private String status; // ENUM?
     private int rating = 0; // default is 0, update when finished
+    private boolean favorite;
 }

@@ -13,21 +13,14 @@ public class LogEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "book")
-    private String book;
-    @Column(name = "rating")
+    @ManyToOne
+    @JoinColumn(name = "isbn_isbn")
+    private BooksEntity isbn;
     private int rating;
-    @Column(name = "favorite")
-    private boolean favorite;
-    @Column(name = "shelf")
     private String shelf;
-    @Column(name = "content")
     private String content;
-    @Column(name = "date")
     private String date;
-    @Column(name = "mood")
     private String mood;
-    @Column(name = "page")
     private int page;
 
 }
