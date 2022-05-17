@@ -9,12 +9,10 @@
     <!--    Auto generate options for book currently reading.
     Store the text with date on the correct book.
     -->
-
+    <input type="hidden" th:field="*{id}"/>
 
     <div class="row">
         <div class="col-sm">
-
-
             <select th:field="*{book}" class="form-control col-md-2 my-sm-1 col-xs-2" name="currently-reading-books" id="cr-books">
                <option th:each="book : ${booksList}" th:value="${book}" th:text="${book}" />
             </select>
@@ -51,7 +49,6 @@
                 <option value="Scary">&#128552;</option>
                 <option value="Annoying">&#128545;</option>
             </select>
-
         </div>
         <div class="col-sm"></div><div class="col-sm"></div>
         <div class="col-sm align-text-bottom form-floating-match">
@@ -63,5 +60,7 @@
         <p></p>
     </div>
 </form>
+
+
 
 </html>
