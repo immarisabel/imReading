@@ -16,7 +16,7 @@ public class LogEntity {
     @ManyToOne
     @JoinColumn(name = "isbn_isbn")
     private BooksEntity isbn;
-    private int rating;
+    private String book;
     private String shelf;
     private String content;
     private String date;

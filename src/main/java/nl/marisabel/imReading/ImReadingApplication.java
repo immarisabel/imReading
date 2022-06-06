@@ -1,5 +1,7 @@
 package nl.marisabel.imReading;
 
+import nl.marisabel.imReading.services.BooksService;
+import nl.marisabel.imReading.services.BooksServiceImp;
 import nl.marisabel.imReading.services.LogServiceImp;
 import nl.marisabel.imReading.services.LogsService;
 import org.springframework.boot.SpringApplication;
@@ -24,10 +26,7 @@ public class ImReadingApplication {
 		return messageSource;
 	}
 
-	@Bean
-	public LogsService logsService(){
-		return new LogServiceImp();
-	}
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(ImReadingApplication.class, args);
