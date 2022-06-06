@@ -6,9 +6,6 @@
 
 <form class="form my-sm-5" method="post" th:action="@{new-log}" th:object="${logEntity}">
 
-    <!--    Auto generate options for book currently reading.
-    Store the text with date on the correct book.
-    -->
     <input type="hidden" th:field="*{id}"/>
 
     <div class="row">
@@ -19,7 +16,7 @@
         </div>
         <p></p>
         <div class="col-sm">
-            <input type="button" value="add a book" class="btn btn-primary"/>
+            <a href="newbook"><input type="button" value="add a book" class="btn btn-primary"/></a>
         </div>
         <div class="col-sm">
             <a href="index"><input type="button" value="home" class="btn btn-primary float-end"/></a>

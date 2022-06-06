@@ -30,7 +30,7 @@ public class LogController {
     public LogEntity logForm() {
         return new LogEntity();
     }
-    @ModelAttribute("books")
+    @ModelAttribute("booksEntity")
     public BooksEntity books() {
         return new BooksEntity();
     }
@@ -48,11 +48,26 @@ public class LogController {
         return "new-log";
     }
 
+
+    @GetMapping("/newbook")
+    String books(Model model, @ModelAttribute("books") BooksEntity book) {
+        List<BooksEntity> books = booksService.getBooks();
+        model.addAttribute("books", books);
+        return "new-book-form";
+    }
+
+
+    @PostMapping("/new-book")
+    String post(Model model,  @ModelAttribute("book") BooksEntity book) {
+        booksService.saveOrUpdate(book);
+        List<BooksEntity> list = booksService.getBooks();
+        model.addAttribute("books", list);
+        return "books";
+    }
+
     @PostMapping("/new-log")
     String post(Model model,  @ModelAttribute("log") LogEntity log) {
         logsService.saveOrUpdate(log);
-
-
 
         List<LogEntity> list = logsService.getLogs();
         model.addAttribute("logs", list);
@@ -60,15 +75,6 @@ public class LogController {
     }
 
 
-    @GetMapping("/test")
-    String test(Model model,  @ModelAttribute("book") BooksEntity books) {
-
-        List<BooksEntity> list = booksService.getBooks();
-        System.out.println(list);
-        model.addAttribute("books", list);
-
-        return "test";
-    }
 
 
     public void addInterceptors(InterceptorRegistry registry) {
