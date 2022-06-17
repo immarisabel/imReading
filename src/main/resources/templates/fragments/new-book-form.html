@@ -4,12 +4,16 @@
 <header></header>
 
 
-<form class="form my-sm-5" method="post" th:action="@{new-book}" th:object="${booksEntity}">
+
+<form class="form my-sm-5" method="post" th:action="@{books}" th:object="${booksEntity}">
 
     <input type="hidden" th:field="*{id}"/>
 
+    <div class="container">
+
     <div class="row my-sm-5">
-        <div class="col-sm  col-lg-2">
+
+        <div class="col col-lg-2">
 
             <div class="form-floating">
                 <input type="number" th:field="*{isbn}" class="form-control" id="isbn" placeholder="isbn" value="isbn">
@@ -21,6 +25,10 @@
                 <label for="title">title</label>
             </div>
 
+        </div>
+
+        <div class="col  col-lg-2">
+
             <div class="form-floating">
                 <input type="text" th:field="*{author}" class="form-control" id="author" placeholder="author" value="author">
                 <label for="author">author</label>
@@ -31,20 +39,23 @@
                 <label for="thumbnailUrl">thumbnailUrl</label>
             </div>
 
+        </div>
 
+        <div class="row my-sm-5">
             <p></p>
-            <textarea  th:field="*{shortDescription}" cols="20" rows="10" class="form-control">Short Description</textarea>
+            <textarea id="synopsis" th:field="*{shortDescription}" cols="20" rows="10" class="form-control">Short Description</textarea>
+            <label for="synopsis">synopsis</label>
             <p></p>
 
         </div>
 
-        <div class="col-sm"></div>
+        <div class="col-sm">
         <input type="checkbox"
                id="favorite"
                name="favorite"
                th:checked="${favorite}"/>
         <label for="favorite">favorite</label>
-
+    </div>
         <div class="col-sm"></div>
 
         <div class="col-sm align-text-bottom form-floating-match">
@@ -62,6 +73,7 @@
             <input type="submit" value="submit" class="btn btn-primary "/>
         </div>
         <p></p>
+    </div>
     </div>
 </form>
 

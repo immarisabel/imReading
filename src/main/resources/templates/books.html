@@ -6,25 +6,29 @@
 
 <div class="container my-sm-5">
 
-  <h1 class="text-uppercase" th:text="#{label.title}">title page</h1>
-  <p></p>
+    <h1 class="text-uppercase" th:text="#{label.title}">title page</h1>
+    <p></p>
 
-  <div th:replace="fragments/main-navigation">navigation</div>
+    <div th:replace="fragments/main-navigation">navigation</div>
 
-  <div class="container-fluid p-5 !direction !spacing">
 
-    <div class="row">
+    <div class="container-fluid p-5 !direction !spacing">
+        <p class="mb-5"><h3>Books Read</h3></p>
+        <hr>
+        <div class="row">
 
-      <div th:each="b: ${books}" class="col-md-2 col-sm-2 col-lg-2 col-xs-2 col-xl-2 control-label text-center mb-4" style="border:0px solid #000000;min-width:200px;">
-        <img class="img-responsive" th:src="${b.thumbnailUrl}"  width="150vh " alt=" ">
-        <p></p>
-        <p th:text="${b.title}">Title of book</p>
-        <p th:text="'By: ' + ${b.author}" >by Author Name</p>
-        <p th:text="'Started on: ' + ${b.startDate}">Started Date</p>
-      </div>
+            <div th:each="b: ${books}"
+                 class="col-md-2 col-sm-2 col-lg-2 col-xs-2 col-xl-2 control-label text-center mb-4"
+                 style="border:0px solid #000000;min-width:200px;">
+                <img class="img-responsive" th:src="${b.thumbnailUrl}" width="150vh " alt=" ">
+                <p></p>
+                <p th:text="${b.title}">Title of book</p>
+                <p th:text="'By: ' + ${b.author}">by Author Name</p>
+                <p th:text="'Started on: ' + ${b.startDate}">Started Date</p>
+            </div>
 
+        </div>
     </div>
-  </div>
 
 
 </div>

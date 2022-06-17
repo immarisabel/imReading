@@ -22,7 +22,6 @@ public class LogController {
 
     @Autowired
     LogsService logsService;
-
     @Autowired
     BooksService booksService;
 
@@ -41,30 +40,16 @@ public class LogController {
         return "index";
     }
 
+
+    // Log Registry
+
+
     @GetMapping("/log")
     String log(Model model, @ModelAttribute("log") LogEntity log) {
         List<BooksEntity> books = booksService.getBooks();
         model.addAttribute("books", books);
         return "new-log";
     }
-
-
-    @GetMapping("/newbook")
-    String books(Model model, @ModelAttribute("books") BooksEntity book) {
-        List<BooksEntity> books = booksService.getBooks();
-        model.addAttribute("books", books);
-        return "new-book-form";
-    }
-
-
-    @PostMapping("/new-book")
-    String post(Model model,  @ModelAttribute("book") BooksEntity book) {
-        booksService.saveOrUpdate(book);
-        List<BooksEntity> list = booksService.getBooks();
-        model.addAttribute("books", list);
-        return "books";
-    }
-
     @PostMapping("/new-log")
     String post(Model model,  @ModelAttribute("log") LogEntity log) {
         logsService.saveOrUpdate(log);
@@ -73,6 +58,26 @@ public class LogController {
         model.addAttribute("logs", list);
         return "temp";
     }
+
+
+    // Book registry
+
+
+    @RequestMapping("/newbook")
+    String books(Model model, @ModelAttribute("books") BooksEntity book) {
+        List<BooksEntity> books = booksService.getBooks();
+        model.addAttribute("books", books);
+        return "new-book";
+    }
+
+    @PostMapping("/books")
+    String post(Model model,  @ModelAttribute("book") BooksEntity book) {
+        booksService.saveOrUpdate(book);
+        List<BooksEntity> list = booksService.getBooks();
+        model.addAttribute("books", list);
+        return "books";
+    }
+
 
 
 
