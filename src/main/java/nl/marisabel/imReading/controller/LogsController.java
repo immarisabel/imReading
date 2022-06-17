@@ -12,23 +12,23 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
-import java.awt.print.Book;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
 @RequestMapping("/imreading")
-public class LogController {
+public class LogsController {
 
     @Autowired
     LogsService logsService;
-    @Autowired
-    BooksService booksService;
 
     @ModelAttribute("logEntity")
     public LogEntity logForm() {
         return new LogEntity();
     }
+
+    @Autowired
+    BooksService booksService;
+
     @ModelAttribute("booksEntity")
     public BooksEntity books() {
         return new BooksEntity();
@@ -45,13 +45,15 @@ public class LogController {
 
 
     @GetMapping("/log")
-    String log(Model model, @ModelAttribute("log") LogEntity log) {
+    String addNewLog(Model model, @ModelAttribute("log") LogEntity log) {
         List<BooksEntity> books = booksService.getBooks();
         model.addAttribute("books", books);
         return "new-log";
     }
+
+    //TODO fix to display only the added log inside the chosen book, not ALL
     @PostMapping("/new-log")
-    String post(Model model,  @ModelAttribute("log") LogEntity log) {
+    String displayNewLog(Model model, @ModelAttribute("log") LogEntity log) {
         logsService.saveOrUpdate(log);
 
         List<LogEntity> list = logsService.getLogs();
@@ -59,27 +61,18 @@ public class LogController {
         return "temp";
     }
 
+    @GetMapping("/logs")
+    String displayAllLogs(Model model, @ModelAttribute("log") LogEntity log) {
+        List<LogEntity> list = logsService.getLogs();
+        model.addAttribute("logs", list);
+        return "logs";
+    }
+
+
+
+
 
     // Book registry
-
-
-    @RequestMapping("/newbook")
-    String books(Model model, @ModelAttribute("books") BooksEntity book) {
-        List<BooksEntity> books = booksService.getBooks();
-        model.addAttribute("books", books);
-        return "new-book";
-    }
-
-    @PostMapping("/books")
-    String post(Model model,  @ModelAttribute("book") BooksEntity book) {
-        booksService.saveOrUpdate(book);
-        List<BooksEntity> list = booksService.getBooks();
-        model.addAttribute("books", list);
-        return "books";
-    }
-
-
-
 
 
     public void addInterceptors(InterceptorRegistry registry) {
@@ -87,9 +80,6 @@ public class LogController {
         localeChangeInterceptor.setParamName("lang");
         registry.addInterceptor(localeChangeInterceptor);
     }
-
-
-
 
 
 }
