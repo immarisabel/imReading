@@ -20,9 +20,13 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+//TODO fix all mapping!!!! Need to have controllers more organized, start with all in one and then break
+//http://localhost:8080/imreading/book/OL82577W does not work
+//http://localhost:8080/imreading/books
+//http://localhost:8080/imreading/book?search=harry+potter does work
 
 @Controller
-@RequestMapping(path = "book/{id}")
+@RequestMapping(path = "/imreading/book/{id}")
 @Log4j2
 public class ResultBooksController {
 
@@ -43,7 +47,7 @@ public class ResultBooksController {
     }
 
 
-    @GetMapping
+    @RequestMapping("/newbook")
     public String resultPage(final HttpSession session,
                              final HttpServletRequest request,
                              @RequestParam(value = "bookId", required = false)
@@ -92,4 +96,6 @@ public class ResultBooksController {
 
         return "new-book";
     }
+
+
 }
