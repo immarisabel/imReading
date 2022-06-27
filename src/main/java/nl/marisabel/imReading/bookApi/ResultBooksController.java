@@ -37,7 +37,8 @@ public class ResultBooksController {
 
 
     @GetMapping
-    public String resultPage(@RequestParam("id") @PathVariable(name = "id", required = true) String id, @ModelAttribute("books") BooksEntity book, Model model) {
+    @ResponseBody
+    public String resultPage(@RequestParam(value = "id", required = false) @PathVariable(name = "id", required = true) String id, @ModelAttribute("books") BooksEntity book, Model model) {
         List<BooksEntity> books = booksService.getBooks();
         model.addAttribute("books", books);
         try {
