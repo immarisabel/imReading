@@ -1,7 +1,8 @@
-package nl.marisabel.imReading.bookApi;
+package nl.marisabel.imReading.controller;
 
 import java.util.HashMap;
 
+import nl.marisabel.imReading.services.SearchBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;

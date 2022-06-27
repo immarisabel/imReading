@@ -1,7 +1,7 @@
 package nl.marisabel.imReading.books;
 
 import com.google.gson.Gson;
-import nl.marisabel.imReading.bookApi.SearchBookService;
+import nl.marisabel.imReading.services.SearchBookService;
 import nl.marisabel.imReading.bookApi.json.AuthorInfo;
 import nl.marisabel.imReading.bookApi.json.BooksInfo;
 import org.junit.jupiter.api.Test;

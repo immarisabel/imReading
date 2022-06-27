@@ -1,4 +1,4 @@
-package nl.marisabel.imReading.bookApi;
+package nl.marisabel.imReading.repositories;
 
 
 import java.io.StringReader;

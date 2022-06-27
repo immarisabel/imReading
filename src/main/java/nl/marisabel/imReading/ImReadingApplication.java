@@ -26,8 +26,6 @@ public class ImReadingApplication {
 		return messageSource;
 	}
 
-
-
 	public static void main(String[] args) {
 		SpringApplication.run(ImReadingApplication.class, args);
 	}
