@@ -16,7 +16,7 @@ import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 
 @Repository
-public class BookRepository {
+public class SearchBookRepository {
 
     @Autowired
     @Qualifier("redisDB")

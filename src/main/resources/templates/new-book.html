@@ -10,28 +10,60 @@
     <div th:replace="fragments/main-navigation">navigation</div>
 
 
+    <!--    SEARCH BOOK API FORM-->
 
-    <h1>Book Search</h1>
-    <form action="/book" method="get">
-        <input type="text" name ="search" placeholder="Search books by title" required/>
-        <button>Search</button>
-
-<!--&lt;!&ndash;    TODO search auto with API&ndash;&gt;-->
-
-<!--    <form class="form my-sm-5" method="post" th:action="@{bookApi}" th:object="${bookAPIJsonDTO}">-->
-<!--        <input type="text" th:field="*{search}"-->
-<!--               class="form-control"-->
-<!--               id="search"-->
-<!--               placeholder="search"-->
-<!--               value="search">-->
-
-<!--        <input type="submit" value="submit" class="btn btn-primary "/>-->
-<!--    </form>-->
-
+    <form class="form my-sm-5 " action="/newbook" method="get">
+        <p></p>
+        <div class="row my-sm-5 mt-md-5">
+            <div class="col-sm">
+                <input type="text" id="user_input" class="form-control" name="search"
+                       placeholder="Search books by title" required/>
+            </div>
+            <p></p>
+            <div class="col-sm">
+                <button class="btn btn-primary float-start" id="sub">Search</button>
+            </div>
+            <p></p>
+        </div>
+    </form>
 
 
 
-<!--   Manual book form -->
+    <div class="box_1" id="msg">
+        <script type="text/javascript"
+                src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js">
+        </script>
+
+        <script src="jquery-3.2.1.js"></script>
+        <script>
+            $(document).ready(function() {
+                $("#sub").click(function() {
+                    var fn = $("#user_input").val();
+                    $.post("index.jsp", {
+                        n3: fn
+                    }, function(data) {
+                        $("#msg").html(data);
+                    });
+
+                });
+            });
+        </script>
+    </div>
+
+<!--    <h1 th:text="|Search result for '${searchterm}'|">Search Result</h1>-->
+<!--    <ol>-->
+<!--        <li th:each= "result: ${results.keySet()}" >-->
+<!--            <a th:href="@{'/book'}+${result.substring(6)}"-->
+<!--               th:text = "${results.get(result)}">-->
+<!--                book result</a></li>-->
+<!--    </ol>-->
+
+
+
+
+<!-- <div th:replace="fragments/result">search result</div>-->
+
+    <!--   Manual book form -->
 
     <form class="form my-sm-5" method="post" th:action="@{books}" th:object="${booksEntity}">
 
@@ -39,31 +71,31 @@
 
         <div class="row my-sm-5 mt-md-5">
             <div class="col-xxl">
-                    <input type="number" th:field="*{isbn}" class="form-control" id="isbn" placeholder="isbn"
-                           value="isbn">
+                <input type="number" th:field="*{isbn}" class="form-control" id="isbn" placeholder="isbn"
+                       value="isbn">
                 <p></p>
-                    <input type="text" th:field="*{title}" class="form-control" id="title" placeholder="title"
-                           value="title">
+                <input type="text" th:field="*{title}" class="form-control" id="title" placeholder="title"
+                       value="title">
                 <p></p>
             </div>
 
 
             <div class="col-xxl">
-                    <input type="text" th:field="*{author}" class="form-control" id="author" placeholder="author"
-                           value="author">
+                <input type="text" th:field="*{author}" class="form-control" id="author" placeholder="author"
+                       value="author">
                 <p></p>
-                    <input type="text" th:field="*{thumbnailUrl}" class="form-control" id="thumbnailUrl"
-                           placeholder="book cover url" value="http://">
+                <input type="text" th:field="*{thumbnailUrl}" class="form-control" id="thumbnailUrl"
+                       placeholder="book cover url" value="http://">
             </div>
 
 
         </div>
 
         <div class="row-cols-auto my-sm-5">
-                <p></p>
-                <textarea th:field="*{shortDescription}"  rows="10"
-                          class="form-control">Write something</textarea>
-                <p></p>
+            <p></p>
+            <textarea th:field="*{shortDescription}" rows="10"
+                      class="form-control">Write something</textarea>
+            <p></p>
         </div>
 
 

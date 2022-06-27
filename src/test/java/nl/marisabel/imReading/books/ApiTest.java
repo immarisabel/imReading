@@ -1,7 +1,7 @@
 package nl.marisabel.imReading.books;
 
 import com.google.gson.Gson;
-import nl.marisabel.imReading.bookApi.BookService;
+import nl.marisabel.imReading.bookApi.SearchBookService;
 import nl.marisabel.imReading.bookApi.json.AuthorInfo;
 import nl.marisabel.imReading.bookApi.json.BooksInfo;
 import org.junit.jupiter.api.Test;
@@ -13,9 +13,9 @@ public class ApiTest {
 
     @Test
     public void JsonBookInformationAPiTest() throws IOException, InterruptedException {
-        BookService bookService = new BookService();
+        SearchBookService searchBookService = new SearchBookService();
 
-        String jsonBookInfo = bookService.getBookDetail("OL17930368W");
+        String jsonBookInfo = searchBookService.getBookDetail("OL17930368W");
 
 
         // BOOK
@@ -30,7 +30,7 @@ public class ApiTest {
 
         // AUTHOR
         String authorKey = bookJson.getAuthors().get(0).getAuthor().getKey();
-        String authorDetails = bookService.getAuthorDetails(authorKey);
+        String authorDetails = searchBookService.getAuthorDetails(authorKey);
         AuthorInfo authorInfo = new Gson().fromJson(authorDetails, AuthorInfo.class);
         System.out.println(authorInfo.getName());
 

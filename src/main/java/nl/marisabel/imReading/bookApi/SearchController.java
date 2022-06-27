@@ -11,21 +11,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.HashMap;
 
 @Controller
-@RequestMapping(path = "/book")
+@RequestMapping(path = "imreading/book")
 public class SearchController {
 
     @Autowired
-    BookService bookService;
+    SearchBookService searchBookService;
 
-    @GetMapping(produces = MediaType.TEXT_HTML_VALUE)
+    @GetMapping
     public String searchBook(@RequestParam(required = true) String search, Model model) {
 
-        HashMap<String, String> results = bookService.search(search.strip());
+        HashMap<String, String> results = searchBookService.search(search.strip());
 
         model.addAttribute("results", results);
         model.addAttribute("searchterm", search);
 
-        return "result";
+        return "fragments/result";
 
     }
 }

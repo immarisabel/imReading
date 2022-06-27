@@ -25,9 +25,9 @@ import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 
 @Service
-public class BookService {
+public class SearchBookService {
     private final String api = "https://openlibrary.org/search.json?fields=title,key&limit=20";
-    Logger logger = Logger.getLogger(BookService.class.getName());
+    Logger logger = Logger.getLogger(SearchBookService.class.getName());
 
 
     public HashMap<String, String> search(String searchTerm) {
