@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail</title>
+</head>
+<body>
+    Title: <span th:text="${title}">title</span>
+    <br/><br/>
+    Description: <span th:text="${Description}">description</span>
+    <br/><br/>
+    Excerpt: <span th:text="${excerpt}">Excerpt</span>
+    <br/><br/>
+    Cached: <span th:text="${cache}">cached</span>
+    <br/><br/>
+    <a href="/">Back</a>
+</body>
+</html>

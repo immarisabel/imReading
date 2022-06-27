@@ -9,17 +9,27 @@
     <h1 class="text-uppercase" th:text="#{label.title}">title page</h1>
     <div th:replace="fragments/main-navigation">navigation</div>
 
-<!--    TODO search auto with API-->
 
-    <form class="form my-sm-5" method="post" th:action="@{bookApi}" th:object="${bookAPIJsonDTO}">
-        <input type="text" th:field="*{search}"
-               class="form-control"
-               id="search"
-               placeholder="search"
-               value="search">
 
-        <input type="submit" value="submit" class="btn btn-primary "/>
-    </form>
+    <h1>Book Search</h1>
+    <form action="/book" method="get">
+        <input type="text" name ="search" placeholder="Search books by title" required/>
+        <button>Search</button>
+
+<!--&lt;!&ndash;    TODO search auto with API&ndash;&gt;-->
+
+<!--    <form class="form my-sm-5" method="post" th:action="@{bookApi}" th:object="${bookAPIJsonDTO}">-->
+<!--        <input type="text" th:field="*{search}"-->
+<!--               class="form-control"-->
+<!--               id="search"-->
+<!--               placeholder="search"-->
+<!--               value="search">-->
+
+<!--        <input type="submit" value="submit" class="btn btn-primary "/>-->
+<!--    </form>-->
+
+
+
 
 <!--   Manual book form -->
 
