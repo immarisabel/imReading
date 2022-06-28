@@ -50,10 +50,11 @@ public class BooksController {
 
 
     @GetMapping("/addnewbook")
-    public String showFormForUpdate(@RequestParam("bookId") int id, Model model) {
-        id = 9999;
-        BooksEntity book = booksService.getBook(id);
-        model.addAttribute("books", book);
+    public String showFormForUpdate(@RequestParam(required = true) String OLid, BooksEntity book, Model model) throws IOException, InterruptedException {
+
+        List<BooksEntity> books = booksService.getBooks();
+        model.addAttribute("books", books);
+
         return "new-book";
     }
 

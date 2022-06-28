@@ -1,6 +1,7 @@
 package nl.marisabel.imReading.services;
 
 
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -25,10 +26,9 @@ import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 
 @Service
+@Log4j2
 public class SearchBookService {
-    private final String api = "https://openlibrary.org/search.json?fields=title,key&limit=20";
-    Logger logger = Logger.getLogger(SearchBookService.class.getName());
-
+    private final String api = "https://openlibrary.org/search.json?fields=*&limit=20";
 
     public HashMap<String, String> search(String searchTerm) {
         HashMap<String, String> results = new HashMap<>();
@@ -51,11 +51,11 @@ public class SearchBookService {
                     .map(f -> (JsonObject) f)
                     .toList();
             keyandTitle.forEach(f -> results.put(f.getString("key"), f.getString("title")));
-            System.out.println(results);
+            log.info(results);
 
             return results;
         } catch (IOException e) {
-            logger.warning("IOException in reading json");
+            log.error("IOException in reading json");
         }
         return results;
     }

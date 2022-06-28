@@ -7,7 +7,6 @@ import nl.marisabel.imReading.bookApi.json.BooksInfo;
 import nl.marisabel.imReading.entities.BooksEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.io.IOException;
 
@@ -22,7 +21,7 @@ public class GetNewBookService {
 
 
 
-    public void addNewBookFromApi(String bookId) throws IOException, InterruptedException {
+    public BooksEntity addNewBookFromApi(String bookId) throws IOException, InterruptedException {
         String jsonStringBookInfo = searchBookService.getBookDetail(bookId);
         BooksInfo bookJson = new Gson().fromJson(jsonStringBookInfo, BooksInfo.class);
         String title = bookJson.getTitle();
@@ -43,5 +42,6 @@ public class GetNewBookService {
         book.setAuthor(author);
         book.setTitle(title);
         book.setThumbnailUrl(coverUrl);
+        return book;
     }
 }
