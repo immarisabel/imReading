@@ -11,8 +11,8 @@ public interface BooksService {
 
     void saveOrUpdate(BooksEntity book);
 
-    BooksEntity getLog(int id);
+    BooksEntity getBook(int id);
 
-    void deleteLog(int id);
+    void deleteBook(int id);
 
 }

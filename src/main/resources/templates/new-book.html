@@ -12,7 +12,7 @@
 
     <!--    SEARCH BOOK API FORM-->
 
-    <form class="form my-sm-5 " action="/book" method="get">
+    <form class="form my-sm-5 " action="/imreading/searchresults" method="get">
         <p></p>
         <div class="row my-sm-5 mt-md-5">
             <div class="col-sm">
@@ -31,7 +31,7 @@
 
     <!--   Manual book form -->
 
-    <form class="form my-sm-5" method="post" th:action="@{books}" th:object="${booksEntity}">
+    <form class="form my-sm-5" method="post" th:action="@{books_saved}" th:object="${booksEntity}">
 
         <input type="hidden" th:field="*{id}"/>
 
@@ -88,5 +88,6 @@
         <div class="row-cols-auto my-sm-5 form-floating-match col-lg-1 text-sm-end">
             <input type="submit" value="submit" class="btn btn-primary "/>
         </div>
+    </form>
 </body>
 </html>

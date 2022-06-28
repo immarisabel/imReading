@@ -24,12 +24,12 @@ public class BooksServiceImp implements BooksService {
     }
 
     @Override
-    public BooksEntity getLog(int id) {
+    public BooksEntity getBook(int id) {
         return booksDao.getBook(id);
     }
 
     @Override
-    public void deleteLog(int id) {
+    public void deleteBook(int id) {
         booksDao.deleteBook(id);
     }
 }
