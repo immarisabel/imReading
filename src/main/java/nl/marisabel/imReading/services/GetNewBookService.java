@@ -17,28 +17,27 @@ public class GetNewBookService {
     @Autowired
     SearchBookService searchBookService;
 
-    BooksEntity book;
+      public BooksEntity addNewBookFromApi(String OLid) throws IOException, InterruptedException {
 
 
+        String jsonStringBookInfo = searchBookService.getBookDetail(OLid);
 
-    public BooksEntity addNewBookFromApi(String bookId) throws IOException, InterruptedException {
-        String jsonStringBookInfo = searchBookService.getBookDetail(bookId);
         BooksInfo bookJson = new Gson().fromJson(jsonStringBookInfo, BooksInfo.class);
         String title = bookJson.getTitle();
         String authorKey = bookJson.getAuthors().get(0).getAuthor().getKey();
         String jsonAuthorInfo = searchBookService.getAuthorDetails(authorKey);
-        AuthorInfo authorJson = new Gson().fromJson(jsonAuthorInfo, AuthorInfo.class);
-        String author = authorJson.getName();
         String cover = String.valueOf(bookJson.getCovers().get(0));
-
-        boolean cached = false;
-
         String coverUrl = "https://covers.openlibrary.org/b/id/" + cover + "-M.jpg";
 
-        log.info(">>>>>>>>>>>>>>> ID: " + bookId);
+        AuthorInfo authorJson = new Gson().fromJson(jsonAuthorInfo, AuthorInfo.class);
+        String author = authorJson.getName();
+
+        log.info(">>>>>>>>>>>>>>> ID: " + OLid);
         log.info(">>>>>>>>>>>>>>> author: " + author);
         log.info(">>>>>>>>>>>>>>> title: " + title);
-        log.info(">>>>>>>>>>>>>>> title: " + coverUrl);
+        log.info(">>>>>>>>>>>>>>> cover: " + coverUrl);
+
+        BooksEntity book = new BooksEntity();
         book.setAuthor(author);
         book.setTitle(title);
         book.setThumbnailUrl(coverUrl);

@@ -14,7 +14,7 @@
     <li th:each= "result: ${results.keySet()}" >
         <p th:text=${result.substring(6)}></p>
 <!--       <img th:src="@${result.substring(6)}">-->
-        <a th:href="@{'/imreading/addnewbook'}+${result.substring(6)}" th:text = "${results.get(result)}">book result</a></li>
+        <a th:href="@{'/addnewbook'}+${result.substring(6)}" th:text = "${results.get(result)}">book result</a></li>
 
 </ol>
 

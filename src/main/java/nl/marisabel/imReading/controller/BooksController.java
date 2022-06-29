@@ -20,7 +20,6 @@ import java.util.HashMap;
 import java.util.List;
 
 @Controller
-@RequestMapping("/imreading")
 @Log4j2
 public class BooksController {
 
@@ -49,11 +48,15 @@ public class BooksController {
     }
 
 
-    @GetMapping("/addnewbook")
-    public String showFormForUpdate(@RequestParam(required = true) String OLid, BooksEntity book, Model model) throws IOException, InterruptedException {
+    @GetMapping("/addnewbook/{OLid}")
+    public String showFormForUpdate(@RequestParam(name = "OLid", required = false)  String OLid, BooksEntity book, Model model) throws IOException, InterruptedException {
 
-        List<BooksEntity> books = booksService.getBooks();
-        model.addAttribute("books", books);
+        //TODO for testing purposes
+        OLid = "OL52114W";
+
+        newBookService.addNewBookFromApi(OLid);
+
+        model.addAttribute("books", book);
 
         return "new-book";
     }

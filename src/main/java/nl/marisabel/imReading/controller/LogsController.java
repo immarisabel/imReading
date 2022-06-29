@@ -15,7 +15,6 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import java.util.List;
 
 @Controller
-@RequestMapping("/imreading")
 public class LogsController {
 
     @Autowired
