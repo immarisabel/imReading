@@ -17,7 +17,6 @@ public class BooksEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int isbn;
     private String OLid;
     private String title;
     private String author;

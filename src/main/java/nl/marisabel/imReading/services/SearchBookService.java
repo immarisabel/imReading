@@ -2,6 +2,7 @@ package nl.marisabel.imReading.services;
 
 
 import lombok.extern.log4j.Log4j2;
+import nl.marisabel.imReading.entities.ABook;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,9 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -31,6 +34,9 @@ public class SearchBookService {
     private final String api = "https://openlibrary.org/search.json?fields=*&limit=20";
 
     public HashMap<String, String> search(String searchTerm) {
+        ArrayList<ABook> array = new ArrayList<>();
+
+
         HashMap<String, String> results = new HashMap<>();
         RestTemplate template = new RestTemplate();
         String url = api + "&q=" + searchTerm;
@@ -47,6 +53,8 @@ public class SearchBookService {
             JsonObject data = reader.readObject();
             JsonArray searchArray = data.getJsonArray("docs");
 
+
+
             List<JsonObject> keyandTitle = searchArray.stream()
                     .map(f -> (JsonObject) f)
                     .toList();
@@ -61,11 +69,10 @@ public class SearchBookService {
     }
 
 
-
     public String getAuthorDetails(String authorId) throws IOException, InterruptedException {
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://openlibrary.org" + authorId +".json"))
+                .uri(URI.create("https://openlibrary.org" + authorId + ".json"))
                 .method("GET", HttpRequest.BodyPublishers.noBody()).build();
         HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 
@@ -76,7 +83,7 @@ public class SearchBookService {
     public String getBookDetail(String workId) throws IOException, InterruptedException {
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://openlibrary.org/works/" + workId +".json"))
+                .uri(URI.create("https://openlibrary.org/works/" + workId + ".json"))
                 .method("GET", HttpRequest.BodyPublishers.noBody()).build();
         HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 
