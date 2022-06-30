@@ -17,8 +17,11 @@ public class GetNewBookService {
     @Autowired
     SearchBookService searchBookService;
 
-      public BooksEntity addNewBookFromApi(String OLid) throws IOException, InterruptedException {
 
+
+      public BooksEntity addNewBookFromApi(String OLid, BooksEntity book) throws IOException, InterruptedException {
+
+        log.info(OLid);
 
         String jsonStringBookInfo = searchBookService.getBookDetail(OLid);
 
@@ -37,10 +40,10 @@ public class GetNewBookService {
         log.info(">>>>>>>>>>>>>>> title: " + title);
         log.info(">>>>>>>>>>>>>>> cover: " + coverUrl);
 
-        BooksEntity book = new BooksEntity();
         book.setAuthor(author);
         book.setTitle(title);
         book.setThumbnailUrl(coverUrl);
+
         return book;
     }
 }

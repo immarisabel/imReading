@@ -48,16 +48,10 @@ public class BooksController {
     }
 
 
-    @GetMapping("/addnewbook/{OLid}")
-    public String showFormForUpdate(@RequestParam(name = "OLid", required = false)  String OLid, BooksEntity book, Model model) throws IOException, InterruptedException {
-
-        //TODO for testing purposes
-        OLid = "OL52114W";
-
-        newBookService.addNewBookFromApi(OLid);
-
+    @RequestMapping("/newbook/{OLid}")
+    public String showFormForUpdate(@PathVariable(value = "OLid", required = false)  String OLid, BooksEntity book, Model model) throws IOException, InterruptedException {
+        newBookService.addNewBookFromApi(OLid, book);
         model.addAttribute("books", book);
-
         return "new-book";
     }
 

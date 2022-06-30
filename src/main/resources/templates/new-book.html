@@ -31,9 +31,9 @@
 
     <!--   Manual book form -->
 
-    <form class="form my-sm-5" method="post" th:action="@{books_saved}" th:object="${booksEntity}">
+    <form class="form my-sm-5" method="post" th:action="@{/books_saved}" th:object="${booksEntity}">
 
-        <input type="hidden" th:field="*{id}"/>
+        <input type="hidden" th:field="*{OLid}"/>
 
         <div class="row my-sm-5 mt-md-5">
             <div class="col-xxl">
