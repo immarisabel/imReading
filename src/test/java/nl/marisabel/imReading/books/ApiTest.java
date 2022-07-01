@@ -1,9 +1,9 @@
 package nl.marisabel.imReading.books;
 
 import com.google.gson.Gson;
-import nl.marisabel.imReading.services.SearchBookService;
-import nl.marisabel.imReading.bookApi.json.AuthorInfo;
-import nl.marisabel.imReading.bookApi.json.BooksInfo;
+import nl.marisabel.imReading.searchApi.POJO.AuthorInfo;
+import nl.marisabel.imReading.searchApi.POJO.BooksInfo;
+import nl.marisabel.imReading.searchApi.SearchBookService;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

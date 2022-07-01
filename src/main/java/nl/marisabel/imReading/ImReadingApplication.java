@@ -1,17 +1,10 @@
 package nl.marisabel.imReading;
 
-import nl.marisabel.imReading.entities.BooksEntity;
-import nl.marisabel.imReading.services.*;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.servlet.i18n.CookieLocaleResolver;
-import org.thymeleaf.spring5.SpringTemplateEngine;
 
 @SpringBootApplication
 public class ImReadingApplication {
