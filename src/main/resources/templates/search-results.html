@@ -4,15 +4,14 @@
 <header th:replace="fragments/header :: header">static header</header>
 <body>
 
-<div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light"  style="padding-bottom: 20px">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">Better Reads</a>
+<div class="container my-sm-5 align-content-center">
 
-        </div>
-    </nav>
+    <div th:replace="fragments/main-navigation">navigation</div>
 
-    <div th:insert="fragments/book-search :: search-panel"></div>
+    <P></P>
+    <div th:insert="fragments/book-search :: search-panel">
+        search
+    </div>
 
     <section class="content">
 

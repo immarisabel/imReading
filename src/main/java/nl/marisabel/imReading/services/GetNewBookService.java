@@ -18,27 +18,29 @@ public class GetNewBookService {
     SearchBookService searchBookService;
 
 
-
-      public BooksEntity addNewBookFromApi(String OLid, BooksEntity book) throws IOException, InterruptedException {
+    public BooksEntity addNewBookFromApi(String OLid, BooksEntity book) throws IOException, InterruptedException {
 
         log.info(OLid);
 
         String jsonStringBookInfo = searchBookService.getBookDetail(OLid);
 
         BooksInfo bookJson = new Gson().fromJson(jsonStringBookInfo, BooksInfo.class);
+
+
+
+
         String title = bookJson.getTitle();
         String authorKey = bookJson.getAuthors().get(0).getAuthor().getKey();
         String jsonAuthorInfo = searchBookService.getAuthorDetails(authorKey);
         String cover = String.valueOf(bookJson.getCovers().get(0));
         String coverUrl = "https://covers.openlibrary.org/b/id/" + cover + "-M.jpg";
 
+        if (bookJson.getCovers().get(0) == null) {
+            coverUrl = "/images/no-image.png";
+        }
+
         AuthorInfo authorJson = new Gson().fromJson(jsonAuthorInfo, AuthorInfo.class);
         String author = authorJson.getName();
-
-        log.info(">>>>>>>>>>>>>>> ID: " + OLid);
-        log.info(">>>>>>>>>>>>>>> author: " + author);
-        log.info(">>>>>>>>>>>>>>> title: " + title);
-        log.info(">>>>>>>>>>>>>>> cover: " + coverUrl);
 
         book.setAuthor(author);
         book.setTitle(title);
