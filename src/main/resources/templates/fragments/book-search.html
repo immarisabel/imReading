@@ -2,13 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 
+
 <div th:fragment="search-panel">
-    <form action="search.html" th:attr="action=@{/search}">
-        <div class="input-group mb-3">
-            <input type="text" name="query" class="form-control" placeholder="Search for a title" aria-label="Search query" aria-describedby="button-addon2">
-            <button type="submit" class="btn btn-outline-secondary" id="button-addon2">Search</button>
+    <form action="search-results.html" th:attr="action=@{/search}">
+
+        <div class="row my-sm-5">
+            <div class="col-10">
+                <input type="text" name="query" class="form-control" placeholder="Search for a title"
+                       aria-label="Search query" aria-describedby="button-addon2">
+            </div>
+
+            <div class="col-2">
+                <button type="submit" class="btn btn-primary w-100" id="button-addon2">Search</button>
+            </div>
+
         </div>
     </form>
+
 </div>
 
 </body>

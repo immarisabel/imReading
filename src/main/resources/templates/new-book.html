@@ -8,46 +8,40 @@
 
     <div th:replace="fragments/main-navigation">navigation</div>
 
+    <P></P>
+    <div th:insert="fragments/book-search :: search-panel">
+        search
+    </div>
 
-    <!--    SEARCH BOOK API FORM-->
-
-    <form class="form my-sm-5 " action="/searchresults" method="get">
-        <p></p>
-        <div class="row my-sm-5 mt-md-5">
-            <div class="col-sm">
-                <input type="text" id="user_input" class="form-control" name="search"
-                       placeholder="Search books by title" required/>
-            </div>
-            <p></p>
-            <div class="col-sm">
-                <button class="btn btn-primary float-start" id="sub">Search</button>
-            </div>
-            <p></p>
-        </div>
-    </form>
-
-
-
-    <!--   Manual book form -->
 
     <form class="form my-sm-5" method="post" th:action="@{/books_saved}" th:object="${booksEntity}">
-
         <input type="hidden" th:field="*{OLid}"/>
-
         <div class="row my-sm-5 mt-md-5">
             <div class="col-xxl">
+
                 <input type="text" th:field="*{title}" class="form-control" id="title" placeholder="title"
                        value="title">
+
+                <p></p>
+
+                <input type="text" th:field="*{author}" class="form-control" id="author" placeholder="author"
+                       value="author">
+
+
                 <p></p>
             </div>
 
-
             <div class="col-xxl">
-                <input type="text" th:field="*{author}" class="form-control" id="author" placeholder="author"
-                       value="author">
-                <p></p>
+
+
                 <input type="text" th:field="*{thumbnailUrl}" class="form-control" id="thumbnailUrl"
                        placeholder="book cover url" value="http://">
+
+                <p></p>
+
+                <input type="number" th:field="*{rating}" class="form-control" id="rating" placeholder="rating"
+                       value="rating" min="1" max="5">
+
             </div>
 
 
@@ -62,31 +56,27 @@
 
 
         <div class="row my-sm-5">
-            <div class="col-lg-2">
-                <input type="checkbox"
-                       id="favorite"
-                       name="favorite"
-                       th:checked="${favorite}"/>
+            <div class="col-1">
+                <input type="checkbox" id="favorite" name="favorite" th:checked="${favorite}"/>
                 <label for="favorite">favorite</label>
             </div>
-
-            <div class="col-lg-2 my-2">
+            <div class="col-3">
                 <div class="col-sm align-text-bottom form-floating-match">
                     <label for="startdate">Start Date</label>
                     <input th:field="*{startDate}" type="date" class="form-control" id="startdate"/>
                 </div>
             </div>
-            <div class="col-lg-2 my-2">
+            <div class="col-3">
                 <div class="col-sm align-text-bottom form-floating-match">
                     <label for="enddate">Finished Date</label>
                     <input th:field="*{finishedDate}" type="date" class="form-control" id="enddate"/>
                 </div>
             </div>
+            <div class="col-1">
+                <input type="submit" value="submit" class="btn btn-primary "/>
+            </div>
         </div>
+</div>
 
-        <div class="row-cols-auto my-sm-5 form-floating-match col-lg-1 text-sm-end">
-            <input type="submit" value="submit" class="btn btn-primary "/>
-        </div>
-    </form>
 </body>
 </html>

@@ -52,7 +52,7 @@ public class SearchController {
 
         model.addAttribute("searchResults", books);
 
-        return "searchtemp";
+        return "search-results";
     }
 
 
