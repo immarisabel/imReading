@@ -13,12 +13,12 @@
 
     <form class="form my-sm-5" method="post" th:action="@{new-log}" th:object="${logEntity}">
 
-        <input type="hidden" th:field="*{id}"/>
 
         <div class="row">
             <div class="col-sm">
                 <select th:field="*{book}" class="form-control col-md-2 my-sm-1 col-xs-2" name="currently-reading-books" id="cr-books">
-                    <option th:each="b : ${books}" th:value="${b.title}" th:text="${b.title}" />
+                    <option th:each="b : ${books}" th:value="${b.title}" th:text="${b.title}"></option>
+                    <option th:each="b : ${books}"  th:value="${b.OLid}"></option>
                 </select>
             </div>
             <p></p>

@@ -1,5 +1,6 @@
 package nl.marisabel.imReading.readingLogs;
 
+import nl.marisabel.imReading.books.BooksEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -18,19 +19,12 @@ public class LogsDaoImp implements LogsDao{
     @Override
     public List<LogEntity> getLogs() {
 
-        // get hibernate session
         Session currentSession = sessionFactory.openSession();
-
-        // create query
         Query<LogEntity> query =
                 currentSession.createQuery("from LogEntity", LogEntity.class);
-
-
-        // execute query
         List<LogEntity> logs = query.getResultList();
         logs.forEach(System.out::println);
 
-        // return results
         return logs;
     }
 
@@ -50,6 +44,18 @@ public class LogsDaoImp implements LogsDao{
     public LogEntity getLog(int id) {
         Session session = sessionFactory.openSession();
         return session.get(LogEntity.class, id);
+    }
+
+    @Override
+    public List<LogEntity> getBookLogs(String OLid) {
+
+        Session currentSession = sessionFactory.openSession();
+        Query<LogEntity> query =
+                currentSession.createQuery("from LogEntity where OLid=:OLID", LogEntity.class);
+        List<LogEntity> logs = query.getResultList();
+        logs.forEach(System.out::println);
+
+        return logs;
     }
 
     @Override

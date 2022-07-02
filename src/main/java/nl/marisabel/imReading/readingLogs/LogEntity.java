@@ -13,13 +13,10 @@ public class LogEntity {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "o_lid_o_lid", columnDefinition="varchar(255)")
-    private BooksEntity OLid;
+    @Column(columnDefinition="varchar(255)")
+    private String OLid;
     private String book;
     private String shelf;
-
     @Column(columnDefinition="TEXT")
     private String content;
     private String date;

@@ -6,6 +6,8 @@ public interface LogsService {
 
     public List<LogEntity> getLogs();
 
+    List<LogEntity> getBookLogs(String OLid);
+
     void saveOrUpdate(LogEntity logs);
 
     LogEntity getLog(int id);

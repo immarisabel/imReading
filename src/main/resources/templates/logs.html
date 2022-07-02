@@ -18,22 +18,29 @@
                 <p th:text="${log.mood}"></p>
                 <p th:text="${log.page}"></p>
                 <p th:text="${log.date}"></p>
+                <p th:text="${log.OLid}"></p>
 
-                <div th:each="b: ${books}"
-                     class="col-md-2 col-sm-2 col-lg-2 col-xs-2 col-xl-2 control-label text-center mb-4"
-                     style="border:0px solid #000000;min-width:200px;">
-                    <img class="img-responsive" th:src="${b.thumbnailUrl}" width="150vh " alt=" ">
-                    <p></p>
-                    <p th:text="${b.title}">Title of book</p>
-                    <p th:text="'By: ' + ${b.author}">by Author Name</p>
-                    <p th:text="'Started on: ' + ${b.startDate}">Started Date</p>
-                </div>
+
+<!--                <div th:each="b: ${books}"-->
+<!--                     class="col-md-2 col-sm-2 col-lg-2 col-xs-2 col-xl-2 control-label text-center mb-4"-->
+<!--                     style="border:0px solid #000000;min-width:200px;">-->
+<!--                    <img class="img-responsive" th:src="${b.thumbnailUrl}" width="150vh " alt=" ">-->
+<!--                    <p></p>-->
+<!--                    <p th:text="${b.title}">Title of book</p>-->
+<!--                    <p th:text="'By: ' + ${b.author}">by Author Name</p>-->
+<!--                    <p th:text="'Started on: ' + ${b.startDate}">Started Date</p>-->
+<!--                    <p th:text="'OL id: ' + ${b.OLid}">book id</p>-->
+<!--                </div>-->
+
             </div>
 
             <div class="col">
                 <div th:each="l: ${logs}">
+                    LOG:
+                    <p th:text="${l.content}" scope="row"></p>
+                    <p th:text="${l.book}" scope="row"></p>
+                    <p th:text="${l.OLid}" scope="row"></p>
 
-                    <div th:text="${l.content}" scope="row"></div>
 
                 </div>
             </div>

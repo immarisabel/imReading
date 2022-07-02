@@ -19,6 +19,14 @@ public class LogServiceImp implements LogsService{
         return logsDao.getLogs();
     }
 
+
+    @Override
+    @Transactional
+    public List<LogEntity> getBookLogs(String OLid) {
+        return logsDao.getLogs();
+    }
+
+
     @Override
     @Transactional
     public void saveOrUpdate(LogEntity logs) {

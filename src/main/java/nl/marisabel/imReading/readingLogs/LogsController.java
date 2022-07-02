@@ -62,10 +62,12 @@ public class LogsController {
     }
 
 
-    @GetMapping("/logs/{OLid}")
-    String displayBookLog(Model model, @ModelAttribute("log") LogEntity log) {
 
-        return "booklog";
+    @GetMapping("/logs/{OLid}")
+    String displayBookLog(Model model, @ModelAttribute("log") LogEntity log, @PathVariable(value = "OLid", required = false)  String OLid) {
+        List<LogEntity> list = logsService.getBookLogs(OLid);
+        model.addAttribute("logs", list);
+        return "logs";
     }
 
 
