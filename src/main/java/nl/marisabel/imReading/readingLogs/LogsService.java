@@ -1,17 +1,39 @@
 package nl.marisabel.imReading.readingLogs;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public interface LogsService {
 
-    public List<LogEntity> getLogs();
+@Service
+public class LogsService {
 
-    List<LogEntity> getBookLogs(String OLid);
+    @Autowired
+    LogRepository logRepository;
+    public List<LogEntity> getLogs(){
+        List<LogEntity> logs = new ArrayList<LogEntity>();
+        logRepository.findAll().forEach(logs::add);
+        return logs;
+    }
 
-    void saveOrUpdate(LogEntity logs);
+   // List<LogEntity> getBookLogs(String OLid);
 
-    LogEntity getLog(int id);
+   LogEntity getLog(long id)
+   {
+       return logRepository.findById(id).get();
+   }
 
-    void deleteLog(int id);
+    void saveOrUpdate(LogEntity logs)
+    {
+        logRepository.save(logs);
+    }
+
+
+    void deleteLog(long id)
+    {
+        logRepository.deleteById(id);
+    }
 
 }

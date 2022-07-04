@@ -10,15 +10,15 @@
     <div th:replace="fragments/main-navigation">navigation</div>
     <hr>
 
-    <div class="row" th:each="l: ${logs}">
+<!--    <div class="row" th:each="l: ${logs}">-->
 
-            <div class="col">
+<!--            <div class="col">-->
 
-                <p th:text="${log.book}"></p>
-                <p th:text="${log.mood}"></p>
-                <p th:text="${log.page}"></p>
-                <p th:text="${log.date}"></p>
-                <p th:text="${log.OLid}"></p>
+<!--                <p th:text="${log.book}"></p>-->
+<!--                <p th:text="${log.mood}"></p>-->
+<!--                <p th:text="${log.page}"></p>-->
+<!--                <p th:text="${log.date}"></p>-->
+<!--                <p th:text="${log.OLid}"></p>-->
 
 
 <!--                <div th:each="b: ${books}"-->
@@ -32,16 +32,15 @@
 <!--                    <p th:text="'OL id: ' + ${b.OLid}">book id</p>-->
 <!--                </div>-->
 
-            </div>
+<!--            </div>-->
 
             <div class="col">
                 <div th:each="l: ${logs}">
-                    LOG:
-                    <p th:text="${l.content}" scope="row"></p>
-                    <p th:text="${l.book}" scope="row"></p>
-                    <p th:text="${l.OLid}" scope="row"></p>
-
-
+                    <p>LOG:</p>
+                    <h3 th:text="${l.content}" scope="row"></h3>
+                    <p th:text="'Book: ' + ${l.book}" scope="row"></p>
+                    <p th:text="'OLid: ' + ${l.OLid}" scope="row"></p>
+<hr>
                 </div>
             </div>
     </div>

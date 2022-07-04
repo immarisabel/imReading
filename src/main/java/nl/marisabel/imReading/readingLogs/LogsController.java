@@ -63,13 +63,20 @@ public class LogsController {
 
 
 
-    @GetMapping("/logs/{OLid}")
-    String displayBookLog(Model model, @ModelAttribute("log") LogEntity log, @PathVariable(value = "OLid", required = false)  String OLid) {
-        List<LogEntity> list = logsService.getBookLogs(OLid);
-        model.addAttribute("logs", list);
-        return "logs";
-    }
-
+//    @GetMapping("/booklogs/{OLid}")
+//    String displayBookLog(@PathVariable(value = "OLid", required = false)  String OLid, Model model, @ModelAttribute("log") LogEntity log) {
+//        List<LogEntity> list = logsService.getBookLogs(OLid);
+//        model.addAttribute("logs", list);
+//        return "logs";
+//    }
+//
+//
+//    @GetMapping("/booklogs/")
+//    String displayBookLogTest(Model model, @ModelAttribute("log") LogEntity log) {
+//        List<LogEntity> list = logsService.getBookLogs("123");
+//        model.addAttribute("logs", list);
+//        return "logs";
+//    }
 
     // Book registry
     //TODO study wtf this is :D ...
