@@ -6,6 +6,7 @@ import nl.marisabel.imReading.books.BooksEntity;
 import javax.persistence.*;
 
 @Entity
+@NamedQuery(name= "LogEntity.byOLid", query = "FROM LogEntity WHERE OLid = ?1")
 @Data
 @Table(name = "logs")
 public class LogEntity {
