@@ -6,7 +6,7 @@ import nl.marisabel.imReading.books.BooksEntity;
 import javax.persistence.*;
 
 @Entity
-@NamedQuery(name= "LogEntity.byOLid", query = "FROM LogEntity WHERE OLid = ?1")
+@NamedQuery(name = "LogEntity.byBookId", query = "FROM LogEntity WHERE bookId = ?1")
 @Data
 @Table(name = "logs")
 public class LogEntity {
@@ -14,11 +14,14 @@ public class LogEntity {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(columnDefinition="varchar(255)")
-    private String OLid;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "book_id")
+    private BooksEntity bookId;
+
     private String book;
     private String shelf;
-    @Column(columnDefinition="TEXT")
+    @Column(columnDefinition = "TEXT")
     private String content;
     private String date;
     private String mood;

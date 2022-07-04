@@ -13,11 +13,13 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Builder
-@Table(name="books")
+@Table(name = "books")
 public class BooksEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "olid", unique = true, nullable = false)
     private String OLid;
     private String title;
     private String author;

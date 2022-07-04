@@ -1,5 +1,6 @@
 package nl.marisabel.imReading.readingLogs;
 
+import nl.marisabel.imReading.books.BooksEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
@@ -19,9 +20,8 @@ public class LogsService {
         return logs;
     }
 
-   List<LogEntity> byOLid(@Param("OLid") String OLid){
-
-       List<LogEntity> logs = logRepository.byOLid(OLid);
+    List<LogEntity> byBookId(@Param("bookId") BooksEntity bookId){
+       List<LogEntity> logs = logRepository.byBookId(bookId);
        logRepository.findAll().forEach(logs::add);
        System.out.println(logs);
        return logs;

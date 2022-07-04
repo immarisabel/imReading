@@ -17,9 +17,10 @@
         <div class="row">
             <div class="col-sm">
                 <select th:field="*{book}" class="form-control col-md-2 my-sm-1 col-xs-2" name="currently-reading-books" id="cr-books">
-                    <option th:each="b : ${books}" th:value="${b.title}" th:text="${b.title}"></option>
-                    <option th:each="b : ${books}"  th:value="${b.OLid}"></option>
+                    <option th:each="b : ${books}" th:value="${b.id}" th:text="${b.title}"></option>
                 </select>
+
+
             </div>
             <p></p>
             <div class="col-sm">

@@ -61,12 +61,12 @@ public class LogsController {
         return "logs";
     }
 
-    @GetMapping("/booklogs/{OLid}")
-    String displayBookLog(@PathVariable("OLid") String OLid, Model model, @ModelAttribute("log") LogEntity log) {
-        List<LogEntity> list = logsService.byOLid(OLid);
+    @GetMapping("/logs/{bookId}")
+    String displayBookLog(@PathVariable("bookId") BooksEntity bookId, Model model) {
+        List<LogEntity> list = logsService.byBookId(bookId);
         model.addAttribute("logs", list);
         list.forEach(System.out::println);
-        System.out.println(OLid);
+        System.out.println(bookId);
         return "logs";
     }
 
