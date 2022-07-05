@@ -63,11 +63,24 @@ public class LogsController {
 
     @GetMapping("/logs/{bookId}")
     String displayBookLog(@PathVariable("bookId") BooksEntity bookId, Model model) {
+        // BOOK INFO
+        model.addAttribute("title", bookId.getTitle());
+        model.addAttribute("author", bookId.getAuthor());
+        model.addAttribute("cover", bookId.getThumbnailUrl());
+        model.addAttribute("status", bookId.getStatus());
+        model.addAttribute("started", bookId.getStartDate());
+        if (bookId.getFinishedDate() == "") {
+            model.addAttribute("finished", "we will see");
+
+        } else {
+            model.addAttribute("finished", bookId.getFinishedDate());
+        }
+        // BOOK LOGS
         List<LogEntity> list = logsService.byBookId(bookId);
         model.addAttribute("logs", list);
         list.forEach(System.out::println);
         System.out.println(bookId);
-        return "logs";
+        return "book-logs";
     }
 
 

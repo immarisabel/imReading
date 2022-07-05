@@ -10,44 +10,29 @@
     <div th:replace="fragments/main-navigation">navigation</div>
     <hr>
 
-    <!--    <div class="row" th:each="l: ${logs}">-->
+    <div class="row">
+        <div th:each="l: ${logs}" >
 
-    <!--            <div class="col">-->
+            <div class="col-1  me-5 text-sm-center float-start"></p>
+                <img th:src="${l.bookId.thumbnailUrl}" class="mw-100">
+            </div>
 
-    <!--                <p th:text="${log.book}"></p>-->
-    <!--                <p th:text="${log.mood}"></p>-->
-    <!--                <p th:text="${log.page}"></p>-->
-    <!--                <p th:text="${log.date}"></p>-->
-    <!--                <p th:text="${log.OLid}"></p>-->
+            <div class="col-2 ps-md-4 text-sm-center float-end"></p>
+                <p th:text="${l.bookId.title}"></p>
+                <p th:text="${l.mood}"></p>
+                <p th:text="${l.page}"></p>
+                <p th:text="${l.date}"></p></div>
 
+            <div class="col-auto pt-3"> <p th:text="${l.content}"></p>
 
-    <!--                <div th:each="b: ${books}"-->
-    <!--                     class="col-md-2 col-sm-2 col-lg-2 col-xs-2 col-xl-2 control-label text-center mb-4"-->
-    <!--                     style="border:0px solid #000000;min-width:200px;">-->
-    <!--                    <img class="img-responsive" th:src="${b.thumbnailUrl}" width="150vh " alt=" ">-->
-    <!--                    <p></p>-->
-    <!--                    <p th:text="${b.title}">Title of book</p>-->
-    <!--                    <p th:text="'By: ' + ${b.author}">by Author Name</p>-->
-    <!--                    <p th:text="'Started on: ' + ${b.startDate}">Started Date</p>-->
-    <!--                    <p th:text="'OL id: ' + ${b.OLid}">book id</p>-->
-    <!--                </div>-->
-
-    <!--            </div>-->
-
-    <div class="col">
-        <div th:each="l: ${logs}">
-            <p>LOG:</p>
-            <h3 th:text="${l.content}" scope="row"></h3>
-            <p th:text="'Book: ' + ${l.bookId.title}+ ' by ' + ${l.bookId.author}" scope="row"></p>
-            <hr>
+        </div>
         </div>
     </div>
-</div>
-
-
-<!--        LOOP    -->
 
 
 </div>
+</div>
+
+
 </body>
 </html>
