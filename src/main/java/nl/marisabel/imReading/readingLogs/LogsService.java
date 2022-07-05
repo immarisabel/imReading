@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class LogsService {
 
     @Autowired
     LogRepository logRepository;
+    
     public List<LogEntity> getLogs(){
         List<LogEntity> logs = new ArrayList<>();
         logRepository.findAll().forEach(logs::add);
@@ -22,7 +24,6 @@ public class LogsService {
 
     List<LogEntity> byBookId(@Param("bookId") BooksEntity bookId){
        List<LogEntity> logs = logRepository.byBookId(bookId);
-       logRepository.findAll().forEach(logs::add);
        System.out.println(logs);
        return logs;
    }

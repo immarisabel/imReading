@@ -38,7 +38,7 @@
         <div th:each="l: ${logs}">
             <p>LOG:</p>
             <h3 th:text="${l.content}" scope="row"></h3>
-            <p th:text="'Book: ' + ${l.book}" scope="row"></p>
+            <p th:text="'Book: ' + ${l.bookId.title}+ ' by ' + ${l.bookId.author}" scope="row"></p>
             <hr>
         </div>
     </div>

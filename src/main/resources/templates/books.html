@@ -19,7 +19,7 @@
             <div th:each="b: ${books}"
                  class="col-md-2 col-sm-2 col-lg-2 col-xs-2 col-xl-2 control-label text-center mb-4"
                  style="border:0px solid #000000;min-width:200px;">
-                <img class="img-responsive" th:src="${b.thumbnailUrl}" width="150vh " alt=" ">
+                <a href="#" th:href="@{'/logs/' + ${b.id}}"><img class="img-responsive" th:src="${b.thumbnailUrl}" width="150vh " alt="${b.title}"></a>
                 <p></p>
                 <p th:text="${b.title}">Title of book</p>
                 <p th:text="'By: ' + ${b.author}">by Author Name</p>

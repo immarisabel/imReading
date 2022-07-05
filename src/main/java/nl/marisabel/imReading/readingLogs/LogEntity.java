@@ -19,7 +19,6 @@ public class LogEntity {
     @JoinColumn(name = "book_id")
     private BooksEntity bookId;
 
-    private String book;
     private String shelf;
     @Column(columnDefinition = "TEXT")
     private String content;
