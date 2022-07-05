@@ -84,6 +84,17 @@ public class LogsController {
     }
 
 
+    @GetMapping("/deleteLog")
+    public String deleteLog(@RequestParam("bookId") BooksEntity bookId, LogEntity logs, @RequestParam("id") int id) {
+
+        logsService.deleteLog(id);
+        System.out.println("book Id: " + logs.getBookId().getId());
+
+        return "redirect:/logs/{bookId}";
+
+    }
+
+
     // Book registry
     //TODO study wtf this is :D ...
     public void addInterceptors(InterceptorRegistry registry) {
@@ -91,6 +102,7 @@ public class LogsController {
         localeChangeInterceptor.setParamName("lang");
         registry.addInterceptor(localeChangeInterceptor);
     }
+
 
 
 }

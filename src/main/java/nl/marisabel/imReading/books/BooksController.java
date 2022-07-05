@@ -61,7 +61,7 @@ public class BooksController {
     }
 
 
-    @GetMapping("/delete")
+    @GetMapping("/deleteBook")
     public String deleteBook(@RequestParam("id") int id) {
 
         booksService.deleteBook(id);

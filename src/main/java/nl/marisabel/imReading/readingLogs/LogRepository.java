@@ -10,7 +10,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 @Repository
-public interface LogRepository extends CrudRepository<LogEntity, Long> {
+public interface LogRepository extends CrudRepository<LogEntity, Integer> {
 
 
     List<LogEntity> byBookId(@Param("bookId") BooksEntity bookId);

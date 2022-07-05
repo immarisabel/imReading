@@ -29,7 +29,7 @@ public class LogsService {
    }
 
 
-   LogEntity getLog(long id)
+   LogEntity getLog(int id)
    {
        return logRepository.findById(id).get();
    }
@@ -39,8 +39,7 @@ public class LogsService {
         logRepository.save(logs);
     }
 
-
-    void deleteLog(long id)
+    void deleteLog(int id)
     {
         logRepository.deleteById(id);
     }

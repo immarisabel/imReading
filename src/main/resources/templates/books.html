@@ -25,7 +25,7 @@
                 <p th:text="'By: ' + ${b.author}">by Author Name</p>
                 <p th:text="'Started on: ' + ${b.startDate}">Started Date</p>
                 <a onclick="if(!(confirm('delete book and logs?'))) return false"
-                   th:href="@{/delete(id=${b.id})}"
+                   th:href="@{/deleteBooks(id=${b.id})}"
                    class="btn-link  btn-sm">
                     Delete
                 </a>

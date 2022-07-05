@@ -31,7 +31,6 @@ public class BooksService {
         booksRepository.save(book);
     }
 
-
     void deleteBook(int id)
     {
         booksRepository.deleteById(id);
