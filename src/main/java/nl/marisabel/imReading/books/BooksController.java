@@ -2,6 +2,7 @@ package nl.marisabel.imReading.books;
 
 import lombok.extern.log4j.Log4j2;
 import nl.marisabel.imReading.searchApi.AddBookService;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,12 +37,11 @@ public class BooksController {
 
 
     @RequestMapping("/newbook/{OLid}")
-    public String showFormForUpdate(@PathVariable(value = "OLid", required = false)  String OLid, BooksEntity book, Model model) throws IOException, InterruptedException {
+    public String showFormForUpdate(@PathVariable(value = "OLid", required = false) String OLid, BooksEntity book, Model model) throws IOException, InterruptedException {
         newBookService.addNewBookFromApi(OLid, book);
         model.addAttribute("books", book);
         return "new-book";
     }
-
 
 
     @PostMapping("/books_saved")
@@ -60,5 +60,14 @@ public class BooksController {
         return "books";
     }
 
+
+    @GetMapping("/delete")
+    public String deleteBook(@RequestParam("id") int id) {
+
+        booksService.deleteBook(id);
+
+        return "redirect:/books";
+
+    }
 
 }

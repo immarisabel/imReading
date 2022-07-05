@@ -2,6 +2,8 @@ package nl.marisabel.imReading.readingLogs;
 
 import lombok.Data;
 import nl.marisabel.imReading.books.BooksEntity;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -16,6 +18,7 @@ public class LogEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "book_id")
     private BooksEntity bookId;
 
