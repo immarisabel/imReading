@@ -9,7 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -85,13 +87,12 @@ public class LogsController {
 
 
     @GetMapping("/deleteLog")
-    public String deleteLog(@RequestParam("bookId") BooksEntity bookId, LogEntity logs, @RequestParam("id") int id) {
+    public String deleteLog(@RequestParam("id") int id, HttpServletRequest request) {
 
         logsService.deleteLog(id);
-        System.out.println("book Id: " + logs.getBookId().getId());
 
-        return "redirect:/logs/{bookId}";
-
+        String referer = request.getHeader("Referer");
+        return "redirect:"+ referer;
     }
 
 
