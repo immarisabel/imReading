@@ -19,14 +19,12 @@ public class LogsController {
 
     @Autowired
     LogsService logsService;
-
+    @Autowired
+    BooksService booksService;
     @ModelAttribute("logEntity")
     public LogEntity logForm() {
         return new LogEntity();
     }
-
-    @Autowired
-    BooksService booksService;
 
     @ModelAttribute("booksEntity")
     public BooksEntity books() {
@@ -34,10 +32,7 @@ public class LogsController {
     }
 
 
-    @RequestMapping("/index")
-    String index(Model model) {
-        return "index";
-    }
+
 
 
     @GetMapping("/log")
@@ -47,7 +42,6 @@ public class LogsController {
         return "new-log";
     }
 
-    //TODO fix to display only the added log inside the chosen book, not ALL
     @PostMapping("/new-log")
     String saveNewLog(Model model, @ModelAttribute("log") LogEntity log) {
         logsService.saveOrUpdate(log);
@@ -86,11 +80,16 @@ public class LogsController {
     }
 
 
+    @GetMapping("/updateLog")
+    public String showFormForUpdate(@RequestParam("id") int id, Model model) {
+        LogEntity log = logsService.getLog(id);
+        model.addAttribute("log", log);
+        return "new-log";
+    }
+
     @GetMapping("/deleteLog")
     public String deleteLog(@RequestParam("id") int id, HttpServletRequest request) {
-
         logsService.deleteLog(id);
-
         String referer = request.getHeader("Referer");
         return "redirect:"+ referer;
     }
