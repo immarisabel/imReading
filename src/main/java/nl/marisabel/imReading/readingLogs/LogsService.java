@@ -28,7 +28,6 @@ public class LogsService {
 
     List<LogEntity> byBookId(@Param("bookId") BooksEntity bookId) {
         List<LogEntity> logs = logRepository.byBookId(bookId);
-        System.out.println(logs);
         return logs;
     }
 

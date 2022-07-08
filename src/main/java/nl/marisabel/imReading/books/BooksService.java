@@ -2,6 +2,7 @@ package nl.marisabel.imReading.books;
 
 import nl.marisabel.imReading.readingLogs.LogEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.awt.print.Book;
@@ -35,4 +36,10 @@ public class BooksService {
     {
         booksRepository.deleteById(id);
     }
+
+    public List<BooksEntity> byStatus(@Param("status") String status){
+        List<BooksEntity> books = booksRepository.byStatus(status);
+        return books;
+    }
+
 }

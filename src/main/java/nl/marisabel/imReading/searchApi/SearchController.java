@@ -55,9 +55,4 @@ public class SearchController {
         return "search-results";
     }
 
-
-    @GetMapping("/test")
-    public String test(){
-        return "temphome";
-    }
 }

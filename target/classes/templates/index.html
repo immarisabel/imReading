@@ -9,8 +9,8 @@
     <p></p>
     <div th:replace="fragments/main-navigation">navigation</div>
 
-    <div th:replace="fragments/currently-reading">currently reading</div>
-    <div th:replace="fragments/last-five">past reads</div>
+    <div th:insert="fragments/status-reading :: status-reading(${book})">currently reading</div>
+    <div th:insert="fragments/status-read  :: status-read(${book})">past reads</div>
 
 
 </div>

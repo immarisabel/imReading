@@ -12,6 +12,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@NamedQuery(name = "BooksEntity.byStatus", query = "FROM BooksEntity WHERE status = ?1")
 @Builder
 @Table(name = "books")
 public class BooksEntity {

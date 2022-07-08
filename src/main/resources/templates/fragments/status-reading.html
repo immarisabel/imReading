@@ -1,0 +1,23 @@
+<html lang="en" xmlns:th="www.thymeleaf.org">
+
+<div th:fragment="status-reading(book)">
+
+<div class="my-sm-5">
+    <hr>
+    <div class="container-fluid p-5 !direction !spacing">
+
+        <h3 class="mb-5">Currently Reading</h3>
+        <div class="row">
+
+            <div th:each="b: ${reading}"
+                 class="col-md-2 col-sm-2 col-lg-2 col-xs-2 col-xl-2 control-label text-center"
+                 style="border:0px solid #000000;min-width:200px;">
+                <a href="#" th:href="@{'/logs/' + ${b.id}}"><img class="img-responsive" th:src="${b.thumbnailUrl}"
+                                                                 width="150vh " alt="${b.title}"></a>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
