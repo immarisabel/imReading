@@ -74,8 +74,7 @@ public class LogsController {
         // BOOK LOGS
         List<LogEntity> list = logsService.byBookId(bookId);
         model.addAttribute("logs", list);
-        list.forEach(System.out::println);
-        System.out.println(bookId);
+
         return "book-logs";
     }
 
@@ -83,9 +82,19 @@ public class LogsController {
     @GetMapping("/updateLog")
     public String showFormForUpdate(@RequestParam("id") int id, Model model) {
         LogEntity log = logsService.getLog(id);
-        model.addAttribute("log", log);
+        model.addAttribute("bookId", log);
+        model.addAttribute("logEntity", log);
         return "new-log";
     }
+
+    @PostMapping("/update-log")
+    String updateLog(Model model, @ModelAttribute("log") LogEntity log) {
+        logsService.saveOrUpdate(log);
+        List<LogEntity> list = logsService.getLogs();
+        model.addAttribute("logs", list);
+        return "logs";
+    }
+
 
     @GetMapping("/deleteLog")
     public String deleteLog(@RequestParam("id") int id, HttpServletRequest request) {

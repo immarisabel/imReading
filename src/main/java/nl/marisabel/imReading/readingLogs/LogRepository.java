@@ -15,4 +15,5 @@ public interface LogRepository extends CrudRepository<LogEntity, Integer> {
 
     List<LogEntity> byBookId(@Param("bookId") BooksEntity bookId);
 
+
 }

@@ -23,6 +23,7 @@ public class BooksEntity {
     private String OLid;
     private String title;
     private String author;
+    @Column(nullable = false)
     private String thumbnailUrl;
     private String shortDescription;
     private String status; // ENUM?
