@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<header></header>
+
+
+
+<form class="form my-sm-5" method="post" th:action="@{books}" th:object="${booksEntity}">
+
+    <input type="hidden" th:field="*{id}"/>
+
+    <div class="container">
+
+    <div class="row my-sm-5">
+
+        <div class="col col-lg-2">
+
+            <div class="form-floating">
+                <input type="number" th:field="*{isbn}" class="form-control" id="isbn" placeholder="isbn" value="isbn">
+                <label for="isbn">ISBN</label>
+            </div>
+
+            <div class="form-floating">
+                <input type="text" th:field="*{title}" class="form-control" id="title" placeholder="title" value="title">
+                <label for="title">title</label>
+            </div>
+
+        </div>
+
+        <div class="col  col-lg-2">
+
+            <div class="form-floating">
+                <input type="text" th:field="*{author}" class="form-control" id="author" placeholder="author" value="author">
+                <label for="author">author</label>
+            </div>
+
+            <div class="form-floating">
+                <input type="text" th:field="*{thumbnailUrl}" class="form-control" id="thumbnailUrl" placeholder="book cover url" value="http://">
+                <label for="thumbnailUrl">thumbnailUrl</label>
+            </div>
+
+        </div>
+
+        <div class="row my-sm-5">
+            <p></p>
+            <textarea id="synopsis" th:field="*{shortDescription}" cols="20" rows="10" class="form-control">Short Description</textarea>
+            <label for="synopsis">synopsis</label>
+            <p></p>
+
+        </div>
+
+        <div class="col-sm">
+        <input type="checkbox"
+               id="favorite"
+               name="favorite"
+               th:checked="${favorite}"/>
+        <label for="favorite">favorite</label>
+    </div>
+        <div class="col-sm"></div>
+
+        <div class="col-sm align-text-bottom form-floating-match">
+            <label for="startdate">Start Date</label>
+            <input th:field="*{startDate}" type="date" class="form-control" id="startdate"/>
+        </div>
+
+        <div class="col-sm align-text-bottom form-floating-match">
+            <label for="enddate">Finished Date</label>
+            <input th:field="*{finishedDate}" type="date" class="form-control" id="enddate"/>
+        </div>
+
+
+        <div class="col-sm form-floating-match col-lg-1 text-sm-end">
+            <input type="submit" value="submit" class="btn btn-primary "/>
+        </div>
+        <p></p>
+    </div>
+    </div>
+</form>
+
+
+</html>

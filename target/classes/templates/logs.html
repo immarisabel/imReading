@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<header th:replace="fragments/header :: header">static header</header>
+<body>
+
+<div class="container my-sm-5">
+
+    <p></p>
+    <div th:replace="fragments/main-navigation">navigation</div>
+    <hr>
+
+    <div class="row">
+        <div th:each="l: ${logs}" >
+
+            <div class="col-1  me-5 text-sm-center float-start"></p>
+                <img th:src="${l.bookId.thumbnailUrl}" class="mw-100">
+            </div>
+
+            <div class="col-2 ps-md-4 text-sm-center float-end"></p>
+                <p th:text="${l.bookId.title}"></p>
+                <p th:text="${l.mood}"></p>
+                <p th:text="${l.page}"></p>
+                <p th:text="${l.date}"></p></div>
+
+            <div class="col-auto pt-3"> <p th:text="${l.content}"></p>
+
+        </div>
+        </div>
+    </div>
+
+
+</div>
+</div>
+
+
+</body>
+</html>

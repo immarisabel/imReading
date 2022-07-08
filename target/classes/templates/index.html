@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<header th:replace="fragments/header :: header">static header</header>
+<body>
+
+<div class="container my-sm-5">
+
+    <p></p>
+    <div th:replace="fragments/main-navigation">navigation</div>
+
+    <div th:replace="fragments/currently-reading">currently reading</div>
+    <div th:replace="fragments/last-five">past reads</div>
+
+
+</div>
+</body>
+</html>
