@@ -22,7 +22,7 @@ public class BooksService {
         return books;
     }
 
-    BooksEntity getBook(int id)
+    public BooksEntity getBook(int id)
     {
         return booksRepository.findById(id).get();
     }

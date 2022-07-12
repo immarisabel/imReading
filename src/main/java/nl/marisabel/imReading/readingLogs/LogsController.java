@@ -12,6 +12,7 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -37,8 +38,9 @@ public class LogsController {
 
     @GetMapping("/log")
     String newLogForm(Model model, @ModelAttribute("log") LogEntity log) {
-        List<BooksEntity> books = booksService.getBooks();
+        List<BooksEntity> books = booksService.byStatus("reading");
         model.addAttribute("books", books);
+        model.addAttribute("reading", books);
         return "new-log";
     }
 
@@ -84,11 +86,16 @@ public class LogsController {
         LogEntity log = logsService.getLog(id);
         model.addAttribute("bookId", log);
         model.addAttribute("logEntity", log);
+
+        List<BooksEntity> books = Collections.singletonList((booksService.getBook(log.getBookId().getId())));
+        model.addAttribute("books", books);
+        List<BooksEntity> reading = booksService.byStatus("reading");
+        model.addAttribute("reading", reading);
         return "new-log";
     }
 
     @PostMapping("/update-log")
-    String updateLog(Model model, @ModelAttribute("log") LogEntity log) {
+    String updateLog(Model model, @ModelAttribute("log") LogEntity log, @RequestParam("id") int id) {
         logsService.saveOrUpdate(log);
         List<LogEntity> list = logsService.getLogs();
         model.addAttribute("logs", list);
