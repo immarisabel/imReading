@@ -2,6 +2,8 @@
 <html lang="en" xmlns:th="www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <header th:replace="fragments/header :: header">static header</header>
+
+
 <body>
 
 <div class="container my-sm-5">
@@ -14,7 +16,7 @@
     </div>
 
 
-    <form class="form my-sm-5" method="post" th:action="@{/books_saved}" th:object="${booksEntity}">
+    <form action="#" class="form my-sm-5" method="post" th:action="@{/books_saved}" th:object="${booksEntity}">
         <input type="hidden" th:field="*{id}"/>
         <div class="row my-sm-5 mt-md-5 ">
             <div class="col-xxl">
@@ -55,15 +57,8 @@
 
         <div class="row my-sm-5">
             <div class="col-2">
-                <div class="col-sm align-text-bottom form-floating-match">
-                    <label class="favorite-button">
-                        <input type="checkbox"  th:checked="${favorite}"  id="favorite" name="favorite-checkbox" value="favorite-button">
-                        <label for="favorite" class="container">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                        </label>
-                    </label>
-
-                </div>
+                <input  class="red-heart-checkbox" id="red-check2" type="checkbox" th:value="${favorite}" th:field="*{favorite}">
+                <label for="red-check2">♥ favorite</label>
             </div>
             <div class="col-2">
                 <div class="col-sm align-text-bottom form-floating-match">

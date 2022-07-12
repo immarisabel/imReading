@@ -1,17 +1,13 @@
-<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
-<html lang="en" xmlns:th="www.thymeleaf.org">
-
-<header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <title>imReading</title>
+    <title>Title</title>
 
-
-    <style>
+  <style>
     body {
   padding: 1%;
 }
-
-
 
 .red-heart-checkbox {
   position: absolute !important;
@@ -24,8 +20,7 @@
   animation: heart 1s cubic-bezier(0.17, 0.89, 0.32, 1.49) !important;
 }
 .red-heart-checkbox:checked + label:before,
-.red-heart-checkbox:checked + label:after,
-{
+.red-heart-checkbox:checked + label:after {
   animation: inherit !important;
   animation-timing-function: cubic-bezier(0.21, 0.61, 0.35, 1) !important;
 }
@@ -43,11 +38,8 @@
   margin: 2px !important;
   top: 2px !important;
 }
-
 .red-heart-checkbox + label:before,
-.red-heart-checkbox + label:after,
-
-{
+.red-heart-checkbox + label :after {
   position: absolute !important;
   z-index: -1 !important;
   top: 50%;
@@ -84,21 +76,10 @@
   }
 }
 
-
-    </style>
-
-
-    <!--    <link th:href="@{/bootstrap.min.css}" rel="stylesheet"/>-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
-
-    <script type="text/javascript" th:src="@{/js/jquery-3.6.0.js}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-
-    <script type="text/javascript" th:src="@{/postrequest.js}"></script>
-    <script type="text/javascript" th:src="@{/getrequest.js}"></script>
-
-</header>
-
+  </style>
+</head>
+<body>
+<input class='red-heart-checkbox' id='red-check2'type='checkbox'>
+<label for='red-check2'>❤</label>
+</body>
+</html>
