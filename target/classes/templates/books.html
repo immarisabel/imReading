@@ -12,23 +12,26 @@
 
 
     <div class="container-fluid p-5 !direction !spacing">
-        <p class="mb-5"><h3>Books Read</h3></p>
-        <hr>
+
         <div class="row">
 
             <div th:each="b: ${books}"
                  class="col-md-2 col-sm-2 col-lg-2 col-xs-2 col-xl-2 control-label text-center mb-4"
                  style="border:0px solid #000000;min-width:200px;">
-                <a href="#" th:href="@{'/logs/' + ${b.id}}"><img class="img-responsive" th:src="${b.thumbnailUrl}" width="150vh " alt="${b.title}"></a>
+                <a href="#" th:href="@{'/logs/' + ${b.id}}"><img class="img-responsive" th:src="${b.thumbnailUrl}"
+                                                                 width="150vh " alt="${b.title}"></a>
                 <p></p>
                 <p th:text="${b.title}">Title of book</p>
                 <p th:text="'By: ' + ${b.author}">by Author Name</p>
                 <p th:text="'Started on: ' + ${b.startDate}">Started Date</p>
                 <a onclick="if(!(confirm('delete book and logs?'))) return false"
                    th:href="@{/deleteBook(id=${b.id})}"
-                   class="btn-link  btn-sm">
-                    Delete
-                </a>
+                   class="link-primary">
+                    ❌
+                </a>  <a th:href="@{/updateBook(id=${b.id})}"
+                          class="link-primary">
+                ✏
+            </a>
             </div>
 
         </div>

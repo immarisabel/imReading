@@ -20,8 +20,8 @@ public class BooksEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "olid", unique = true, nullable = false)
-    private String OLid;
+//    @Column(name = "olid", unique = true, nullable = false)
+//    private String OLid;
     private String title;
     private String author;
     @Column(nullable = false)

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class MainPageController {
@@ -18,10 +19,10 @@ public class MainPageController {
     @Autowired
     BooksService booksService;
 
-    @RequestMapping("/index")
+    @RequestMapping("/")
     String index(Model model) {
         model.addAttribute("reading", statusReading());
-       model.addAttribute("read", statusRead().stream().limit(1));
+       model.addAttribute("read", statusRead());
         return "index";
     }
     List<BooksEntity> statusReading() {
@@ -30,7 +31,7 @@ public class MainPageController {
     }
 
     List<BooksEntity> statusRead() {
-        List<BooksEntity> list = booksService.byStatus("read");
+        List<BooksEntity> list = booksService.byStatus("read").stream().limit(4).collect(Collectors.toList());
         return list;
     }
 
