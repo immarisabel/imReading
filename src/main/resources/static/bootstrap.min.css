@@ -6640,7 +6640,8 @@ fieldset:disabled .btn {
 }
 
 .link-primary {
-    color: #0d6efd
+    color: #0d6efd;
+    text-decoration: none
 }
 
 .link-primary:focus,

@@ -21,7 +21,7 @@ public class MainPageController {
     @RequestMapping("/index")
     String index(Model model) {
         model.addAttribute("reading", statusReading());
-       model.addAttribute("read", statusRead());
+       model.addAttribute("read", statusRead().stream().limit(1));
         return "index";
     }
     List<BooksEntity> statusReading() {
