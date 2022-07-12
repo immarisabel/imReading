@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 
 <header th:replace="fragments/header :: header">static header</header>
 <body>
@@ -20,7 +20,12 @@
         <div class="col-10  me-5 text-sm-center float-end">
             <h1 th:text="${title}"></h1>
             <h3 th:text="'By: '+ ${author}"></h3>
-            <p th:text="${status} + ' from ' + ${started} + ' to ' + ${finished}"></p>
+
+<!--            <span th:if="${finished.null}">-->
+            <p th:text="${status} + ' from ' + ${#dates.format(started,'dd-MMMM-yyyy')} + ' to ' + ${#dates.format(finished,'dd-MMMM-yyyy')}"></p>
+<!--            </span>-->
+
+
         </div>
 
 

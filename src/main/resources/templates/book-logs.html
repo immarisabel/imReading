@@ -1,28 +1,37 @@
 <!DOCTYPE html>
+
 <html lang="en" xmlns:th="www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <header th:replace="fragments/header :: header">static header</header>
+
 <body>
 
 <div class="container my-sm-5">
 
-    <p></p>
+
     <div th:replace="fragments/main-navigation">navigation</div>
-    <hr>
+
+    <p class="m-5"></p>
 
     <div class="row">
-
 
         <!--         HEADER         -->
         <div class="col-1  me-5 text-sm-center float-start">
             <img th:src="${cover}" class="mw-100">
         </div>
+
         <div class="col-10  me-5 text-sm-center float-end">
+
             <h1 th:text="${title}"></h1>
             <h3 th:text="'By: '+ ${author}"></h3>
-            <p th:text="${status} + ' from ' + ${started} + ' to ' + ${finished}"></p>
-        </div>
 
+            <span th:hidden="${finished} == null">
+            <p th:text="'Read from ' + ${#dates.format(started,'dd-MMMM-yyyy')} + ' to ' + ${#dates.format(finished,'dd-MMMM-yyyy')}"></p>
+            </span>
+            <span th:hidden="${finished} != null">
+            <p class="btn-secondary" th:text="'Currently Reading'">Reading</p>
+            </span>
+        </div>
 
         <!--        LOGS        -->
 
@@ -37,14 +46,12 @@
 
                     <div class="col-1 text-end">
                         <a th:href="@{/updateLog(id=${l.id})}"
-                           class="btn btn-sm">
+                           class="link-primary">
                             ✏
-                        </a>
-                        <a onclick="if(!(confirm('do you want to delete this log?'))) return false"
-                           th:href="@{/deleteLog(id=${l.id})}"
-                           class="btn btn-sm">
-                            ❌
-                        </a>
+                        </a><a onclick="if(!(confirm('do you want to delete this log?'))) return false"
+                               th:href="@{/deleteLog(id=${l.id})}" class="link-primary">
+                        ❌
+                    </a>
                     </div>
                 </div>
             </div>

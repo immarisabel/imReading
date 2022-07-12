@@ -1,24 +1,24 @@
-insert into books(id, olid, title, author, thumbnail_url, short_description, status, rating, favorite, start_date, finished_date)
+insert into books(id, title, author, thumbnail_url, short_description, status, rating, favorite, start_date, finished_date)
 values
-(1, 'OL20861787W', 'To Sleep in a Sea of Stars', 'Christopher Paolini',
+(1,  'To Sleep in a Sea of Stars', 'Christopher Paolini',
 'https://covers.openlibrary.org/b/id/12641483-M.jpg',
- 'xxx', 'reading', 0, 0, '2022-07-08', ''),
+ 'xxx', 'reading', 0, 0, '2022-07-12 00:00:00', '2022-07-12 00:00:00'),
 
-(2, 'OL19958309W', 'Great North Road', 'Peter F. Hamilton',
+(2,  'Great North Road', 'Peter F. Hamilton',
 'https://covers.openlibrary.org/b/id/10416636-M.jpg',
-'xxx', 'reading', 0, 0, '2022-07-08', ''),
+'xxx', 'reading', 0, 0, '2022-07-12 00:00:00', '2022-07-12 00:00:00'),
 
-(3, 'OL19745966W', 'Pachinko', 'Lee Min-jin',
+(3,  'Pachinko', 'Lee Min-jin',
 'https://covers.openlibrary.org/b/id/11301913-M.jpg',
-'xxx', 'read', 4, 0, '2022-07-08', '2022-07-08'),
+'xxx', 'read', 4, 0, '2022-07-12 00:00:00', '2022-07-12 00:00:00'),
 
-(4, 'OL27900373M', 'Love Lettering', 'Kate Clayborn',
+(4,  'Love Lettering', 'Kate Clayborn',
 'https://covers.openlibrary.org/b/id/9255246-M.jpg',
-'xxx', 'read', 3, 0, '2022-07-08', '2022-07-08'),
+'xxx', 'read', 3, 0, '2022-07-12 00:00:00', '2022-07-12 00:00:00'),
 
-(5, 'OL21153512W', 'Dear Emmie Blue', 'Lia Louis',
+(5,  'Dear Emmie Blue', 'Lia Louis',
 'https://covers.openlibrary.org/b/id/10328244-M.jpg',
-'xxx', 'read', 5, 1, '2022-07-08', '2022-07-08');
+'xxx', 'read', 5, 1, '2022-07-12 00:00:00', '2022-07-12 00:00:00');
 
 
 

@@ -5,8 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import nl.marisabel.imReading.readingLogs.LogEntity;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -20,16 +22,18 @@ public class BooksEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-//    @Column(name = "olid", unique = true, nullable = false)
-//    private String OLid;
+
     private String title;
     private String author;
     @Column(nullable = false)
     private String thumbnailUrl;
     private String shortDescription;
     private String status; // ENUM?
-    private int rating = 0; // default is 0, update when finished
+    private int rating = 1; // default is 0, update when finished
     private boolean favorite;
-    private String startDate;
-    private String finishedDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date startDate;
+    @Column(nullable = true)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date finishedDate;
 }

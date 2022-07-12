@@ -67,12 +67,8 @@ public class LogsController {
         model.addAttribute("cover", bookId.getThumbnailUrl());
         model.addAttribute("status", bookId.getStatus());
         model.addAttribute("started", bookId.getStartDate());
-        if (bookId.getFinishedDate() == "") {
-            model.addAttribute("finished", "we will see");
+        model.addAttribute("finished", bookId.getFinishedDate());
 
-        } else {
-            model.addAttribute("finished", bookId.getFinishedDate());
-        }
         // BOOK LOGS
         List<LogEntity> list = logsService.byBookId(bookId);
         model.addAttribute("logs", list);
