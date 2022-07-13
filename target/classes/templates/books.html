@@ -2,6 +2,8 @@
 <html lang="en" xmlns:th="www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <header th:replace="fragments/header :: header">static header</header>
+
+
 <body>
 
 <div class="container my-sm-5">
@@ -18,22 +20,47 @@
             <div th:each="b: ${books}"
                  class="col-md-2 col-sm-2 col-lg-2 col-xs-2 col-xl-2 control-label text-center mb-4"
                  style="border:0px solid #000000;min-width:200px;">
+
+
+                <span class="fav-on-cover text-white ms-1" th:if="${b.favorite == true}"><h2>♥</h2></span>
+                <span class="text-success" th:unless="${b.favorite == true}"></span>
+
                 <a href="#" th:href="@{'/logs/' + ${b.id}}"><img class="img-responsive" th:src="${b.thumbnailUrl}"
                                                                  width="150vh " alt="${b.title}"></a>
                 <p></p>
-                <p th:text="${b.title}">Title of book</p>
-                <p th:text="'By: ' + ${b.author}">by Author Name</p>
-                <p th:text="'Started on: ' + ${#dates.format(b.startDate,'dd-MMMM-yyyy')}">13/01/2011</p>
 
+
+                <h4 th:text="${b.title}">Title of book</h4>
+
+
+
+
+                <p th:text="'By: ' + ${b.author}">by Author Name</p>
+                <span  th:if="${b.status == 'read'}">
+                    <small th:text="${#dates.format(b.startDate,'dd-MMMM-yyyy')}"></small></br>
+                    <small th:text="${#dates.format(b.finishedDate,'dd-MMMM-yyyy')}">13/01/2011</small>
+                </span>
+                <span th:unless="${b.status == 'read'}">
+                <small th:text="${#dates.format(b.startDate,'dd-MMMM-yyyy')}">13/01/2011</small>
+                </span>
+
+
+                <p></p>
+                <b>
+                    <span class="text-danger" th:if="${b.status == 'read'}">read</span>
+                    <span class="text-success" th:unless="${b.status == 'read'}">reading</span>
+                </b>
+                <p></p>
 
 
                 <a onclick="if(!(confirm('delete book and logs?'))) return false"
                    th:href="@{/deleteBook(id=${b.id})}"
-                   class="link-primary">
-                    ❌
-                </a>  <a th:href="@{/updateBook(id=${b.id})}"
-                          class="link-primary">
-                ✏
+                   class="link-primary p-2">
+                    <div th:replace="fragments/del-icon">x</div>
+                </a><a th:href="@{/updateBook(id=${b.id})}"
+                        class="link-primary p-2">
+                <div th:replace="fragments/edit-icon">x</div>
+
             </a>
             </div>
 

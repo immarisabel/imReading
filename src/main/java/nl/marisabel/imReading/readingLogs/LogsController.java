@@ -68,7 +68,6 @@ public class LogsController {
         model.addAttribute("status", bookId.getStatus());
         model.addAttribute("started", bookId.getStartDate());
         model.addAttribute("finished", bookId.getFinishedDate());
-
         // BOOK LOGS
         List<LogEntity> list = logsService.byBookId(bookId);
         model.addAttribute("logs", list);

@@ -23,7 +23,7 @@
     --bs-gray-dark: #343a40;
     --bs-primary: #8FD4CA;
     --bs-secondary: #6c757d;
-    --bs-success: #198754;
+    --bs-success: #17b054;
     --bs-info: #0dcaf0;
     --bs-warning: #ffc107;
     --bs-danger: #dc3545;
@@ -43,7 +43,10 @@
 
 
 /* FAVORITE BUTTON / HEART */
-
+.fav-on-cover {
+   float: right!important;
+   position: absolute;
+}
 
 .red-heart-checkbox {
   position: absolute !important;
@@ -141,9 +144,7 @@ body {
 
 .title{
     color: var(--bs-primary);
-    font-size: 5rem;
-
-
+    font-size: 3rem;
 }
 
 hr {
@@ -8007,7 +8008,7 @@ ALIGN TEXT
 }
 
 .text-success {
-    color: #198754!important
+    color: var(--bs-success);!important
 }
 
 .text-info {
@@ -8063,7 +8064,7 @@ ALIGN TEXT
 }
 
 .bg-success {
-    background-color: #198754!important
+    background-color: var(--bs-success);!important
 }
 
 .bg-info {
