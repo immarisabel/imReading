@@ -41,7 +41,6 @@
 }
 
 
-
 /* FAVORITE BUTTON / HEART */
 .fav-on-cover {
    float: right!important;
@@ -257,7 +256,7 @@ address {
 
 ol,
 ul {
-    padding-left: 2rem
+    padding-left: 0rem
 }
 
 dl,
@@ -4332,14 +4331,14 @@ fieldset:disabled .btn {
     display: block
 }
 
+
+/*
 .navbar {
     position: relative;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    padding-top: .5rem;
-    padding-bottom: .5rem
 }
 
 .navbar>.container,
@@ -4369,7 +4368,8 @@ fieldset:disabled .btn {
     flex-direction: column;
     padding-left: 0;
     margin-bottom: 0;
-    list-style: none
+    list-style: none;
+    width:100%
 }
 
 .navbar-nav .nav-link {
@@ -4690,6 +4690,8 @@ fieldset:disabled .btn {
 .navbar-dark .navbar-text a:hover {
     color: #fff
 }
+
+*/
 
 .card {
     position: relative;

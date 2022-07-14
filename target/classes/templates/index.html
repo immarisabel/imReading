@@ -7,10 +7,12 @@
 <div class="container my-sm-5">
 
     <p></p>
-    <div th:replace="fragments/main-navigation">navigation</div>
+    <div th:replace="fragments/navigation">navigation</div>
+
 
     <div th:insert="fragments/status-reading :: status-reading(${book})">currently reading</div>
     <div th:insert="fragments/status-read  :: status-read(${book})">past reads</div>
+
 
 
 </div>

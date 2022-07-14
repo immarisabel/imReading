@@ -50,10 +50,10 @@
                     <div class="col-1 text-end">
                         <a th:href="@{/updateLog(id=${l.id})}"
                            class="link-primary p-2">
-                            <div th:replace="fragments/edit-icon">x</div>
+                            <div th:replace="icons/edit-icon">x</div>
                         </a><a onclick="if(!(confirm('do you want to delete this log?'))) return false"
                                th:href="@{/deleteLog(id=${l.id})}" class="link-primary">
-                        <div th:replace="fragments/del-icon">x</div>
+                        <div th:replace="icons/del-icon">x</div>
                     </a>
                     </div>
                 </div>

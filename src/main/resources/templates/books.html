@@ -56,10 +56,10 @@
                 <a onclick="if(!(confirm('delete book and logs?'))) return false"
                    th:href="@{/deleteBook(id=${b.id})}"
                    class="link-primary p-2">
-                    <div th:replace="fragments/del-icon">x</div>
+                    <div th:replace="icons/del-icon">x</div>
                 </a><a th:href="@{/updateBook(id=${b.id})}"
                         class="link-primary p-2">
-                <div th:replace="fragments/edit-icon">x</div>
+                <div th:replace="icons/edit-icon">x</div>
 
             </a>
             </div>

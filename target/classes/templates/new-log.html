@@ -38,27 +38,28 @@
                     <label for="page">Page</label>
                 </div>
             </div>
-            
+
             <div class="col-sm col-lg-1">
                 <label for="moods">Mood</label>
                 <select th:field="*{mood}" class="form-control py-sm-0 text-sm-start border-0" name="mood" id="moods">
-                    <option value="Excited">&#129321;</option>
-                    <option value="Happy">&#128512;</option>
-                    <option value="Ok">&#128578;</option>
-                    <option value="Weird">&#129320;</option>
-                    <option value="Sad">&#128546;</option>
-                    <option value="Scary">&#128552;</option>
-                    <option value="Annoying">&#128545;</option>
+                    <option value="&#129321;">&#129321;</option>
+                    <option value="&#129392;">&#129392;</option>
+                    <option value="&#128512;">&#128512;</option>
+                    <option value="&#128578;">&#128578;</option>
+                    <option value="&#129320;">&#129320;</option>
+                    <option value="&#128546;">&#128546;</option>
+                    <option value="&#128557;">&#128557;</option>
+                    <option value="&#128552;">&#128552;</option>
+                    <option value="&#128545;">&#128545;</option>
+
+
                 </select>
             </div>
-            
+
             <div class="col-sm">
-                <div class="red-heart-checkbox">
-                    <input id="red-check2" type="checkbox" th:field="*{favorite}">
-                    <label for="red-check2">♥ favorite</label>
-                </div>
+
             </div>
-            
+
             <div class="col-sm"></div>
             <div class="col-sm align-text-bottom form-floating-match">
                 <input th:field="*{date}" type="date" class="form-control" id="date"/>
