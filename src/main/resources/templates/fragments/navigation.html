@@ -3,40 +3,43 @@
 <nav class="navbar">
     <ul class="navbar-nav">
         <li class="logo">
-            <a href="#" class="nav-link">
-
-
-                <span class="link-text logo-text">imReading</span>
-                <div th:replace="icons/lib-icon"></div>
+            <a href="#" class="logo-link">
+                <span class="link-text logo-text" th:text="#{label.title}">imReading</span>
+                <div th:replace="icons/reading-icon"></div>
             </a>
         </li>
 
         <li class="nav-item">
-            <a href="#" class="nav-link">
-                <div th:replace="icons/lib-icon"></div>
-                <span class="link-text">Logs</span>
+            <a href="/log" class="nav-link">
+                <div th:replace="icons/addlog-icon"></div>
+                <span class="link-text">add log</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a href="#" class="nav-link">
-                <div th:replace="icons/lib-icon"></div>
-                <span class="link-text">Library</span>
+            <a href="/logs" class="nav-link">
+                <div th:replace="icons/book-icon"></div>
+                <span class="link-text">read logs</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a href="#" class="nav-link">
-                <div th:replace="icons/lib-icon"></div>
+            <a href="/newbook" class="nav-link">
+                <div th:replace="icons/add-icon"></div>
+                <span class="link-text">add book</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="/books" class="nav-link">
                 <div th:replace="icons/lib-icon"></div>
-                <span class="link-text">Shuttle</span>
+                <span class="link-text">library</span>
             </a>
         </li>
+
+
+
+
 
         <li class="nav-item" id="themeButton">
             <a href="#" class="nav-link">
@@ -46,3 +49,4 @@
         </li>
     </ul>
 </nav>
+

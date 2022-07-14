@@ -10,7 +10,7 @@
 
     <p></p>
 
-    <div th:replace="fragments/main-navigation">navigation</div>
+    <div th:replace="fragments/navigation">navigation</div>
 
 
     <div class="container-fluid p-5 !direction !spacing">
@@ -25,7 +25,7 @@
                 <span class="fav-on-cover text-white ms-1" th:if="${b.favorite == true}"><h2>♥</h2></span>
                 <span class="text-success" th:unless="${b.favorite == true}"></span>
 
-                <a href="#" th:href="@{'/logs/' + ${b.id}}"><img class="img-responsive" th:src="${b.thumbnailUrl}"
+                <a href="#" th:href="@{'/logs/' + ${b.id}}"><img class="img-thumbnail" th:src="${b.thumbnailUrl}"
                                                                  width="150vh " alt="${b.title}"></a>
                 <p></p>
 

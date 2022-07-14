@@ -25,7 +25,7 @@
                 <span class="fav-on-cover text-white ms-1" th:if="${b.favorite == true}"><h2>♥</h2></span>
                 <span class="text-success" th:unless="${b.favorite == true}"></span>
 
-                <a href="#" th:href="@{'/logs/' + ${b.id}}"><img class="img-responsive" th:src="${b.thumbnailUrl}"
+                <a href="#" th:href="@{'/logs/' + ${b.id}}"><img class="img-thumbnail" th:src="${b.thumbnailUrl}"
                                                                  width="150vh " alt="${b.title}"></a>
                 <p></p>
 
@@ -56,10 +56,10 @@
                 <a onclick="if(!(confirm('delete book and logs?'))) return false"
                    th:href="@{/deleteBook(id=${b.id})}"
                    class="link-primary p-2">
-                    <div th:replace="fragments/del-icon">x</div>
+                    <div th:replace="icons/del-icon">x</div>
                 </a><a th:href="@{/updateBook(id=${b.id})}"
                         class="link-primary p-2">
-                <div th:replace="fragments/edit-icon">x</div>
+                <div th:replace="icons/edit-icon">x</div>
 
             </a>
             </div>
