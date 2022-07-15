@@ -6,7 +6,7 @@
 
 <body>
 
-<div class="container my-sm-5">
+<div class="container my-5 pt5">
 
     <p></p>
 
@@ -22,46 +22,35 @@
                  style="border:0px solid #000000;min-width:200px;">
 
 
-                <span class="fav-on-cover text-white ms-1" th:if="${b.favorite == true}"><h2>♥</h2></span>
-                <span class="text-success" th:unless="${b.favorite == true}"></span>
+                <span class="on-cover text-black ms-1" th:if="${b.favorite == true}">
+                    <div th:replace="icons/favbook-icon"></div>
+                </span>
 
-                <a href="#" th:href="@{'/logs/' + ${b.id}}"><img class="img-thumbnail" th:src="${b.thumbnailUrl}"
-                                                                 width="150vh " alt="${b.title}"></a>
+                <span th:unless="${b.favorite == true}"></span>
+
+                <span th:if="${b.status == 'read'}"></span>
+
+                <span class="on-cover-reading" th:unless="${b.status == 'read'}">
+                    <div th:replace="icons/openbookmark-icon"></div>
+                </span>
+
+
+                <a href="#" th:href="@{'/logs/' + ${b.id}}">
+                    <img class="img-thumbnail" th:src="${b.thumbnailUrl}" width="150vh " alt="${b.title}"></a>
                 <p></p>
 
 
                 <h4 th:text="${b.title}">Title of book</h4>
 
 
-
-
                 <p th:text="'By: ' + ${b.author}">by Author Name</p>
-                <span  th:if="${b.status == 'read'}">
-                    <small th:text="${#dates.format(b.startDate,'dd-MMMM-yyyy')}"></small></br>
-                    <small th:text="${#dates.format(b.finishedDate,'dd-MMMM-yyyy')}">13/01/2011</small>
-                </span>
-                <span th:unless="${b.status == 'read'}">
-                <small th:text="${#dates.format(b.startDate,'dd-MMMM-yyyy')}">13/01/2011</small>
-                </span>
+
 
 
                 <p></p>
-                <b>
-                    <span class="text-danger" th:if="${b.status == 'read'}">read</span>
-                    <span class="text-success" th:unless="${b.status == 'read'}">reading</span>
-                </b>
-                <p></p>
 
 
-                <a onclick="if(!(confirm('delete book and logs?'))) return false"
-                   th:href="@{/deleteBook(id=${b.id})}"
-                   class="link-primary p-2">
-                    <div th:replace="icons/del-icon">x</div>
-                </a><a th:href="@{/updateBook(id=${b.id})}"
-                        class="link-primary p-2">
-                <div th:replace="icons/edit-icon">x</div>
 
-            </a>
             </div>
 
         </div>

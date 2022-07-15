@@ -6,64 +6,82 @@
 
 <body>
 
-<div class="container my-sm-5">
+<div class="container my-5 pt-5">
 
 
     <div th:replace="fragments/navigation">navigation</div>
 
     <div class="container-fluid p-2 !direction !spacing">
 
-    <div class="col  m-5 text-center">
-        <img th:src="${cover}" class="mw-100">
-    </div>
+
+        <div class="col  m-5 text-center">
+              <span class="on-cover text-black ms-1" th:if="${favorite == true}">
+         <div th:replace="icons/favbook-icon"></div>
+        </span>
+
+            <span th:unless="${favorite == true}"></span>
+
+            <img class="img-thumbnail" th:src="${cover}" src="">
+        </div>
 
 
-    <p class="m-5"></p>
+        <p class="m-5"></p>
 
-    <div class="row">
+        <div class="row">
 
-<!--TODO would like to make the cover and title float left when on full screen-->
-        <div class="text-center">
+            <!--TODO would like to make the cover and title float left when on full screen-->
+            <div class="text-center">
 
-            <h1 th:text="${title}"></h1>
-            <h3 th:text="'By: '+ ${author}"></h3>
+                <h1 th:text="${title}"></h1>
+                <h3 th:text="'By: '+ ${author}"></h3>
 
-            <span th:hidden="${finished} == null">
+                <div class="m-5">
+                <a onclick="if(!(confirm('delete book and logs?'))) return false"
+                   th:href="@{/deleteBook(id=${id})}"
+                   class="link-primary p-2">
+                    <div th:replace="icons/del-icon">x</div>
+                </a><a th:href="@{/updateBook(id=${id})}"
+                       class="link-primary p-2">
+                <div th:replace="icons/edit-icon">x</div>
+            </a>
+                </div>
+
+                <span th:hidden="${finished} == null">
             <p th:text="'Read from ' + ${#dates.format(started,'dd-MMMM-yyyy')} + ' to ' + ${#dates.format(finished,'dd-MMMM-yyyy')}"></p>
             </span>
-            <span th:hidden="${finished} != null">
+                <span th:hidden="${finished} != null">
             <p class="btn-secondary" th:text="'Currently Reading'">Reading</p>
             </span>
-        </div>
+            </div>
 
-        <!--        LOGS        -->
+            <!--        LOGS        -->
 
-        <div th:each="l: ${logs}">
+            <div th:each="l: ${logs}">
 
-            <div class="row bg-light my-sm-3">
+                <div class="row bg-light my-sm-3">
 
-                <div class="row pt-3">
-                    <div class="col">
-                        <p th:text="${l.mood} + ' • Page: ' +  ${l.page} + ' • Date: ' + ${l.date}"></p>
-                    </div>
+                    <div class="row pt-3">
+                        <div class="col">
+                            <p th:text="${l.mood} + ' • Page: ' +  ${l.page} + ' • Date: ' + ${l.date}"></p>
+                        </div>
 
-                    <div class="col-1 text-end">
-                        <a th:href="@{/updateLog(id=${l.id})}"
-                           class="link-primary p-2">
-                            <div th:replace="icons/edit-icon">x</div>
-                        </a><a onclick="if(!(confirm('do you want to delete this log?'))) return false"
-                               th:href="@{/deleteLog(id=${l.id})}" class="link-primary">
-                        <div th:replace="icons/del-icon">x</div>
-                    </a>
+                        <div class="col-1 text-end">
+                            <a th:href="@{/updateLog(id=${l.id})}"
+                               class="link-primary p-2">
+                                <div th:replace="icons/edit-icon">x</div>
+                            </a><a onclick="if(!(confirm('do you want to delete this log?'))) return false"
+                                   th:href="@{/deleteLog(id=${l.id})}" class="link-primary">
+                            <div th:replace="icons/del-icon">x</div>
+                        </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <p th:text="${l.content}"></p>
-            </div>
+                <div class="row">
+                    <p th:text="${l.content}"></p>
+                </div>
 
+            </div>
         </div>
-    </div>
 
     </div>
 </div>
