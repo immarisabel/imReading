@@ -1,24 +1,29 @@
-insert into books(id, title, author, thumbnail_url, short_description, status, rating, favorite, start_date, finished_date)
+
+insert into  libraries(id,name)
+values (1, 'fiction'), (2,'to re-read'), (3, 'never to finish');
+
+
+insert into books(id, title, author, thumbnail_url, short_description, status, rating, favorite, start_date, finished_date, shelves_id)
 values
 (1,  'To Sleep in a Sea of Stars', 'Christopher Paolini',
 'https://covers.openlibrary.org/b/id/12641483-M.jpg',
- 'xxx', 'reading', 0, 0, '2022-07-12 00:00:00', '2022-07-12 00:00:00'),
+ 'xxx', 'reading', 0, 0, '2022-07-12 00:00:00', '2022-07-12 00:00:00', 1),
 
 (2,  'Great North Road', 'Peter F. Hamilton',
 'https://covers.openlibrary.org/b/id/10416636-M.jpg',
-'xxx', 'reading', 0, 0, '2022-07-12 00:00:00', '2022-07-12 00:00:00'),
+'xxx', 'reading', 0, 0, '2022-07-12 00:00:00', '2022-07-12 00:00:00', 1),
 
 (3,  'Pachinko', 'Lee Min-jin',
 'https://covers.openlibrary.org/b/id/11301913-M.jpg',
-'xxx', 'read', 4, 0, '2022-07-12 00:00:00', '2022-07-12 00:00:00'),
+'xxx', 'read', 4, 0, '2022-07-12 00:00:00', '2022-07-12 00:00:00', 2),
 
 (4,  'Love Lettering', 'Kate Clayborn',
 'https://covers.openlibrary.org/b/id/9255246-M.jpg',
-'xxx', 'read', 3, 0, '2022-07-12 00:00:00', '2022-07-12 00:00:00'),
+'xxx', 'read', 3, 0, '2022-07-12 00:00:00', '2022-07-12 00:00:00', 2),
 
 (5,  'Dear Emmie Blue', 'Lia Louis',
 'https://covers.openlibrary.org/b/id/10328244-M.jpg',
-'xxx', 'read', 5, 1, '2022-07-12 00:00:00', '2022-07-12 00:00:00');
+'xxx', 'read', 5, 1, '2022-07-12 00:00:00', '2022-07-12 00:00:00', 3);
 
 
 

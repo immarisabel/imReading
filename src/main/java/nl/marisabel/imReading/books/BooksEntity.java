@@ -4,17 +4,23 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import nl.marisabel.imReading.libraries.LibrariesEntity;
 import nl.marisabel.imReading.readingLogs.LogEntity;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@NamedQuery(name = "BooksEntity.byStatus", query = "FROM BooksEntity WHERE status = ?1")
+@NamedQueries({@NamedQuery(name = "BooksEntity.byStatus", query = "FROM BooksEntity WHERE status = ?1"),
+@NamedQuery(name = "BooksEntity.byShelf", query = "FROM BooksEntity WHERE shelves = ?1")
+})
 @Builder
 @Table(name = "books")
 public class BooksEntity {
@@ -34,4 +40,8 @@ public class BooksEntity {
     @Column(nullable = true)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date finishedDate;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "shelves_id")
+    private LibrariesEntity shelves;
 }

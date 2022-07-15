@@ -1,0 +1,13 @@
+
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<p class="bg-primary text-white text-center p-2"><b>L I B R A R I E S</b></p>
+<ul class="libraries-list"  th:each="s: ${shelves}">
+    <li class="libraries-list-item" th:text="${s.name}"></li>
+</ul>
+
+<ul class="libraries-list"  th:each="b: ${books}">
+
+    <li class="libraries-list-item" th:text="${b.shelves.name}"></li>
+</ul>
+

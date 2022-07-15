@@ -32,17 +32,17 @@ public class NewBookController {
     String addNewBookForm(Model model, @ModelAttribute("books") BooksEntity book) throws IOException, InterruptedException {
         List<BooksEntity> books = booksService.getBooks();
         model.addAttribute("books", books);
-        return "new-book";
+        return "book-form";
     }
 
-//  Cannot invoke "java.util.List.get(int)" because the return value of "nl.marisabel.imReading.searchApi.POJO.BooksInfo.getCovers()" is null
+// TODO Cannot invoke "java.util.List.get(int)" because the return value of "nl.marisabel.imReading.searchApi.POJO.BooksInfo.getCovers()" is null
 
 
     @RequestMapping("/newbook/{OLid}")
     public String showFormToUpdateBook(@PathVariable(value = "OLid", required = false) String OLid, BooksEntity book, Model model) throws IOException, InterruptedException {
         newBookService.addNewBookFromApi(OLid, book);
         model.addAttribute("books", book);
-        return "new-book";
+        return "book-form";
     }
 
 

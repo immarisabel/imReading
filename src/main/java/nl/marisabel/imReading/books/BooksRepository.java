@@ -11,5 +11,5 @@ import java.util.List;
 public interface BooksRepository extends CrudRepository<BooksEntity, Integer> {
 
     List<BooksEntity> byStatus(@Param("status") String status);
-
+    List<BooksEntity> byShelf(@Param("shelf") String shelf);
 }

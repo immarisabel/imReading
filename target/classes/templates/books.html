@@ -12,51 +12,57 @@
 
     <div th:replace="fragments/navigation">navigation</div>
 
+    <div class="row">
 
-    <div class="container-fluid p-5 !direction !spacing">
+<!--        TODO create a flow so this list goes on top -->
 
-        <div class="row">
+        <div class="col-2 pt-5">
 
-            <div th:each="b: ${books}"
-                 class="col-md-2 col-sm-2 col-lg-2 col-xs-2 col-xl-2 control-label text-center mb-4"
-                 style="border:0px solid #000000;min-width:200px;">
+            <div th:replace="fragments/libraries">navigation</div>
 
 
-                <span class="on-cover text-black ms-1" th:if="${b.favorite == true}">
+        </div>
+
+        <div class="col">
+
+            <div class="container-fluid p-5 !direction !spacing">
+                <div class="row">
+                    <div th:each="b: ${books}"
+                         class="col-md-2 col-sm-2 col-lg-2 col-xs-2 col-xl-2 control-label text-center mb-4"
+                         style="border:0px solid #000000;min-width:200px;">
+
+                        <!--                OVER COVER ICONS -->
+                        <span class="on-cover text-black ms-1" th:if="${b.favorite == true}">
                     <div th:replace="icons/favbook-icon"></div>
                 </span>
+                        <span th:unless="${b.favorite == true}"></span>
 
-                <span th:unless="${b.favorite == true}"></span>
-
-                <span th:if="${b.status == 'read'}"></span>
-
-                <span class="on-cover-reading" th:unless="${b.status == 'read'}">
+                        <span th:if="${b.status == 'read'}"></span>
+                        <span class="on-cover-reading" th:unless="${b.status == 'read'}">
                     <div th:replace="icons/openbookmark-icon"></div>
                 </span>
 
-
-                <a href="#" th:href="@{'/logs/' + ${b.id}}">
-                    <img class="img-thumbnail" th:src="${b.thumbnailUrl}" width="150vh " alt="${b.title}"></a>
-                <p></p>
-
-
-                <h4 th:text="${b.title}">Title of book</h4>
+                        <!--                COVER -->
+                        <a href="#" th:href="@{'/logs/' + ${b.id}}">
+                            <img class="img-thumbnail" th:src="${b.thumbnailUrl}" width="150vh " alt="${b.title}"></a>
+                        <p></p>
 
 
-                <p th:text="'By: ' + ${b.author}">by Author Name</p>
+                        <!--                METADATA -->
+                        <h4 th:text="${b.title}">Title of book</h4>
+                        <p th:text="'By: ' + ${b.author}">by Author Name</p>
 
 
-
-                <p></p>
-
+                        <p></p>
 
 
+                    </div>
+
+                </div>
             </div>
 
         </div>
     </div>
-
-
 </div>
 </body>
 </html>

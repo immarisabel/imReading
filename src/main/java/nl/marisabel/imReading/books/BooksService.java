@@ -15,7 +15,6 @@ public class BooksService {
     @Autowired
     BooksRepository booksRepository;
 
-
     public List<BooksEntity> getBooks(){
         List<BooksEntity> books = new ArrayList<BooksEntity>();
         booksRepository.findAll().forEach(books::add);
@@ -41,5 +40,11 @@ public class BooksService {
         List<BooksEntity> books = booksRepository.byStatus(status);
         return books;
     }
+
+    public List<BooksEntity> byShelf(@Param("shelf") String shelf){
+        List<BooksEntity> books = booksRepository.byShelf(shelf);
+        return books;
+    }
+
 
 }
