@@ -1,6 +1,5 @@
 package nl.marisabel.imReading.books;
 
-import lombok.extern.log4j.Log4j2;
 import nl.marisabel.imReading.searchApi.AddBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,8 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Controller
-@Log4j2
-public class NewBookController {
+public class EditBooksController {
 
     @Autowired
     BooksService booksService;

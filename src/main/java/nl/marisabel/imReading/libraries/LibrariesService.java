@@ -24,12 +24,12 @@ public class LibrariesService {
         return librariesRepository.findById(id).get();
     }
 
-    void saveOrUpdate(LibrariesEntity shelf) {
+    public void saveOrUpdate(LibrariesEntity shelf) {
         librariesRepository.save(shelf);
     }
 
     // TODO make sure this deleting requires full verification with TEXT, shelf gone = all books gone!
-    void deleteShelf(int id) {
+    public void deleteShelf(int id) {
         librariesRepository.deleteById(id);
     }
 

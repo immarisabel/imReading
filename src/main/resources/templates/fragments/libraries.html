@@ -1,20 +1,34 @@
 <html lang="en" xmlns:th="www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <div th:fragment="libraries(lib)">
-
-    <p class="bg-primary text-white text-center p-2">custom libraries</p>
-    <ul class="libraries-list" th:each="s: ${shelves}">
-        <a class="link-primary" href="#" th:href="@{'/books/' + ${s.id}}">
-            <li class="libraries-list-item " th:text="${s.name}"></li>
+    <p class="bg-primary text-white text-center p-2">shelves</p>
+    <ul class="libraries-list">
+        <a class="link-primary" href="#" th:href="@{'/books/status/reading'}">
+            <li class="libraries-list-item " th:text="reading"></li>
+        </a><p></p>
+        <a class="link-primary" href="#" th:href="@{'/books/status/read'}">
+            <li class="libraries-list-item " th:text="read"></li>
+        </a><p></p>
+        <a class="link-primary" href="#" th:href="@{'/books/status/to_read'}">
+            <li class="libraries-list-item " th:text="'to read'"></li>
+        </a><p></p>
+        <a class="link-primary" href="#" th:href="@{'/books/favorites'}">
+            <li class="libraries-list-item " th:text="favorites"></li>
         </a>
     </ul>
 
+    <p class="bg-primary text-white text-center p-2">custom shelves</p>
+    <ul class="libraries-list" th:each="s: ${shelves}">
+        <a class="link-primary" href="#" th:href="@{'/books/' + ${s.id}}">
+            <li class="libraries-list-item" th:text="${s.name}"></li>
+        </a>
+    </ul>
 
-    <form class="hide-submit">
-
+    <form class="hide-submit form my-sm-5" method="post" th:action="@{new-shelf}" th:object="${librariesEntity}">
+        <input type="hidden" th:field="*{id}"/>
         <div class="row">
             <div class="col">
-                <input type="text" class="float-start form-control w-75" id="title" placeholder="new shelf">
+                <input th:field="*{name}" type="text" class="float-start form-control w-75" id="name" placeholder="new shelf">
 
                 <label>
                     <input type="submit"/>

@@ -46,4 +46,9 @@ public class BooksService {
     }
 
 
+    public List<BooksEntity> isFavorite(@Param("favorite") boolean fav){
+        List<BooksEntity> books = booksRepository.isFavorite(true);
+        return books;
+    }
+
 }

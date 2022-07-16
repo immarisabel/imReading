@@ -19,7 +19,8 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @NamedQueries({@NamedQuery(name = "BooksEntity.byStatus", query = "FROM BooksEntity WHERE status = ?1"),
-@NamedQuery(name = "BooksEntity.byShelf", query = "FROM BooksEntity WHERE shelves = ?1")
+@NamedQuery(name = "BooksEntity.byShelf", query = "FROM BooksEntity WHERE shelves = ?1"),
+        @NamedQuery(name = "BooksEntity.isFavorite", query = "FROM BooksEntity WHERE favorite = ?1")
 })
 @Builder
 @Table(name = "books")
@@ -41,7 +42,7 @@ public class BooksEntity {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date finishedDate;
     @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JoinColumn(name = "shelves_id")
     private LibrariesEntity shelves;
 }
