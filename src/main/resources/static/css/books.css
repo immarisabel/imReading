@@ -1,6 +1,15 @@
 
+/* Submit button for shelves*/
 
+form.hide-submit input[type="submit"] { display: none;}
 
+#add-shelf-icon {
+  fill: var(--bs-primary) !important;
+  height: 20px;
+  width: 20px;
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+ }
 
 
 /* ON COVER ICONS */

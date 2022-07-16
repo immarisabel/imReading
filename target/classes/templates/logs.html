@@ -11,22 +11,26 @@
     <hr>
 
     <div class="row">
-        <div th:each="l: ${logs}" >
+        <div th:each="l: ${logs}">
+            <div class="row">
+                <div class="col-1 me-5 text-center ">
+                    <img th:src="${l.bookId.thumbnailUrl}" class=" img-thumbnail">
+                </div>
+                <div class="col-8 pt-1"><p th:text="${l.content}"></p>
+                </div>
+                <div class="col-2 ps-md-4 text-center">
 
-            <div class="col-1  me-5 text-sm-center float-start"></p>
-                <img th:src="${l.bookId.thumbnailUrl}" class="mw-100">
+                    <span th:text="${l.bookId.title}"></span><br>
+                    <span th:text="${l.mood}"></span><br>
+                    <span th:text="'Page: ' + ${l.page}"></span><br>
+                    <span th:text="${l.date}"></span>
+                </div>
             </div>
-
-            <div class="col-2 ps-md-4 text-sm-center float-end"></p>
-                <p th:text="${l.bookId.title}"></p>
-                <p th:text="${l.mood}"></p>
-                <p th:text="${l.page}"></p>
-                <p th:text="${l.date}"></p></div>
-
-            <div class="col-auto pt-3"> <p th:text="${l.content}"></p>
+            <hr>
 
         </div>
-        </div>
+
+
     </div>
 
 

@@ -48,7 +48,8 @@ public class BooksController {
 
         List<BooksEntity> list = booksService.byShelf(shelfId);
         model.addAttribute("books", list);
-
+        List<LibrariesEntity> shelves = librariesService.getShelves();
+        model.addAttribute("shelves", shelves);
         return "books";
     }
 
