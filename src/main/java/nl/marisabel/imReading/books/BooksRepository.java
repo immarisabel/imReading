@@ -1,5 +1,6 @@
 package nl.marisabel.imReading.books;
 
+import nl.marisabel.imReading.libraries.LibrariesEntity;
 import nl.marisabel.imReading.readingLogs.LogEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -11,5 +12,5 @@ import java.util.List;
 public interface BooksRepository extends CrudRepository<BooksEntity, Integer> {
 
     List<BooksEntity> byStatus(@Param("status") String status);
-    List<BooksEntity> byShelf(@Param("shelf") String shelf);
+    List<BooksEntity> byShelf(@Param("shelfId") LibrariesEntity shelfId);
 }

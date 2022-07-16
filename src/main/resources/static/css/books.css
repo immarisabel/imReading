@@ -8,7 +8,7 @@
 .on-cover {
    float: right!important;
    position: absolute;
-   width: 6rem;
+   width: 4rem;
    padding-left: 1rem;
    color: white;
 }
@@ -16,7 +16,7 @@
 .on-cover-reading {
    float: right!important;
    position: absolute;
-   width: 6rem;
+   width: 4rem;
    padding-left: 1rem;
    color: white;
 }

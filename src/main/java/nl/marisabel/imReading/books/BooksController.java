@@ -1,6 +1,8 @@
 package nl.marisabel.imReading.books;
 
 import lombok.extern.log4j.Log4j2;
+import nl.marisabel.imReading.libraries.LibrariesEntity;
+import nl.marisabel.imReading.libraries.LibrariesService;
 import nl.marisabel.imReading.readingLogs.LogEntity;
 import nl.marisabel.imReading.searchApi.AddBookService;
 import org.hibernate.exception.ConstraintViolationException;
@@ -20,6 +22,8 @@ public class BooksController {
 
     @Autowired
     BooksService booksService;
+    @Autowired
+    LibrariesService librariesService;
 
 
     @ModelAttribute("booksEntity")
@@ -32,6 +36,19 @@ public class BooksController {
     String post(Model model, @ModelAttribute("book") BooksEntity book) {
         List<BooksEntity> list = booksService.getBooks();
         model.addAttribute("books", list);
+
+        List<LibrariesEntity> shelves = librariesService.getShelves();
+        model.addAttribute("shelves", shelves);
+
+        return "books";
+    }
+
+    @GetMapping("/books/{shelfId}")
+    String displayBookLog(@PathVariable("shelfId") LibrariesEntity shelfId, Model model) {
+
+        List<BooksEntity> list = booksService.byShelf(shelfId);
+        model.addAttribute("books", list);
+
         return "books";
     }
 
@@ -40,7 +57,7 @@ public class BooksController {
         BooksEntity book = booksService.getBook(id);
         log.info(book);
         model.addAttribute("booksEntity", book);
-        return "new-book";
+        return "book-form";
     }
 
     @GetMapping("/deleteBook")

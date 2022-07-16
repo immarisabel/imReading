@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Table(name = "libraries")
 public class LibrariesEntity {
     @Id
-    @Column(name = "id", nullable = false)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String name;
 }
