@@ -14,7 +14,7 @@
 
     <div class="row">
 
-<!--        TODO create a flow so this list goes on top -->
+        <!--        TODO create a flow so this list goes on top -->
 
 
         <div class="col-2 pt-5">
@@ -23,17 +23,32 @@
 
         </div>
 
-        
 
         <div class="col">
 
             <div class="container-fluid p-5 !direction !spacing">
+
                 <div class="row">
                     <div th:each="b: ${books}"
                          class="col-md-2 col-sm-2 col-lg-2 col-xs-2 col-xl-2 control-label text-center mb-4"
                          style="border:0px solid #000000;min-width:200px;">
 
-                        <!--                OVER COVER ICONS -->
+
+                        <!--                NO BOOKS ON THIS SHELF      -->
+                 <span th:if="${#books.isEmpty(books)}">
+<!--                  <img class="" th:src="/images/nobookfound.svg"-->
+<!--                       width="150vh"></a>-->
+
+                     <h1>EMPTY!</h1>
+
+                </span>
+
+              <span th:unless="${count_books == true}">
+
+<!--                DISPLAY BOOKS       -->
+
+
+                            <!--                OVER COVER ICONS -->
                         <span class="on-cover text-black ms-1" th:if="${b.favorite == true}">
                     <div th:replace="icons/favbook-icon"></div>
                 </span>
@@ -43,24 +58,21 @@
                         <span class="on-cover-reading" th:unless="${b.status == 'read'}">
                     <div th:replace="icons/openbookmark-icon"></div>
                 </span>
-
-                        <!--                COVER -->
+                            <!--                COVER -->
                         <a href="#" th:href="@{'/logs/' + ${b.id}}">
                             <img class="img-thumbnail" th:src="${b.thumbnailUrl}" width="150vh " alt="${b.title}"></a>
                         <p></p>
 
-
-                        <!--                METADATA -->
+                            <!--                METADATA -->
                         <h4 th:text="${b.title}">Title of book</h4>
                         <p th:text="'By: ' + ${b.author}">by Author Name</p>
-
-
                         <p></p>
 
-
+                </span>
                     </div>
-
                 </div>
+
+
             </div>
 
         </div>

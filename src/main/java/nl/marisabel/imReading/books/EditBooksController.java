@@ -1,5 +1,7 @@
 package nl.marisabel.imReading.books;
 
+import nl.marisabel.imReading.libraries.LibrariesEntity;
+import nl.marisabel.imReading.libraries.LibrariesService;
 import nl.marisabel.imReading.searchApi.AddBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,9 +22,16 @@ public class EditBooksController {
     @Autowired
     AddBookService newBookService;
 
+    @Autowired
+    LibrariesService librariesService;
+
     @ModelAttribute("booksEntity")
     public BooksEntity books() {
         return new BooksEntity();
+    }
+    @ModelAttribute("librariesEntity")
+    public LibrariesEntity librariesEntity() {
+        return new LibrariesEntity();
     }
 
 
@@ -47,8 +56,14 @@ public class EditBooksController {
     @PostMapping("/books_saved")
     String saveBook(Model model, @ModelAttribute("book") BooksEntity book) {
         booksService.saveOrUpdate(book);
+
         List<BooksEntity> list = booksService.getBooks();
         model.addAttribute("books", list);
+
+        List<LibrariesEntity> shelves = librariesService.getShelves();
+        model.addAttribute("shelves", shelves);
+
+
         return "books";
     }
 

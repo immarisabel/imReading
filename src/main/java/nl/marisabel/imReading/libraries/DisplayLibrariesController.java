@@ -32,6 +32,10 @@ public class DisplayLibrariesController {
         List<BooksEntity> list = booksService.getBooks();
         model.addAttribute("books", list);
 
+        model.addAttribute("count_books", list.isEmpty());
+        System.out.println(list.isEmpty());
+
+
         List<LibrariesEntity> shelves = librariesService.getShelves();
         model.addAttribute("shelves", shelves);
 
@@ -45,6 +49,9 @@ public class DisplayLibrariesController {
         List<BooksEntity> list = booksService.byStatus(status);
         model.addAttribute("books", list);
 
+        model.addAttribute("count_books", list.isEmpty());
+        System.out.println(list.isEmpty());
+
         List<LibrariesEntity> shelves = librariesService.getShelves();
         model.addAttribute("shelves", shelves);
         return "books";
@@ -56,6 +63,10 @@ public class DisplayLibrariesController {
         List<BooksEntity> list = booksService.isFavorite(true);
         model.addAttribute("books", list);
 
+        model.addAttribute("count_books", list.isEmpty());
+        System.out.println(list.isEmpty());
+
+
         List<LibrariesEntity> shelves = librariesService.getShelves();
         model.addAttribute("shelves", shelves);
         return "books";
@@ -66,6 +77,9 @@ public class DisplayLibrariesController {
 
         List<BooksEntity> list = booksService.byShelf(shelfId);
         model.addAttribute("books", list);
+
+        model.addAttribute("count_books", list.isEmpty());
+        System.out.println(list.isEmpty());
 
         List<LibrariesEntity> shelves = librariesService.getShelves();
         model.addAttribute("shelves", shelves);
