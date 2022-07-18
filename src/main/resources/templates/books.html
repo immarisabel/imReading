@@ -29,25 +29,22 @@
             <div class="container-fluid p-5 !direction !spacing">
 
                 <div class="row">
+
+                    <!--                NO BOOKS ON THIS SHELF      -->
+
+                    <span th:if="${books.isEmpty}">
+                        <h1>EMPTY!</h1>
+                    </span>
+
+
                     <div th:each="b: ${books}"
                          class="col-md-2 col-sm-2 col-lg-2 col-xs-2 col-xl-2 control-label text-center mb-4"
                          style="border:0px solid #000000;min-width:200px;">
 
 
-                        <!--                NO BOOKS ON THIS SHELF      -->
-                 <span th:if="${#books.isEmpty(books)}">
-<!--                  <img class="" th:src="/images/nobookfound.svg"-->
-<!--                       width="150vh"></a>-->
-
-                     <h1>EMPTY!</h1>
-
-                </span>
-
-              <span th:unless="${count_books == true}">
 
 <!--                DISPLAY BOOKS       -->
-
-
+                    <span th:unless="${books.isEmpty}">
                             <!--                OVER COVER ICONS -->
                         <span class="on-cover text-black ms-1" th:if="${b.favorite == true}">
                     <div th:replace="icons/favbook-icon"></div>

@@ -1,5 +1,6 @@
 package nl.marisabel.imReading.libraries;
 
+import lombok.extern.log4j.Log4j2;
 import nl.marisabel.imReading.books.BooksEntity;
 import nl.marisabel.imReading.books.BooksService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@Log4j2
 public class DisplayLibrariesController {
 
     @Autowired
@@ -29,16 +31,12 @@ public class DisplayLibrariesController {
 
     @RequestMapping("/books")
     String post(Model model, @ModelAttribute("book") BooksEntity book) {
-        List<BooksEntity> list = booksService.getBooks();
-        model.addAttribute("books", list);
-
-        model.addAttribute("count_books", list.isEmpty());
-        System.out.println(list.isEmpty());
-
+        List<BooksEntity> books = booksService.getBooks();
+        model.addAttribute("books", books);
 
         List<LibrariesEntity> shelves = librariesService.getShelves();
         model.addAttribute("shelves", shelves);
-
+        log.info("Is list empty? " + books.isEmpty());
         return "books";
     }
 
@@ -46,43 +44,41 @@ public class DisplayLibrariesController {
     @GetMapping("/books/status/{status}")
     String displayBooksByStatus(@PathVariable("status") String status, Model model) {
 
-        List<BooksEntity> list = booksService.byStatus(status);
-        model.addAttribute("books", list);
-
-        model.addAttribute("count_books", list.isEmpty());
-        System.out.println(list.isEmpty());
+        List<BooksEntity> books = booksService.byStatus(status);
+        model.addAttribute("books", books);
 
         List<LibrariesEntity> shelves = librariesService.getShelves();
         model.addAttribute("shelves", shelves);
+
+        log.info(">>>>>>>>>>>>> Is books empty? " + books.isEmpty());
+
         return "books";
     }
 
     @GetMapping("/books/favorites")
     String displayFavoriteBooks (Model model, BooksEntity book) {
-        System.out.println(book.isFavorite());
-        List<BooksEntity> list = booksService.isFavorite(true);
-        model.addAttribute("books", list);
-
-        model.addAttribute("count_books", list.isEmpty());
-        System.out.println(list.isEmpty());
-
+        List<BooksEntity> books = booksService.isFavorite(true);
+        model.addAttribute("books", books);
 
         List<LibrariesEntity> shelves = librariesService.getShelves();
         model.addAttribute("shelves", shelves);
+
+        log.info(">>>>>>>>>>>>> Is books empty? " + books.isEmpty());
+
         return "books";
     }
 
     @GetMapping("/books/{shelfId}")
     String displayBookLog(@PathVariable("shelfId") LibrariesEntity shelfId, Model model) {
 
-        List<BooksEntity> list = booksService.byShelf(shelfId);
-        model.addAttribute("books", list);
-
-        model.addAttribute("count_books", list.isEmpty());
-        System.out.println(list.isEmpty());
+        List<BooksEntity> books = booksService.byShelf(shelfId);
+        model.addAttribute("books", books);
 
         List<LibrariesEntity> shelves = librariesService.getShelves();
         model.addAttribute("shelves", shelves);
+
+        log.info(">>>>>>>>>>>>> Is books empty? " + books.isEmpty());
+
         return "books";
     }
 
@@ -90,6 +86,8 @@ public class DisplayLibrariesController {
     String editShelves(Model model) {
         List<LibrariesEntity> shelves = librariesService.getShelves();
         model.addAttribute("shelves", shelves);
+
+        //TODO what if there are no shelves yet?
         return "edit-shelves";
     }
 }
