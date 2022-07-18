@@ -39,6 +39,9 @@ public class EditBooksController {
     String addNewBookForm(Model model, @ModelAttribute("books") BooksEntity book) throws IOException, InterruptedException {
         List<BooksEntity> books = booksService.getBooks();
         model.addAttribute("books", books);
+
+        List<LibrariesEntity> shelves = librariesService.getShelves();
+        model.addAttribute("shelves", shelves);
         return "book-form";
     }
 

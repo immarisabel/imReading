@@ -2,21 +2,18 @@ package nl.marisabel.imReading.readingLogs;
 
 
 import nl.marisabel.imReading.books.BooksEntity;
-import nl.marisabel.imReading.books.BooksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Collections;
 import java.util.List;
 
 @Controller
-public class LogsController {
+public class DisplayLogsController {
 
     @Autowired
     LogsService logsService;

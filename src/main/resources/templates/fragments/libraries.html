@@ -1,7 +1,7 @@
 <html lang="en" xmlns:th="www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
-<div th:fragment="libraries(lib)">
-    <p class="bg-primary text-white text-center p-2">shelves</p>
+<div th:fragment="libraries(lib)" class="text-center">
+    <p class="btn btn-primary">shelves</p>
     <ul class="libraries-list">
         <a class="link-primary" href="#" th:href="@{'/books/status/reading'}">
             <li class="libraries-list-item " th:text="reading"></li>
@@ -17,14 +17,16 @@
         </a>
     </ul>
 
-    <p class="bg-primary text-white text-center p-2">custom shelves</p>
+    <p class="btn btn-primary">custom shelves</p>
     <ul class="libraries-list" th:each="s: ${shelves}">
         <a class="link-primary" href="#" th:href="@{'/books/' + ${s.id}}">
             <li class="libraries-list-item" th:text="${s.name}"></li>
         </a>
     </ul>
-    <div th:replace="add-shelf">navigation</div>
 
+    <div class="text-center">
+    <a href="/shelves" class="btn btn-primary">Manage Shelves</a>
+</div>
 
 
 </div>

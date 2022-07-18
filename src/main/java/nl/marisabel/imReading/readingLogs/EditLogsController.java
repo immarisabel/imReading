@@ -14,7 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Controller
-public class NewLogController {
+public class EditLogsController {
 
     @Autowired
     LogsService logsService;
