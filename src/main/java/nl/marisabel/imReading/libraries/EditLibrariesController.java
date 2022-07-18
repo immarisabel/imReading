@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
+import java.util.List;
+
 @Controller
 public class EditLibrariesController {
 
@@ -30,21 +33,40 @@ public class EditLibrariesController {
     String addNewShelf(Model model, @ModelAttribute("shelf") LibrariesEntity shelf) {
         librariesService.saveOrUpdate(shelf);
         model.addAttribute("librariesEntity", shelf);
-        return "redirect:/books";
+
+        List<LibrariesEntity> shelves = librariesService.getShelves();
+        model.addAttribute("shelves", shelves);
+        return "redirect:/shelves";
     }
 
     @GetMapping("/updateShelf")
     public String showFormForUpdatingShelf(@RequestParam("id") int id, Model model) {
         LibrariesEntity shelf = librariesService.getShelf(id);
-        return "edit-shelves";    }
+        model.addAttribute("shelves", shelf);
+
+        model.addAttribute("name", shelf);
+        model.addAttribute("librariesEntity", shelf);
+
+        List<LibrariesEntity> shelves = Collections.singletonList((librariesService.getShelf(shelf.getId())));
+        model.addAttribute("shelf", shelves);
+
+        return "edit-shelves";
+    }
 
     @GetMapping("/deleteShelf")
     public String deleteShelf(@RequestParam("id") int id, Model model) {
         librariesService.deleteShelf(id);
-        return "edit-shelves";
+        return "redirect:/shelves";
     }
 
+    @RequestMapping("/shelves")
+    String editShelves(Model model) {
+        List<LibrariesEntity> shelves = librariesService.getShelves();
+        model.addAttribute("shelves", shelves);
 
+        //TODO what if there are no shelves yet?
+        return "edit-shelves";
+    }
 
 
 

@@ -61,11 +61,11 @@ public class NewLogController {
         return "new-log";
     }
 
-    @PostMapping("/update-log")
-    String updateLog(Model model, @ModelAttribute("log") LogEntity log, @RequestParam("id") int id) {
-        logsService.saveOrUpdate(log);
-        List<LogEntity> list = logsService.getLogs();
-        model.addAttribute("logs", list);
-        return "logs";
-    }
+//    @PostMapping("/update-log")
+//    String updateLog(Model model, @ModelAttribute("log") LogEntity log, @RequestParam("id") int id) {
+//        logsService.saveOrUpdate(log);
+//        List<LogEntity> list = logsService.getLogs();
+//        model.addAttribute("logs", list);
+//        return "logs";
+//    }
 }

@@ -1,19 +1,18 @@
 package nl.marisabel.imReading.books;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import nl.marisabel.imReading.libraries.LibrariesEntity;
-import nl.marisabel.imReading.readingLogs.LogEntity;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.Hibernate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.Date;
+import java.util.Objects;
+import java.util.Set;
 
-@Data
+@Getter
+@Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -46,9 +45,7 @@ public class BooksEntity {
             name = "shelved_books",
             joinColumns = @JoinColumn(name = "books_id"),
             inverseJoinColumns = @JoinColumn(name = "shelves_id"))
+    @ToString.Exclude
     private Set<LibrariesEntity> shelves;
-
-
-
 
 }

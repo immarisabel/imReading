@@ -16,6 +16,7 @@
              <thead class="table-light">
                 <tr class="text-center">
                     <th scope="col">Shelf Name</th>
+                    <th scope="col">Books</th>
                     <th scope="col">Edit</th>
                     <th scope="col">Delete</th>
                 </tr>
@@ -27,6 +28,10 @@
                         <a class="link-primary" href="#" th:href="@{'/books/' + ${s.id}}">
                             <li class="libraries-list-item" th:text="${s.name}"></li>
                         </a>
+                    </td>
+                    <td class="col-1 text-center">
+<!--                        TODO count books inside shelf-->
+<!--                        <p th:text="${books.size}"></p>-->
                     </td>
                     <td class="col-1  text-center">
                         <a th:href="@{/updateShelf(id=${s.id})}"
@@ -44,6 +49,7 @@
                 </tr>
                 </tbody>
             </table>
+        <div th:replace="fragments/add-shelf">navigation</div>
 
 
     </div>

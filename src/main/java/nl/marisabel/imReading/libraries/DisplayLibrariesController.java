@@ -82,12 +82,5 @@ public class DisplayLibrariesController {
         return "books";
     }
 
-    @RequestMapping("/shelves")
-    String editShelves(Model model) {
-        List<LibrariesEntity> shelves = librariesService.getShelves();
-        model.addAttribute("shelves", shelves);
 
-        //TODO what if there are no shelves yet?
-        return "edit-shelves";
-    }
 }
