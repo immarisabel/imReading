@@ -24,17 +24,22 @@
         </div>
 
 
-        <div class="col">
+        <div class="col text-center ">
+
+
+ <span th:if="${books.isEmpty}" >
+                    <img src="/images/nobooksfound.svg" class="top">
+     <p>                <a href="/newbook" class="btn btn-primary mt-5">Add one here!</a>
+</p>
+                    </span>
+
 
             <div class="container-fluid p-5 !direction !spacing">
+
 
                 <div class="row">
 
                     <!--                NO BOOKS ON THIS SHELF      -->
-
-                    <span th:if="${books.isEmpty}">
-                        <h1>EMPTY!</h1>
-                    </span>
 
 
                     <div th:each="b: ${books}"
@@ -42,9 +47,8 @@
                          style="border:0px solid #000000;min-width:200px;">
 
 
-
-<!--                DISPLAY BOOKS       -->
-                    <span th:unless="${books.isEmpty}">
+                        <!--                DISPLAY BOOKS       -->
+                        <span th:unless="${books.isEmpty}">
                             <!--                OVER COVER ICONS -->
                         <span class="on-cover text-black ms-1" th:if="${b.favorite == true}">
                     <div th:replace="icons/favbook-icon"></div>

@@ -33,16 +33,15 @@ public class EditLibrariesController {
         return "redirect:/books";
     }
 
-
     @GetMapping("/updateShelf")
     public String showFormForUpdatingShelf(@RequestParam("id") int id, Model model) {
         LibrariesEntity shelf = librariesService.getShelf(id);
-        return "redirect:/edit-shelves";    }
+        return "edit-shelves";    }
 
     @GetMapping("/deleteShelf")
     public String deleteShelf(@RequestParam("id") int id, Model model) {
         librariesService.deleteShelf(id);
-        return "redirect:/edit-shelves";
+        return "edit-shelves";
     }
 
 

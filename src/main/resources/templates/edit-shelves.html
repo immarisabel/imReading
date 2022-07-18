@@ -31,14 +31,14 @@
                     <td class="col-1  text-center">
                         <a th:href="@{/updateShelf(id=${s.id})}"
                            class="link-primary p-2" alt="delete ${s.name}">
-                            <div th:replace="icons/edit-icon">x</div>
+                            <div th:replace="icons/edit-icon">update</div>
                         </a>
                     </td>
                     <td class="col-1  text-center">
                         <a onclick="if(!(confirm('delete shelf?'))) return false"
                            th:href="@{/deleteShelf(id=${s.id})}"
                            class="link-primary p-2">
-                            <div th:replace="icons/del-icon">x</div>
+                            <div th:replace="icons/del-icon">delete</div>
                         </a>
                     </td>
                 </tr>
