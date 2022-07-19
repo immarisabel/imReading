@@ -47,7 +47,8 @@ public class EditBooksController {
 
 
     @RequestMapping("/newbook/{OLid}")
-    public String showFormToUpdateBook(@PathVariable(value = "OLid", required = false) String OLid, BooksEntity book, Model model) throws IOException, InterruptedException {
+    public String showFormToAddBookFromSearch(@PathVariable(value = "OLid", required = false) String OLid, BooksEntity book, Model model) throws IOException, InterruptedException {
+
         newBookService.addNewBookFromApi(OLid, book);
         model.addAttribute("books", book);
 
@@ -75,11 +76,12 @@ public class EditBooksController {
 
     @GetMapping("/updateBook")
     public String showBookFormForUpdate(@RequestParam("id") int id, Model model) {
-        BooksEntity book = booksService.getBook(id);
-        model.addAttribute("booksEntity", book);
 
         List<ShelvesEntity> shelves = shelvesService.getShelves();
         model.addAttribute("shelves", shelves);
+
+        BooksEntity book = booksService.getBook(id);
+        model.addAttribute("booksEntity", book);
 
         return "book-form";
     }

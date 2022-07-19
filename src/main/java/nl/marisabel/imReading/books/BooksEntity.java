@@ -2,20 +2,19 @@ package nl.marisabel.imReading.books;
 
 import lombok.*;
 import nl.marisabel.imReading.shelves.ShelvesEntity;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@ToString
 @NamedQueries({@NamedQuery(name = "BooksEntity.byStatus", query = "FROM BooksEntity WHERE status = ?1"),
         @NamedQuery(name = "BooksEntity.byShelf", query = "FROM BooksEntity u join u.shelves r WHERE r.id=:shelfId"),
         @NamedQuery(name = "BooksEntity.isFavorite", query = "FROM BooksEntity WHERE favorite = ?1")
@@ -41,8 +40,8 @@ public class BooksEntity {
     private Date finishedDate;
 
     @ManyToMany(mappedBy = "books")
-    private Set<ShelvesEntity> shelves;
-
+    @ToString.Exclude
+    private Set<ShelvesEntity> shelves = new HashSet<>();
 
 
 
