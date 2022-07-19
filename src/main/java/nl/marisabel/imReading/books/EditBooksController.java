@@ -6,10 +6,7 @@ import nl.marisabel.imReading.searchApi.AddBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -42,6 +39,7 @@ public class EditBooksController {
 
         List<LibrariesEntity> shelves = librariesService.getShelves();
         model.addAttribute("shelves", shelves);
+
         return "book-form";
     }
 
@@ -52,6 +50,10 @@ public class EditBooksController {
     public String showFormToUpdateBook(@PathVariable(value = "OLid", required = false) String OLid, BooksEntity book, Model model) throws IOException, InterruptedException {
         newBookService.addNewBookFromApi(OLid, book);
         model.addAttribute("books", book);
+
+        List<LibrariesEntity> shelves = librariesService.getShelves();
+        model.addAttribute("shelves", shelves);
+
         return "book-form";
     }
 
@@ -69,5 +71,24 @@ public class EditBooksController {
 
         return "books";
     }
+
+
+    @GetMapping("/updateBook")
+    public String showBookFormForUpdate(@RequestParam("id") int id, Model model) {
+        BooksEntity book = booksService.getBook(id);
+        model.addAttribute("booksEntity", book);
+
+        List<LibrariesEntity> shelves = librariesService.getShelves();
+        model.addAttribute("shelves", shelves);
+
+        return "book-form";
+    }
+
+    @GetMapping("/deleteBook")
+    public String deleteBook(@RequestParam("id") int id) {
+        booksService.deleteBook(id);
+        return "redirect:/books";
+    }
+
 
 }

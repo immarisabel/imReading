@@ -9,16 +9,6 @@
 <body>
 
 
-
-
-
-
-
-
-
-
-
-
 <div class="container my-5 pt-5 ">
 
     <div th:replace="fragments/navigation">navigation</div>
@@ -27,19 +17,6 @@
     <div th:insert="fragments/book-search :: search-panel">
         search
     </div>
-
-
-
-    <div class="btn-group">
-        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">Primary</button>
-        <div class="dropdown-menu">
-            <a href="#" class="dropdown-item">Action</a>
-            <a href="#" class="dropdown-item">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">Separated link</a>
-        </div>
-    </div>
-
 
 
     <form action="#" class="form my-sm-5" method="post" th:action="@{/books_saved}" th:object="${booksEntity}">
@@ -97,12 +74,13 @@
                         <option th:value="'read'" th:text="Finished"></option>
                     </select>
 
+                    <p></p>
 
                     <div class="dropdown">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                            Dropdown button
-                        </button>
 
+                            add to shelf
+                        </button>
                         <select class="dropdown-menu" th:field="*{shelves}" multiple="multiple">
 
                             <option th:each="shelf : ${shelves}"
