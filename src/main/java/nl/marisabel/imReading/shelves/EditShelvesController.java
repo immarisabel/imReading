@@ -1,4 +1,4 @@
-package nl.marisabel.imReading.libraries;
+package nl.marisabel.imReading.shelves;
 
 import nl.marisabel.imReading.books.BooksEntity;
 import nl.marisabel.imReading.books.BooksService;
@@ -11,12 +11,12 @@ import java.util.Collections;
 import java.util.List;
 
 @Controller
-public class EditLibrariesController {
+public class EditShelvesController {
 
     @Autowired
     BooksService booksService;
     @Autowired
-    LibrariesService librariesService;
+    ShelvesService shelvesService;
 
     @ModelAttribute("booksEntity")
     public BooksEntity books() {
@@ -24,30 +24,30 @@ public class EditLibrariesController {
     }
 
     @ModelAttribute("librariesEntity")
-    public LibrariesEntity shelves() {
-        return new LibrariesEntity();
+    public ShelvesEntity shelves() {
+        return new ShelvesEntity();
     }
 
 
     @PostMapping("/new-shelf")
-    String addNewShelf(Model model, @ModelAttribute("shelf") LibrariesEntity shelf) {
-        librariesService.saveOrUpdate(shelf);
+    String addNewShelf(Model model, @ModelAttribute("shelf") ShelvesEntity shelf) {
+        shelvesService.saveOrUpdate(shelf);
         model.addAttribute("librariesEntity", shelf);
 
-        List<LibrariesEntity> shelves = librariesService.getShelves();
+        List<ShelvesEntity> shelves = shelvesService.getShelves();
         model.addAttribute("shelves", shelves);
         return "redirect:/shelves";
     }
 
     @GetMapping("/updateShelf")
     public String showFormForUpdatingShelf(@RequestParam("id") int id, Model model) {
-        LibrariesEntity shelf = librariesService.getShelf(id);
+        ShelvesEntity shelf = shelvesService.getShelf(id);
         model.addAttribute("shelves", shelf);
 
         model.addAttribute("name", shelf);
         model.addAttribute("librariesEntity", shelf);
 
-        List<LibrariesEntity> shelves = Collections.singletonList((librariesService.getShelf(shelf.getId())));
+        List<ShelvesEntity> shelves = Collections.singletonList((shelvesService.getShelf(shelf.getId())));
         model.addAttribute("shelf", shelves);
 
         return "edit-shelves";
@@ -55,13 +55,13 @@ public class EditLibrariesController {
 
     @GetMapping("/deleteShelf")
     public String deleteShelf(@RequestParam("id") int id, Model model) {
-        librariesService.deleteShelf(id);
+        shelvesService.deleteShelf(id);
         return "redirect:/shelves";
     }
 
     @RequestMapping("/shelves")
     String editShelves(Model model) {
-        List<LibrariesEntity> shelves = librariesService.getShelves();
+        List<ShelvesEntity> shelves = shelvesService.getShelves();
         model.addAttribute("shelves", shelves);
 
         //TODO what if there are no shelves yet?

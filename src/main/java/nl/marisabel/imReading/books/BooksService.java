@@ -1,6 +1,5 @@
 package nl.marisabel.imReading.books;
 
-import nl.marisabel.imReading.libraries.LibrariesEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
@@ -40,7 +39,7 @@ public class BooksService {
         return books;
     }
 
-    public List<BooksEntity> byShelf(@Param("shelfId") LibrariesEntity shelfId){
+    public List<BooksEntity> byShelf(@Param("shelfId") int shelfId){
         List<BooksEntity> books = booksRepository.byShelf(shelfId);
         return books;
     }

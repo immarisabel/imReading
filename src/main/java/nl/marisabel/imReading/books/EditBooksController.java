@@ -1,7 +1,7 @@
 package nl.marisabel.imReading.books;
 
-import nl.marisabel.imReading.libraries.LibrariesEntity;
-import nl.marisabel.imReading.libraries.LibrariesService;
+import nl.marisabel.imReading.shelves.ShelvesEntity;
+import nl.marisabel.imReading.shelves.ShelvesService;
 import nl.marisabel.imReading.searchApi.AddBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,15 +20,15 @@ public class EditBooksController {
     AddBookService newBookService;
 
     @Autowired
-    LibrariesService librariesService;
+    ShelvesService shelvesService;
 
     @ModelAttribute("booksEntity")
     public BooksEntity books() {
         return new BooksEntity();
     }
     @ModelAttribute("librariesEntity")
-    public LibrariesEntity librariesEntity() {
-        return new LibrariesEntity();
+    public ShelvesEntity librariesEntity() {
+        return new ShelvesEntity();
     }
 
 
@@ -37,7 +37,7 @@ public class EditBooksController {
         List<BooksEntity> books = booksService.getBooks();
         model.addAttribute("books", books);
 
-        List<LibrariesEntity> shelves = librariesService.getShelves();
+        List<ShelvesEntity> shelves = shelvesService.getShelves();
         model.addAttribute("shelves", shelves);
 
         return "book-form";
@@ -51,7 +51,7 @@ public class EditBooksController {
         newBookService.addNewBookFromApi(OLid, book);
         model.addAttribute("books", book);
 
-        List<LibrariesEntity> shelves = librariesService.getShelves();
+        List<ShelvesEntity> shelves = shelvesService.getShelves();
         model.addAttribute("shelves", shelves);
 
         return "book-form";
@@ -65,7 +65,7 @@ public class EditBooksController {
         List<BooksEntity> list = booksService.getBooks();
         model.addAttribute("books", list);
 
-        List<LibrariesEntity> shelves = librariesService.getShelves();
+        List<ShelvesEntity> shelves = shelvesService.getShelves();
         model.addAttribute("shelves", shelves);
 
 
@@ -78,7 +78,7 @@ public class EditBooksController {
         BooksEntity book = booksService.getBook(id);
         model.addAttribute("booksEntity", book);
 
-        List<LibrariesEntity> shelves = librariesService.getShelves();
+        List<ShelvesEntity> shelves = shelvesService.getShelves();
         model.addAttribute("shelves", shelves);
 
         return "book-form";

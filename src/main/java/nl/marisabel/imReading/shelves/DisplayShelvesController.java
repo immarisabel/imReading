@@ -1,4 +1,4 @@
-package nl.marisabel.imReading.libraries;
+package nl.marisabel.imReading.shelves;
 
 import lombok.extern.log4j.Log4j2;
 import nl.marisabel.imReading.books.BooksEntity;
@@ -12,12 +12,12 @@ import java.util.List;
 
 @Controller
 @Log4j2
-public class DisplayLibrariesController {
+public class DisplayShelvesController {
 
     @Autowired
     BooksService booksService;
     @Autowired
-    LibrariesService librariesService;
+    ShelvesService shelvesService;
 
     @ModelAttribute("booksEntity")
     public BooksEntity books() {
@@ -25,8 +25,8 @@ public class DisplayLibrariesController {
     }
 
     @ModelAttribute("librariesEntity")
-    public LibrariesEntity shelves() {
-        return new LibrariesEntity();
+    public ShelvesEntity shelves() {
+        return new ShelvesEntity();
     }
 
     @RequestMapping("/books")
@@ -34,7 +34,7 @@ public class DisplayLibrariesController {
         List<BooksEntity> books = booksService.getBooks();
         model.addAttribute("books", books);
 
-        List<LibrariesEntity> shelves = librariesService.getShelves();
+        List<ShelvesEntity> shelves = shelvesService.getShelves();
         model.addAttribute("shelves", shelves);
         log.info("Is list empty? " + books.isEmpty());
         return "books";
@@ -47,7 +47,7 @@ public class DisplayLibrariesController {
         List<BooksEntity> books = booksService.byStatus(status);
         model.addAttribute("books", books);
 
-        List<LibrariesEntity> shelves = librariesService.getShelves();
+        List<ShelvesEntity> shelves = shelvesService.getShelves();
         model.addAttribute("shelves", shelves);
 
         log.info(">>>>>>>>>>>>> Is books empty? " + books.isEmpty());
@@ -60,7 +60,7 @@ public class DisplayLibrariesController {
         List<BooksEntity> books = booksService.isFavorite(true);
         model.addAttribute("books", books);
 
-        List<LibrariesEntity> shelves = librariesService.getShelves();
+        List<ShelvesEntity> shelves = shelvesService.getShelves();
         model.addAttribute("shelves", shelves);
 
         log.info(">>>>>>>>>>>>> Is books empty? " + books.isEmpty());
@@ -69,12 +69,12 @@ public class DisplayLibrariesController {
     }
 
     @GetMapping("/books/{shelfId}")
-    String displayBookLog(@PathVariable("shelfId") LibrariesEntity shelfId, Model model) {
+    String displayBookLog(@PathVariable("shelfId") int shelfId, Model model) {
 
         List<BooksEntity> books = booksService.byShelf(shelfId);
         model.addAttribute("books", books);
 
-        List<LibrariesEntity> shelves = librariesService.getShelves();
+        List<ShelvesEntity> shelves = shelvesService.getShelves();
         model.addAttribute("shelves", shelves);
 
         log.info(">>>>>>>>>>>>> Is books empty? " + books.isEmpty());

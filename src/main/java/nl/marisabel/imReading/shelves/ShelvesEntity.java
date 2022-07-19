@@ -1,4 +1,4 @@
-package nl.marisabel.imReading.libraries;
+package nl.marisabel.imReading.shelves;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 import nl.marisabel.imReading.books.BooksEntity;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Data
@@ -17,7 +15,7 @@ import java.util.Set;
 @Entity
 @Builder
 @Table(name = "shelves")
-public class LibrariesEntity {
+public class ShelvesEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

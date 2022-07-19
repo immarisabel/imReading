@@ -1,13 +1,11 @@
 package nl.marisabel.imReading.books;
 
 import lombok.*;
-import nl.marisabel.imReading.libraries.LibrariesEntity;
-import org.hibernate.Hibernate;
+import nl.marisabel.imReading.shelves.ShelvesEntity;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Objects;
 import java.util.Set;
 
 @Getter
@@ -17,7 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @NamedQueries({@NamedQuery(name = "BooksEntity.byStatus", query = "FROM BooksEntity WHERE status = ?1"),
-        @NamedQuery(name = "BooksEntity.byShelf", query = "FROM BooksEntity WHERE shelves = ?1"),
+        @NamedQuery(name = "BooksEntity.byShelf", query = "FROM BooksEntity u join u.shelves r WHERE r.id=:shelfId"),
         @NamedQuery(name = "BooksEntity.isFavorite", query = "FROM BooksEntity WHERE favorite = ?1")
 })
 @Builder
@@ -46,6 +44,6 @@ public class BooksEntity {
             joinColumns = @JoinColumn(name = "books_id"),
             inverseJoinColumns = @JoinColumn(name = "shelves_id"))
     @ToString.Exclude
-    private Set<LibrariesEntity> shelves;
+    private Set<ShelvesEntity> shelves;
 
 }

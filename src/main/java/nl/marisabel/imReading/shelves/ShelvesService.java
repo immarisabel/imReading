@@ -1,7 +1,6 @@
-package nl.marisabel.imReading.libraries;
+package nl.marisabel.imReading.shelves;
 
 
-import nl.marisabel.imReading.readingLogs.LogEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,22 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class LibrariesService {
+public class ShelvesService {
 
     @Autowired
-    LibrariesRepository librariesRepository;
+    ShelvesRepository librariesRepository;
 
-    public List<LibrariesEntity> getShelves(){
-        List<LibrariesEntity> shelves = new ArrayList<>();
+    public List<ShelvesEntity> getShelves(){
+        List<ShelvesEntity> shelves = new ArrayList<>();
         librariesRepository.findAll().forEach(shelves::add);
         return shelves;
     }
 
-    LibrariesEntity getShelf(int id){
+    ShelvesEntity getShelf(int id){
         return librariesRepository.findById(id).get();
     }
 
-    public void saveOrUpdate(LibrariesEntity shelf) {
+    public void saveOrUpdate(ShelvesEntity shelf) {
         librariesRepository.save(shelf);
     }
 
