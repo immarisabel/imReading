@@ -51,7 +51,7 @@
                 <p></p>
 
                 <input type="number" th:field="*{rating}" class="form-control" id="rating" placeholder="rating"
-                       value="rating" min="1" max="5">
+                       value="rating" min="0" max="5">
 
             </div>
         </div>
@@ -67,18 +67,31 @@
         <div class="row my-sm-5">
 
             <div class="col-2">
+
                 <div class="col-sm align-text-bottom form-floating-match">
-                    <label for="status">status</label>
-                    <select class="form-control" id="status" th:field="*{status}">
-                        <option th:value="'reading'" th:text="Reading"></option>
-                        <option th:value="'read'" th:text="Finished"></option>
-                    </select>
 
-                    <p></p>
-
-                    <div class="dropdown">
+                    <div class="dropdown  my-4">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                            reading status
+                        </button>
+                        <select class="dropdown-menu" th:field="*{status}" multiple="multiple">
 
+                            <option th:value="'reading'" th:text="Reading"></option>
+                            <option th:value="'read'" th:text="Finished"></option>
+                            <option th:value="'to read'" th:text="'To Read'"></option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="col-sm align-text-bottom form-floating-match">
+
+
+
+                    <div class="dropdown  my-4"  data-toggle="tooltip" data-placement="bottom"
+                         title="select mutiple shleves CTRL + 🖱️">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                             add to shelf
                         </button>
                         <select class="dropdown-menu" th:field="*{shelves}" multiple="multiple">
@@ -88,11 +101,9 @@
                                     th:value="${shelf.id}"
                                     th:field="*{shelves}">
                         </select>
-
                     </div>
-
-
                 </div>
+
             </div>
             <div class="col-3">
                 <div class="col-sm align-text-bottom form-floating-match">

@@ -2,6 +2,8 @@ package nl.marisabel.imReading.books;
 
 import lombok.*;
 import nl.marisabel.imReading.shelves.ShelvesEntity;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -38,12 +40,10 @@ public class BooksEntity {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date finishedDate;
 
-    @ManyToMany
-    @JoinTable(
-            name = "shelved_books",
-            joinColumns = @JoinColumn(name = "books_id"),
-            inverseJoinColumns = @JoinColumn(name = "shelves_id"))
-    @ToString.Exclude
+    @ManyToMany(mappedBy = "books")
     private Set<ShelvesEntity> shelves;
+
+
+
 
 }

@@ -54,7 +54,10 @@ public class EditShelvesController {
     }
 
     @GetMapping("/deleteShelf")
-    public String deleteShelf(@RequestParam("id") int id, Model model) {
+    public String deleteShelf(@RequestParam("id") int id, Model model, BooksEntity books) {
+
+
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>> SHELF ID: " +id);
         shelvesService.deleteShelf(id);
         return "redirect:/shelves";
     }
