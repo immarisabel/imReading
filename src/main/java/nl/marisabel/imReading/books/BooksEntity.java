@@ -40,7 +40,17 @@ public class BooksEntity {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date finishedDate;
 
-    @ManyToMany(mappedBy = "books")
+
+
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(
+            name = "shelved_books",
+            joinColumns = @JoinColumn(name = "shelves_id"),
+            inverseJoinColumns = @JoinColumn(name = "books_id"))
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     private Set<ShelvesEntity> shelves = new HashSet<>();
 
 

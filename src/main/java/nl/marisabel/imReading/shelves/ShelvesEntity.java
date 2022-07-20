@@ -23,18 +23,8 @@ public class ShelvesEntity {
     private int id;
     private String name;
 
-//    @ManyToMany(mappedBy = "shelves")
-//    private Set<BooksEntity> shelvedBooks;
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
-    @JoinTable(
-            name = "shelved_books",
-            joinColumns = @JoinColumn(name = "shelves_id"),
-            inverseJoinColumns = @JoinColumn(name = "books_id"))
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    @ManyToMany(mappedBy = "shelves")
     private Set<BooksEntity> books = new HashSet<>();
 
 }

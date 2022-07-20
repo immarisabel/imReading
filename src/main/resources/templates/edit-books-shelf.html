@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<header th:replace="fragments/header :: header">static header</header>
+<body>
+
+<div class="container my-sm-5">
+
+    <p></p>
+    <div th:replace="fragments/navigation">navigation</div>
+
+    <!--    TODO display book list of shelf-->
+    <!--    TODO create form with checkbox-->
+    <!--    TODO controller update bulk shelves-->
+    <!--    TODO add update name of shelf also here-->
+    <!--    TODO redirect the controller method to this page, not the normal list-->
+
+    <div class="libraries-list ">
+
+        <table class="table table-sm w-100 mt-5 table-bordered table-hover">
+
+
+
+            <thead class="table-light">
+            <tr class="text-center">
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">✔</th>
+            </tr>
+            </thead>
+
+            <tbody th:each="b : ${books}">
+            <tr>
+                <td class="col-5 text-center">
+                    <a href="#" th:href="@{'/logs/' + ${b.id}}" class="link-primary">
+                        <p th:text="${b.title}"></p>
+                    </a>
+                </td>
+
+                <td class="col-3  text-center">
+                    <p th:text="${b.author}"></p>
+                </td>
+
+                <td class="col-1  text-center">
+                    <input
+                            type="checkbox"
+                            name="myBooleanVariable"
+                            th:checked="${myBooleanVariable}"/>
+                </td>
+            </tr>
+            </tbody>
+
+
+
+        </table>
+
+        <div th:replace="fragments/add-shelf">edit shelf</div>
+
+
+    </div>
+
+
+</div>
+</body>
+</html>

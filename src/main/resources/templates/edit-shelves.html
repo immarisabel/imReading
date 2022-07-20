@@ -34,7 +34,7 @@
 <!--                        <p th:text="${books.size}"></p>-->
                     </td>
                     <td class="col-1  text-center">
-                        <a th:href="@{/updateShelf(id=${s.id})}"
+                        <a th:href="@{/bulk-edit-shelf(id=${s.id})}"
                            class="link-primary p-2" alt="delete ${s.name}">
                             <div th:replace="icons/edit-icon">update</div>
                         </a>

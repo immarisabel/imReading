@@ -53,6 +53,24 @@ public class EditShelvesController {
         return "edit-shelves";
     }
 
+    @RequestMapping("/bulk-edit-shelf")
+    String bulkEditBooksInShelf(@RequestParam("id") int id, Model model) {
+        ShelvesEntity shelf = shelvesService.getShelf(id);
+        model.addAttribute("shelves", shelf);
+
+        List<BooksEntity> books = booksService.byShelf(id);
+        model.addAttribute("books", books);
+
+        model.addAttribute("name", shelf);
+        model.addAttribute("librariesEntity", shelf);
+
+        List<ShelvesEntity> shelves = Collections.singletonList((shelvesService.getShelf(shelf.getId())));
+        model.addAttribute("shelf", shelves);
+
+        return "edit-books-shelf";
+    }
+
+
     @GetMapping("/deleteShelf")
     public String deleteShelf(@RequestParam("id") int id, Model model, BooksEntity books) {
 

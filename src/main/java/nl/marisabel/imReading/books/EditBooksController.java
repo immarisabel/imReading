@@ -61,6 +61,7 @@ public class EditBooksController {
 
     @GetMapping("/updateBook")
     public String showBookFormForUpdate(@RequestParam("id") int id, Model model) {
+
         BooksEntity book = booksService.getBook(id);
         model.addAttribute("booksEntity", book);
 
@@ -78,6 +79,8 @@ public class EditBooksController {
     String saveBook(Model model, @ModelAttribute("book") BooksEntity book, ShelvesEntity shelf) {
 
         booksService.saveOrUpdate(book);
+
+
 
         List<BooksEntity> list = booksService.getBooks();
         model.addAttribute("books", list);
