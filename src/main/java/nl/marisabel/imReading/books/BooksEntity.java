@@ -8,11 +8,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -41,9 +41,7 @@ public class BooksEntity {
     private Date finishedDate;
 
     @ManyToMany(mappedBy = "books")
-    private Set<ShelvesEntity> shelves;
-
-
+    private Set<ShelvesEntity> shelves = new HashSet<>();
 
 
 }

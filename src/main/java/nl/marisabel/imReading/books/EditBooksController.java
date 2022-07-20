@@ -48,6 +48,7 @@ public class EditBooksController {
 
     @RequestMapping("/newbook/{OLid}")
     public String showFormToUpdateBook(@PathVariable(value = "OLid", required = false) String OLid, BooksEntity book, Model model) throws IOException, InterruptedException {
+
         newBookService.addNewBookFromApi(OLid, book);
         model.addAttribute("books", book);
 
@@ -55,21 +56,6 @@ public class EditBooksController {
         model.addAttribute("shelves", shelves);
 
         return "book-form";
-    }
-
-
-    @PostMapping("/books_saved")
-    String saveBook(Model model, @ModelAttribute("book") BooksEntity book) {
-        booksService.saveOrUpdate(book);
-
-        List<BooksEntity> list = booksService.getBooks();
-        model.addAttribute("books", list);
-
-        List<ShelvesEntity> shelves = shelvesService.getShelves();
-        model.addAttribute("shelves", shelves);
-
-
-        return "books";
     }
 
 
@@ -82,6 +68,24 @@ public class EditBooksController {
         model.addAttribute("shelves", shelves);
 
         return "book-form";
+    }
+
+
+
+//    CRUD FUNCTIONS
+
+    @PostMapping("/books_saved")
+    String saveBook(Model model, @ModelAttribute("book") BooksEntity book, ShelvesEntity shelf) {
+
+        booksService.saveOrUpdate(book);
+
+        List<BooksEntity> list = booksService.getBooks();
+        model.addAttribute("books", list);
+
+        List<ShelvesEntity> shelves = shelvesService.getShelves();
+        model.addAttribute("shelves", shelves);
+
+        return "books";
     }
 
     @GetMapping("/deleteBook")

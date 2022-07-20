@@ -6,6 +6,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -21,23 +22,18 @@ public class ShelvesEntity {
     private int id;
     private String name;
 
-    @ManyToMany(mappedBy = "shelves")
-    private Set<BooksEntity> shelvedBooks;
+//    @ManyToMany(mappedBy = "shelves")
+//    private Set<BooksEntity> shelvedBooks;
 
-    @ManyToMany
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
     @JoinTable(
             name = "shelved_books",
             joinColumns = @JoinColumn(name = "shelves_id"),
             inverseJoinColumns = @JoinColumn(name = "books_id"))
-    @ToString.Exclude
     @OnDelete(action = OnDeleteAction.NO_ACTION)
-    private Set<BooksEntity> books;
+    private Set<BooksEntity> books = new HashSet<>();
 
-    public Set<BooksEntity> getBooksEntities() {
-        return books;
-    }
-
-    public void setBooksEntities(Set<BooksEntity> booksEntities) {
-        this.books = booksEntities;
-    }
 }
