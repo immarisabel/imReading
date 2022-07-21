@@ -26,8 +26,9 @@ public class EditBooksController {
     public BooksEntity books() {
         return new BooksEntity();
     }
-    @ModelAttribute("librariesEntity")
-    public ShelvesEntity librariesEntity() {
+
+    @ModelAttribute("shelvesEntity")
+    public ShelvesEntity shelvesEntity() {
         return new ShelvesEntity();
     }
 
@@ -72,15 +73,12 @@ public class EditBooksController {
     }
 
 
-
 //    CRUD FUNCTIONS
 
     @PostMapping("/books_saved")
     String saveBook(Model model, @ModelAttribute("book") BooksEntity book, ShelvesEntity shelf) {
 
         booksService.saveOrUpdate(book);
-
-
 
         List<BooksEntity> list = booksService.getBooks();
         model.addAttribute("books", list);

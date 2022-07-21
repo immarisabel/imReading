@@ -18,8 +18,7 @@ import java.util.Set;
 @Entity
 @NamedQueries({@NamedQuery(name = "BooksEntity.byStatus", query = "FROM BooksEntity WHERE status = ?1"),
         @NamedQuery(name = "BooksEntity.byShelf", query = "FROM BooksEntity u join u.shelves r WHERE r.id=:shelfId"),
-        @NamedQuery(name = "BooksEntity.isFavorite", query = "FROM BooksEntity WHERE favorite = ?1")
-})
+        @NamedQuery(name = "BooksEntity.isFavorite", query = "FROM BooksEntity WHERE favorite = ?1")})
 @Builder
 @Table(name = "books")
 public class BooksEntity {
@@ -31,8 +30,8 @@ public class BooksEntity {
     @Column(nullable = false)
     private String thumbnailUrl;
     private String shortDescription;
-    private String status; // ENUM?
-    private int rating = 1; // default is 0, update when finished
+    private String status;
+    private int rating = 0;
     private boolean favorite;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;

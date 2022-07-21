@@ -15,4 +15,5 @@ public interface BooksRepository extends CrudRepository<BooksEntity, Integer> {
 
     List<BooksEntity> isFavorite(@Param("favorite") boolean favorite);
 
-}
+
+    }

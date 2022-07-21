@@ -50,7 +50,7 @@
 
 .logo-link svg {
   align-items: center;
-  height: 5rem;
+  height: 4rem;
   color: var(--bs-secondary);
   text-decoration: none;
   filter: greyscale(100%) opacity(0.2);
@@ -101,7 +101,7 @@
 
 .logo svg {
   transition: var(--transition-speed);
-  width: 4rem;
+  width: 5rem;
   margin-bottom: 1rem;
   margin-top: 1rem;
 }
@@ -118,7 +118,11 @@
 }
 
 .navbar:hover .logo svg {
+  margin-top:1rem;
   transition: var(--transition-speed);
+  height: 15rem;
+  width:100%;
+  left:0;
 }
 
 .nav-item:last-child {
@@ -276,7 +280,7 @@ main {
 
   .navbar:hover .logo svg
   {
-    margin-left: 9rem;
+    margin-left: 1rem;
   }
 
   .navbar:hover .logo-text

@@ -11,25 +11,25 @@ import java.util.List;
 public class ShelvesService {
 
     @Autowired
-    ShelvesRepository librariesRepository;
+    ShelvesRepository shelvesRepository;
 
     public List<ShelvesEntity> getShelves(){
         List<ShelvesEntity> shelves = new ArrayList<>();
-        librariesRepository.findAll().forEach(shelves::add);
+        shelvesRepository.findAll().forEach(shelves::add);
         return shelves;
     }
 
     ShelvesEntity getShelf(int id){
-        return librariesRepository.findById(id).get();
+        return shelvesRepository.findById(id).get();
     }
 
     public void saveOrUpdate(ShelvesEntity shelf) {
-        librariesRepository.save(shelf);
+        shelvesRepository.save(shelf);
     }
 
     // TODO make sure this deleting requires full verification with TEXT, shelf gone = all books gone!
     public void deleteShelf(int id) {
-        librariesRepository.deleteById(id);
+        shelvesRepository.deleteById(id);
     }
 
 }

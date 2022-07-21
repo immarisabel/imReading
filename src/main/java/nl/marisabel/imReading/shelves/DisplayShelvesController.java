@@ -24,7 +24,7 @@ public class DisplayShelvesController {
         return new BooksEntity();
     }
 
-    @ModelAttribute("librariesEntity")
+    @ModelAttribute("shelvesEntity")
     public ShelvesEntity shelves() {
         return new ShelvesEntity();
     }

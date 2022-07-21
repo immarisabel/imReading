@@ -7711,6 +7711,10 @@ ALIGN TEXT
     border-radius: .3rem!important
 }
 
+.rounded-4 {
+    border-radius: 1rem!important
+}
+
 .rounded-circle {
     border-radius: 50%!important
 }
