@@ -2,6 +2,7 @@ package nl.marisabel.imReading.readingLogs;
 
 
 import nl.marisabel.imReading.books.BooksEntity;
+import nl.marisabel.imReading.shelves.ShelvesEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class DisplayLogsController {
@@ -49,6 +51,8 @@ public class DisplayLogsController {
         // BOOK LOGS
         List<LogEntity> list = logsService.byBookId(bookId);
         model.addAttribute("logs", list);
+        Set<ShelvesEntity> shelves = bookId.getShelves();
+        model.addAttribute("shelves", shelves);
 
         return "book-logs";
     }

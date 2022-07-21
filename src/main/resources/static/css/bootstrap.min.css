@@ -7622,7 +7622,7 @@ ALIGN TEXT
 }
 
 .bg-secondary {
-    background-color: #6c757d!important
+    background-color: var(--bs-secondary)!important
 }
 
 .bg-success {
