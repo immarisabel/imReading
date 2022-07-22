@@ -8,15 +8,44 @@
 
     <p></p>
     <div th:replace="fragments/navigation">navigation</div>
-    <hr>
+    <div class="col text-center ">
 
+    <span th:if="${logs.isEmpty}">
+                    <img src="/images/no-logs.svg" class="top">
+     <p>                <a href="/log" class="btn btn-primary mt-5">Add one here!</a>
+</p>
+                    </span>
+
+
+    </div>
+
+    <span th:unless="${logs.isEmpty}">
     <div class="row">
+
+        <h1 class="bg-light mb-4">these are all your logs</h1>
+
         <div th:each="l: ${logs}">
+
+
             <div class="row">
                 <div class="col-1 me-5 text-center ">
                     <img th:src="${l.bookId.thumbnailUrl}" class=" img-thumbnail">
+                    <p></p>
+                    <div class="col-1" style="display:inline;">
+
+                        <a th:href="@{/updateLog(id=${l.id})}"
+                           class="link-primary p-2">
+                            <div th:replace="icons/edit-icon">x</div>
+                        </a>
+
+                        <a onclick="if(!(confirm('do you want to delete this log?'))) return false"
+                           th:href="@{/deleteLogs(id=${l.id})}" class="link-primary">
+                        <div th:replace="icons/del-icon">x</div>
+                    </a>
+
+                    </div>
                 </div>
-                <div class="col-8 pt-1"><p th:text="${l.content}"></p>
+                <div class="col-8 pt-1"><p th:utext="${l.content}"></p>
                 </div>
                 <div class="col-2 ps-md-4 text-center">
 
@@ -26,12 +55,11 @@
                     <span th:text="${l.date}"></span>
                 </div>
             </div>
-            <hr>
+<hr>
+</div>
+</span>
 
-        </div>
-
-
-    </div>
+</div>
 
 
 </div>

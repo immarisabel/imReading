@@ -2,10 +2,9 @@
 
 <div th:fragment="status-reading(book)">
 
-<div class="my-sm-5">
     <div class="container-fluid p-5 !direction !spacing">
 
-        <h3 class="mb-5">Currently Reading</h3>
+        <h3 class="mb-5 bg-light p-2 rounded-4">books you are currently reading</h3>
         <div class="row">
 
             <div th:each="b: ${reading}"
@@ -19,5 +18,4 @@
 
         </div>
     </div>
-</div>
 </div>

@@ -28,7 +28,7 @@ public class IndexController {
     }
 
     List<BooksEntity> statusRead() {
-        return booksService.byStatus("read").stream().limit(4).collect(Collectors.toList());
+        return booksService.byStatus("read").stream().limit(5).collect(Collectors.toList());
     }
 
 }

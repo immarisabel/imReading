@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Collections;
 import java.util.List;
 
@@ -60,6 +61,23 @@ public class EditLogsController {
         model.addAttribute("reading", reading);
         return "new-log";
     }
+
+
+    @GetMapping("/deleteLog")
+    public String deleteLog(@RequestParam("id") int id, HttpServletRequest request) {
+        logsService.deleteLog(id);
+        String referer = request.getHeader("Referer");
+        return "redirect:"+ referer;
+    }
+
+
+    @GetMapping("/deleteLogs")
+    public String deleteLogFromLogList(@RequestParam("id") int id, HttpServletRequest request) {
+        logsService.deleteLog(id);
+        String referer = request.getHeader("Referer");
+        return "redirect:/logs";
+    }
+
 
 //    @PostMapping("/update-log")
 //    String updateLog(Model model, @ModelAttribute("log") LogEntity log, @RequestParam("id") int id) {

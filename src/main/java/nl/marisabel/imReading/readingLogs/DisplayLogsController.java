@@ -59,13 +59,6 @@ public class DisplayLogsController {
 
 
 
-    @GetMapping("/deleteLog")
-    public String deleteLog(@RequestParam("id") int id, HttpServletRequest request) {
-        logsService.deleteLog(id);
-        String referer = request.getHeader("Referer");
-        return "redirect:"+ referer;
-    }
-
 
     // Book registry
     //TODO study wtf this is :D ...

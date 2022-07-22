@@ -36,7 +36,7 @@ public class DisplayShelvesController {
 
         List<ShelvesEntity> shelves = shelvesService.getShelves();
         model.addAttribute("shelves", shelves);
-        log.info("Is list empty? " + books.isEmpty());
+
         return "books";
     }
 
@@ -50,8 +50,6 @@ public class DisplayShelvesController {
         List<ShelvesEntity> shelves = shelvesService.getShelves();
         model.addAttribute("shelves", shelves);
 
-        log.info(">>>>>>>>>>>>> Is books empty? " + books.isEmpty());
-
         return "books";
     }
 
@@ -62,8 +60,6 @@ public class DisplayShelvesController {
 
         List<ShelvesEntity> shelves = shelvesService.getShelves();
         model.addAttribute("shelves", shelves);
-
-        log.info(">>>>>>>>>>>>> Is books empty? " + books.isEmpty());
 
         return "books";
     }
@@ -77,7 +73,6 @@ public class DisplayShelvesController {
         List<ShelvesEntity> shelves = shelvesService.getShelves();
         model.addAttribute("shelves", shelves);
 
-        log.info(">>>>>>>>>>>>> Is books empty? " + books.isEmpty());
 
         return "books";
     }

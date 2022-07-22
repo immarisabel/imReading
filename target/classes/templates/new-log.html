@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <header th:replace="fragments/header :: header">static header</header>
+
 <body>
 
 <div class="container my-5 pt-5">
@@ -10,14 +11,14 @@
     <div th:replace="fragments/navigation">navigation</div>
 
 
-
     <form class="form my-sm-5" method="post" th:action="@{new-log}" th:object="${logEntity}">
 
         <input type="hidden" th:field="*{id}"/>
 
         <div class="row">
             <div class="col-sm">
-                <select th:field="*{bookId}" class="form-control col-md-2 my-sm-1 col-xs-2" name="currently-reading-books" id="cr-books">
+                <select th:field="*{bookId}" class="form-control col-md-2 my-sm-1 col-xs-2"
+                        name="currently-reading-books" id="cr-books">
                     <option th:each="b : ${books}" th:value="${b.id}" th:text="${b.title}"></option>
                 </select>
 
@@ -27,32 +28,25 @@
 
 
         <p></p>
-        <textarea  th:field="*{content}" cols="60" rows="10" class="form-control">Test</textarea>
+        <textarea type="text" th:field="*{content}" autocomplete="off" cols="60" rows="10"
+                  class="content">Test</textarea>
         <p></p>
         <div class="row my-sm-5">
-            <div class="col-sm  col-lg-2">
+            <div class="col-sm  col-lg-1">
 
                 <div class="form-floating">
                     <input type="number" th:field="*{page}" class="form-control" id="page" placeholder="#" value="#">
-                    <label for="page">Page</label>
+                    <label for="page">page</label>
                 </div>
             </div>
 
             <div class="col-sm col-lg-1">
-                <label for="moods">Mood</label>
-                <select th:field="*{mood}" class="form-control py-sm-0 text-sm-start border-0" name="mood" id="moods">
-                    <option value="&#129321;">&#129321;</option>
-                    <option value="&#129392;">&#129392;</option>
-                    <option value="&#128512;">&#128512;</option>
-                    <option value="&#128578;">&#128578;</option>
-                    <option value="&#129320;">&#129320;</option>
-                    <option value="&#128546;">&#128546;</option>
-                    <option value="&#128557;">&#128557;</option>
-                    <option value="&#128552;">&#128552;</option>
-                    <option value="&#128545;">&#128545;</option>
+                    <div class="form-floating" data-toggle="tooltip" data-placement="bottom" title="use emojis! 😁 or up to 10 chars">
+                        <input type="text" maxlength="15" th:field="*{mood}" class="form-control " name="mood"
+                               id="moods">
+                        <label for="moods">reaction</label>
+                    </div>
 
-
-                </select>
             </div>
 
             <div class="col-sm">
