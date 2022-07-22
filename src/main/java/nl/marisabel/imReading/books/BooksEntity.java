@@ -47,8 +47,8 @@ public class BooksEntity {
     })
     @JoinTable(
             name = "shelved_books",
-            joinColumns = @JoinColumn(name = "shelves_id"),
-            inverseJoinColumns = @JoinColumn(name = "books_id"))
+            joinColumns = @JoinColumn(name = "books_id"),
+            inverseJoinColumns = @JoinColumn(name = "shelves_id"))
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     private Set<ShelvesEntity> shelves = new HashSet<>();
 

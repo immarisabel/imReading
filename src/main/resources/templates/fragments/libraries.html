@@ -1,24 +1,24 @@
 <html lang="en" xmlns:th="www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
-<div th:fragment="libraries(lib)" class="text-center">
+<div th:fragment="libraries(lib)">
 
-    <p class="btn btn-light w-100">shelves</p>
+    <p class="btn btn-secondary w-100">reading status</p>
     <ul class="libraries-list">
         <a class="link-primary" href="#" th:href="@{'/books/status/reading'}">
-            <li class="libraries-list-item " th:text="reading"></li>
+            <li class="libraries-list-item" th:text="'📖 reading'"></li>
         </a><p></p>
         <a class="link-primary" href="#" th:href="@{'/books/status/read'}">
-            <li class="libraries-list-item " th:text="read"></li>
+            <li class="libraries-list-item " th:text="'📕 read'"></li>
         </a><p></p>
         <a class="link-primary" href="#" th:href="@{'/books/status/to_read'}">
-            <li class="libraries-list-item " th:text="'to read'"></li>
+            <li class="libraries-list-item " th:text="'📗 to read'"></li>
         </a><p></p>
         <a class="link-primary" href="#" th:href="@{'/books/favorites'}">
-            <li class="libraries-list-item " th:text="favorites"></li>
+            <li class="libraries-list-item " th:text="'💖 favorites'"></li>
         </a>
     </ul>
 
-    <p class="btn btn-light w-100">custom shelves</p>
+    <p class="btn btn-secondary w-100">my shelves</p>
     <ul class="libraries-list" th:each="s: ${shelves}">
         <a class="link-primary" href="#" th:href="@{'/books/' + ${s.id}}">
             <li class="libraries-list-item" th:text="${s.name}"></li>
