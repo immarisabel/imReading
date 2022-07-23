@@ -44,11 +44,14 @@ public class BooksService {
         return books;
     }
 
-
     public List<BooksEntity> isFavorite(@Param("favorite") boolean fav){
         List<BooksEntity> books = booksRepository.isFavorite(true);
         return books;
     }
 
+    public List<BooksEntity> byRating(@Param("rating") int rating){
+        List<BooksEntity> books = booksRepository.byRating(rating);
+        return books;
+    }
 
 }

@@ -18,6 +18,7 @@ import java.util.Set;
 @Entity
 @NamedQueries({@NamedQuery(name = "BooksEntity.byStatus", query = "FROM BooksEntity WHERE status = ?1 ORDER BY finished_date DESC"),
         @NamedQuery(name = "BooksEntity.byShelf", query = "FROM BooksEntity u join u.shelves r WHERE r.id=:shelfId"),
+        @NamedQuery(name = "BooksEntity.byRating", query = "FROM BooksEntity WHERE rating = ?1"),
         @NamedQuery(name = "BooksEntity.isFavorite", query = "FROM BooksEntity WHERE favorite = ?1")})
 @Builder
 @Table(name = "books")
@@ -29,7 +30,6 @@ public class BooksEntity {
     private String author;
     @Column(nullable = false)
     private String thumbnailUrl;
-    private String shortDescription;
     private String status;
     private int rating = 0;
     private boolean favorite;
@@ -38,8 +38,6 @@ public class BooksEntity {
     @Column(nullable = true)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date finishedDate;
-
-
 
     @ManyToMany(cascade = {
             CascadeType.PERSIST,

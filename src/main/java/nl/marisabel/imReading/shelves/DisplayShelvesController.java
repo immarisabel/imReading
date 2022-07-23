@@ -33,23 +33,18 @@ public class DisplayShelvesController {
     String post(Model model, @ModelAttribute("book") BooksEntity book) {
         List<BooksEntity> books = booksService.getBooks();
         model.addAttribute("books", books);
-
         List<ShelvesEntity> shelves = shelvesService.getShelves();
         model.addAttribute("shelves", shelves);
-
         return "books";
     }
 
 
     @GetMapping("/books/status/{status}")
     String displayBooksByStatus(@PathVariable("status") String status, Model model) {
-
         List<BooksEntity> books = booksService.byStatus(status);
         model.addAttribute("books", books);
-
         List<ShelvesEntity> shelves = shelvesService.getShelves();
         model.addAttribute("shelves", shelves);
-
         return "books";
     }
 
@@ -57,23 +52,27 @@ public class DisplayShelvesController {
     String displayFavoriteBooks (Model model, BooksEntity book) {
         List<BooksEntity> books = booksService.isFavorite(true);
         model.addAttribute("books", books);
-
         List<ShelvesEntity> shelves = shelvesService.getShelves();
         model.addAttribute("shelves", shelves);
-
         return "books";
     }
 
-    @GetMapping("/books/{shelfId}")
-    String displayBookLog(@PathVariable("shelfId") int shelfId, Model model) {
 
+    @GetMapping("/books/shelf/{shelfId}")
+    String displayBookByShelf(@PathVariable("shelfId") int shelfId, Model model) {
         List<BooksEntity> books = booksService.byShelf(shelfId);
         model.addAttribute("books", books);
-
         List<ShelvesEntity> shelves = shelvesService.getShelves();
         model.addAttribute("shelves", shelves);
+        return "books";
+    }
 
-
+    @GetMapping("/books/rating/{rating}")
+    String displayBooksByRating(@PathVariable("rating") int rating, Model model) {
+        List<BooksEntity> books = booksService.byRating(rating);
+        model.addAttribute("books", books);
+        List<ShelvesEntity> shelves = shelvesService.getShelves();
+        model.addAttribute("shelves", shelves);
         return "books";
     }
 

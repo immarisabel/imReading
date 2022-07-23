@@ -23,7 +23,10 @@ $(document).ready(function() {
     <div th:replace="fragments/navigation">navigation</div>
 
     <div class="container-fluid p-2 !direction !spacing">
-
+        <div class="container text-star" style="width:14rem;">
+            <span th:text="${rating}" class="stars"></span>
+        </div>
+        <p></p>
 
         <div class="col  m-5 text-center">
               <span class="on-cover text-black ms-1" th:if="${favorite == true}">
@@ -53,9 +56,7 @@ $(document).ready(function() {
 
                 <h1 th:text="${title}"></h1>
                 <h3 th:text="'By: '+ ${author}"></h3>
-                <div class="container text-star" style="width:14rem;">
-                    <span th:text="${rating}" class="stars"></span>
-                </div>
+
 
                 <div class="m-5">
                     <a onclick="if(!(confirm('delete book and logs?'))) return false"

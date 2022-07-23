@@ -2,32 +2,141 @@
 
 <div th:fragment="libraries(lib)">
 
-    <p class="btn btn-secondary w-100">reading status</p>
-    <ul class="libraries-list">
-        <a class="link-primary" href="#" th:href="@{'/books/status/reading'}">
-            <li class="libraries-list-item" th:text="'📖 reading'"></li>
-        </a><p></p>
-        <a class="link-primary" href="#" th:href="@{'/books/status/read'}">
-            <li class="libraries-list-item " th:text="'📕 read'"></li>
-        </a><p></p>
-        <a class="link-primary" href="#" th:href="@{'/books/status/to_read'}">
-            <li class="libraries-list-item " th:text="'📗 to read'"></li>
-        </a><p></p>
-        <a class="link-primary" href="#" th:href="@{'/books/favorites'}">
-            <li class="libraries-list-item " th:text="'💖 favorites'"></li>
-        </a>
-    </ul>
+    <!--    BY STATUS -->
 
-    <p class="btn btn-secondary w-100">my shelves</p>
-    <ul class="libraries-list" th:each="s: ${shelves}">
-        <a class="link-primary" href="#" th:href="@{'/books/' + ${s.id}}">
-            <li class="libraries-list-item" th:text="${s.name}"></li>
+    <div class="button-dropdown link-light btn btn-primary w-100 mb-4 mt-5">
+        <a href="javascript:void(0)" class="dropdown-toggle link-light">
+            reading status
         </a>
-    </ul>
+        <ul class="dropdown-menu link-light p-3">
+            <a class="link-primary" href="#" th:href="@{'/books/status/reading'}">
+                <li class="libraries-list-item" th:text="'📖 reading'"></li>
+            </a>
+            <a class="link-primary" href="#" th:href="@{'/books/status/read'}">
+                <li class="libraries-list-item " th:text="'📕 read'"></li>
+            </a>
+            <a class="link-primary" href="#" th:href="@{'/books/status/to_read'}">
+                <li class="libraries-list-item " th:text="'📗 to read'"></li>
+            </a>
+            <a class="link-primary" href="#" th:href="@{'/books/favorites'}">
+                <li class="libraries-list-item " th:text="'💖 favorites'"></li>
+            </a>
+
+        </ul>
+    </div>
+
+
+    <!--    BY RATING -->
+
+    <div class="button-dropdown btn btn-primary w-100 mb-4">
+        <a href="javascript:void(0)" class="dropdown-toggle link-light">
+            rated books
+        </a>
+        <ul class="dropdown-menu p-4">
+            <li class="libraries-list-item">
+                <a class="link-primary" href="#" th:href="@{'/books/rating/5'}">
+                    <img src="/images/star-full-icon.svg" width="15rem">
+                    <img src="/images/star-full-icon.svg" width="15rem">
+                    <img src="/images/star-full-icon.svg" width="15rem">
+                    <img src="/images/star-full-icon.svg" width="15rem">
+                    <img src="/images/star-full-icon.svg" width="15rem">
+                </a>
+            </li>
+            <li class="libraries-list-item">
+                <a class="link-primary" href="#" th:href="@{'/books/rating/4'}">
+                    <img src="/images/star-full-icon.svg" width="15rem">
+                    <img src="/images/star-full-icon.svg" width="15rem">
+                    <img src="/images/star-full-icon.svg" width="15rem">
+                    <img src="/images/star-full-icon.svg" width="15rem">
+                </a>
+            </li>
+            <li class="libraries-list-item">
+                <a class="link-primary" href="#" th:href="@{'/books/rating/3'}">
+                    <img src="/images/star-full-icon.svg" width="15rem">
+                    <img src="/images/star-full-icon.svg" width="15rem">
+                    <img src="/images/star-full-icon.svg" width="15rem">
+                </a>
+            </li>
+            <li class="libraries-list-item">
+                <a class="link-primary" href="#" th:href="@{'/books/rating/2'}">
+                    <img src="/images/star-full-icon.svg" width="15rem">
+                    <img src="/images/star-full-icon.svg" width="15rem">
+                </a>
+            </li>
+            <li class="libraries-list-item">
+                <a class="link-primary" href="#" th:href="@{'/books/rating/1'}">
+                    <img src="/images/star-full-icon.svg" width="15rem">
+                </a>
+            </li>
+
+        </ul>
+    </div>
+
+<!--    &lt;!&ndash;    BY MONTH &ndash;&gt;-->
+
+<!--    <div class="button-dropdown btn btn-primary w-100 mb-4">-->
+<!--        <a href="javascript:void(0)" class="dropdown-toggle link-light">-->
+<!--            monthly lists-->
+<!--        </a>-->
+<!--        <ul class="dropdown-menu p-4">-->
+<!--            <li class="libraries-list-item" th:each="s: ${shelves}">-->
+<!--                <a class="link-primary" href="#"-->
+<!--                   th:href="@{'/books/' + ${s.id}}" th:text="${s.name}">-->
+<!--                </a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </div>-->
+
+    <!--    CUSTOM SELVES-->
+
+    <div class="button-dropdown btn btn-primary w-100 mb-4 mt-5">
+        <a href="javascript:void(0)" class="dropdown-toggle link-light">
+            your shelves
+        </a>
+        <ul class="dropdown-menu p-4">
+            <li class="libraries-list-item" th:each="s: ${shelves}">
+                <a class="link-primary" href="#"
+                   th:href="@{'/books/shelf/' + ${s.id}}" th:text="${s.name}">
+                </a>
+            </li>
+        </ul>
+    </div>
 
     <div class="text-center">
-    <a href="/shelves" class="btn btn-primary w-100">Manage Shelves</a>
-</div>
+        <a href="/shelves" class="btn btn-primary w-100">Manage Shelves</a>
+    </div>
+
+
+    <!--    <p class="btn btn-secondary w-100">my shelves</p>-->
+    <!--    <ul class="libraries-list" th:each="s: ${shelves}">-->
+    <!--        <a class="link-primary" href="#" th:href="@{'/books/' + ${s.id}}">-->
+    <!--            <li class="libraries-list-item" th:text="${s.name}"></li>-->
+    <!--        </a>-->
+    <!--    </ul>-->
+
+    <!--    <div class="box" aria-haspopup="true">-->
+    <!--        <button id="btn-dropdown" class="btn-dropdown">reading status</button>-->
+    <!--        <nav id="nav-dropdown" class="nav-dropdown">-->
+    <!--&lt;!&ndash;        <p class="btn btn-secondary w-100">reading status</p>&ndash;&gt;-->
+    <!--        <ul class="libraries-list">-->
+    <!--            <a class="link-primary" href="#" th:href="@{'/books/status/reading'}">-->
+    <!--                <li class="libraries-list-item" th:text="'📖 reading'"></li>-->
+    <!--            </a>-->
+    <!--            <p></p>-->
+    <!--            <a class="link-primary" href="#" th:href="@{'/books/status/read'}">-->
+    <!--                <li class="libraries-list-item " th:text="'📕 read'"></li>-->
+    <!--            </a>-->
+    <!--            <p></p>-->
+    <!--            <a class="link-primary" href="#" th:href="@{'/books/status/to_read'}">-->
+    <!--                <li class="libraries-list-item " th:text="'📗 to read'"></li>-->
+    <!--            </a>-->
+    <!--            <p></p>-->
+    <!--            <a class="link-primary" href="#" th:href="@{'/books/favorites'}">-->
+    <!--                <li class="libraries-list-item " th:text="'💖 favorites'"></li>-->
+    <!--            </a>-->
+    <!--        </ul>-->
+    <!--        </nav>-->
+    <!--    </div>-->
 
 
 </div>
