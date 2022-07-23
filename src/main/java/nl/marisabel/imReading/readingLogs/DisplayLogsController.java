@@ -48,6 +48,7 @@ public class DisplayLogsController {
         model.addAttribute("finished", bookId.getFinishedDate());
         model.addAttribute("favorite", bookId.isFavorite());
         model.addAttribute("id", bookId.getId());
+        model.addAttribute("rating", bookId.getRating());
         // BOOK LOGS
         List<LogEntity> list = logsService.byBookId(bookId);
         model.addAttribute("logs", list);

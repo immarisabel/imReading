@@ -3,7 +3,18 @@
 <html lang="en" xmlns:th="www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <header th:replace="fragments/header :: header">static header</header>
+<script>
+var starWidth = 40;
 
+$.fn.stars = function() {
+  return $(this).each(function() {
+    $(this).html($('<span />').width(Math.max(0, (Math.min(5, parseFloat($(this).html())))) * starWidth));
+  });
+}
+$(document).ready(function() {
+  $('span.stars').stars();
+});
+</script>
 <body>
 
 <div class="container my-5 pt-5">
@@ -12,7 +23,10 @@
     <div th:replace="fragments/navigation">navigation</div>
 
     <div class="container-fluid p-2 !direction !spacing">
-
+        <div class="container text-star" style="width:14rem;">
+            <span th:text="${rating}" class="stars"></span>
+        </div>
+        <p></p>
 
         <div class="col  m-5 text-center">
               <span class="on-cover text-black ms-1" th:if="${favorite == true}">
@@ -24,9 +38,6 @@
             <img class="img-thumbnail" th:src="${cover}" width="200rem" src="">
 
         </div>
-
-
-
 
         <p class="m-5"></p>
 
@@ -42,8 +53,10 @@
                 </ul>
                 <p></p>
 
+
                 <h1 th:text="${title}"></h1>
                 <h3 th:text="'By: '+ ${author}"></h3>
+
 
                 <div class="m-5">
                     <a onclick="if(!(confirm('delete book and logs?'))) return false"
@@ -66,17 +79,14 @@
 
             <!--        LOGS        -->
             <p></p>
-            <a th:href="@{/book-log/(id=${id})}" class="btn btn-primary">
+            <a th:href="'/book-log/'+${id}" class="btn btn-primary">
                 add a log
             </a>
             <div th:each="l: ${logs}">
-
-
-
                 <div class="row bg-light my-sm-3">
-
                     <div class="row pt-3">
                         <div class="col">
+
                             <p th:text="${l.mood} + ' • Page: ' +  ${l.page} + ' • Date: ' + ${l.date}"></p>
                         </div>
 
@@ -89,18 +99,13 @@
                             <div th:replace="icons/del-icon">x</div>
                         </a>
                         </div>
+
                     </div>
                 </div>
 
-
-
                 <div class="row">
-
                     <p th:utext="${l.content}"></p>
-
                 </div>
-
-
 
         </div>
         </div>

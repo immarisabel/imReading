@@ -23,6 +23,11 @@ public class IndexController {
         return "index";
     }
 
+    @RequestMapping("/test")
+    String test(){
+        return "teststar";
+    }
+
     List<BooksEntity> statusReading() {
         return booksService.byStatus("reading");
     }

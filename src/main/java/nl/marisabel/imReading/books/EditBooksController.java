@@ -52,7 +52,6 @@ public class EditBooksController {
 
         newBookService.addNewBookFromApi(OLid, book);
         model.addAttribute("books", book);
-
         List<ShelvesEntity> shelves = shelvesService.getShelves();
         model.addAttribute("shelves", shelves);
 

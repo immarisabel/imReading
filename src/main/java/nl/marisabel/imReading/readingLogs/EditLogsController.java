@@ -43,7 +43,6 @@ public class EditLogsController {
         List<BooksEntity> books = Collections.singletonList(booksService.getBook(id));
         model.addAttribute("books", books);
         model.addAttribute("id", books);
-//        model.addAttribute("reading", books);
         return "new-log";
     }
 

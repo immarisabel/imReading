@@ -1,11 +1,15 @@
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <div th:fragment="status-reading(book)">
 
     <div class="container-fluid p-5 !direction !spacing">
+            <span th:if="${reading.isEmpty}">
+            </span>
+        <span th:unless="${reading.isEmpty}">
 
         <h3 class="mb-5 bg-light p-2 rounded-4">books you are currently reading</h3>
         <div class="row">
+
 
             <div th:each="b: ${reading}"
                  class="col-md-2 col-sm-2 col-lg-2 col-xs-2 col-xl-2 control-label text-center"
@@ -13,8 +17,8 @@
                 <a href="#" th:href="@{'/logs/' + ${b.id}}">
                     <img class="img-responsive  img-thumbnail" th:src="${b.thumbnailUrl}"
                          width="150vh " alt="${b.title}"></a>
-
             </div>
+            </span>
 
         </div>
     </div>
