@@ -5,10 +5,7 @@ import nl.marisabel.imReading.books.BooksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Collections;
@@ -39,6 +36,17 @@ public class EditLogsController {
         model.addAttribute("reading", books);
         return "new-log";
     }
+
+
+    @GetMapping("/book-log/{id}")
+    String newLogFormFromTheBookPage(Model model, @ModelAttribute("log") LogEntity log, @PathVariable(value = "id", required = false) int id ) {
+        List<BooksEntity> books = Collections.singletonList(booksService.getBook(id));
+        model.addAttribute("books", books);
+        model.addAttribute("id", books);
+//        model.addAttribute("reading", books);
+        return "new-log";
+    }
+
 
     @PostMapping("/new-log")
     String saveNewLog(Model model, @ModelAttribute("log") LogEntity log) {

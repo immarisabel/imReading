@@ -21,8 +21,11 @@
 
             <span th:unless="${favorite == true}"></span>
 
-            <img class="img-thumbnail" th:src="${cover}" src="">
+            <img class="img-thumbnail" th:src="${cover}" width="200rem" src="">
+
         </div>
+
+
 
 
         <p class="m-5"></p>
@@ -62,8 +65,13 @@
             </div>
 
             <!--        LOGS        -->
-
+            <p></p>
+            <a th:href="@{/book-log/(id=${id})}" class="btn btn-primary">
+                add a log
+            </a>
             <div th:each="l: ${logs}">
+
+
 
                 <div class="row bg-light my-sm-3">
 
@@ -83,11 +91,18 @@
                         </div>
                     </div>
                 </div>
+
+
+
                 <div class="row">
-                    <p th:utext="#{l.content}"></p>
+
+                    <p th:utext="${l.content}"></p>
+
                 </div>
 
-            </div>
+
+
+        </div>
         </div>
 
     </div>
