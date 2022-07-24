@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Controller
+@RequestMapping("/book-log")
 public class EditLogsController {
 
     @Autowired
@@ -29,25 +30,25 @@ public class EditLogsController {
     }
 
 
-    @GetMapping("/log")
+    @GetMapping("/new-log")
     String newLogForm(Model model, @ModelAttribute("log") LogEntity log) {
         List<BooksEntity> books = booksService.byStatus("reading");
         model.addAttribute("books", books);
         model.addAttribute("reading", books);
-        return "new-log";
+        return "log-form";
     }
 
 
-    @GetMapping("/book-log/{id}")
+    @GetMapping("/log/{id}")
     String newLogFormFromTheBookPage(Model model, @ModelAttribute("log") LogEntity log, @PathVariable(value = "id", required = false) int id ) {
         List<BooksEntity> books = Collections.singletonList(booksService.getBook(id));
         model.addAttribute("books", books);
         model.addAttribute("id", books);
-        return "new-log";
+        return "log-form";
     }
 
 
-    @PostMapping("/new-log")
+    @PostMapping("/new-log-added")
     String saveNewLog(Model model, @ModelAttribute("log") LogEntity log) {
         logsService.saveOrUpdate(log);
         List<LogEntity> list = logsService.getLogs();
@@ -66,7 +67,7 @@ public class EditLogsController {
         model.addAttribute("books", books);
         List<BooksEntity> reading = booksService.byStatus("reading");
         model.addAttribute("reading", reading);
-        return "new-log";
+        return "log-form";
     }
 
 

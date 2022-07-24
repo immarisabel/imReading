@@ -56,7 +56,7 @@
                         <span th:unless="${b.favorite == true}"></span>
 
                         <span th:if="${b.status == 'read'}"></span>
-                        <span class="on-cover-reading" th:unless="${b.status == 'read'}">
+                        <span class="on-cover-reading" th:unless="${b.status != 'reading'}">
                     <div th:replace="icons/openbookmark-icon"></div>
                 </span>
                             <!--                COVER -->
