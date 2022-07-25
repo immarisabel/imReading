@@ -93,7 +93,7 @@ public class EditBooksController {
     @GetMapping("/delete")
     public String deleteBook(@RequestParam("id") int id) {
         booksService.deleteBook(id);
-        return "redirect:/books";
+        return "redirect:/shelves/books";
     }
 
 

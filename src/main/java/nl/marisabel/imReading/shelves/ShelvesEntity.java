@@ -23,7 +23,6 @@ public class ShelvesEntity {
     private int id;
     private String name;
 
-
     @ManyToMany(mappedBy = "shelves")
     private Set<BooksEntity> books = new HashSet<>();
 
