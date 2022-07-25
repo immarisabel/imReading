@@ -2,12 +2,9 @@ package nl.marisabel.imReading.shelves;
 
 import lombok.*;
 import nl.marisabel.imReading.books.BooksEntity;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Getter
@@ -23,7 +20,19 @@ public class ShelvesEntity {
     private int id;
     private String name;
 
-    @ManyToMany(mappedBy = "shelves")
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(
+            name = "shelved_books",
+            joinColumns = @JoinColumn(name = "shelves_id"),
+            inverseJoinColumns = @JoinColumn(name = "books_id"))
     private Set<BooksEntity> books = new HashSet<>();
 
+
+    @PreRemove
+    private void removeBooksFromShelf() {
+        getBooks().clear();
+    }
 }

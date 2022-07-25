@@ -52,15 +52,9 @@ public class EditShelvesController {
         return "edit-shelves";
     }
 
-    // TODO org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException:
-    //  Referential integrity constraint violation:
-    //  "FKG756FRR1DH7I63X7HVRPD133I:
-    //  PUBLIC.SHELVED_BOOKS FOREIGN KEY(SHELVES_ID) REFERENCES PUBLIC.SHELVES(ID) (1)";
-    //  SQL statement delete from shelves where id=? [23503-200]
-
     @GetMapping("/delete")
     public String deleteShelf(@RequestParam("id") int id, Model model, BooksEntity books) {
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>> SHELF ID: " +id);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>> SHELF ID: " +id + "DELETED");
         shelvesService.deleteShelf(id);
         return "redirect:/shelves/manage";
     }
