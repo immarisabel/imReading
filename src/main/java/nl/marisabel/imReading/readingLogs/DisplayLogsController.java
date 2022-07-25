@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Set;
 
 @Controller
+@RequestMapping("/book-log")
 public class DisplayLogsController {
 
     @Autowired

@@ -39,7 +39,7 @@ public class EditLogsController {
     }
 
 
-    @GetMapping("/log/{id}")
+    @GetMapping("/add-log/{id}")
     String newLogFormFromTheBookPage(Model model, @ModelAttribute("log") LogEntity log, @PathVariable(value = "id", required = false) int id ) {
         List<BooksEntity> books = Collections.singletonList(booksService.getBook(id));
         model.addAttribute("books", books);
