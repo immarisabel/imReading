@@ -11,6 +11,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Author__1 {
 
     @JsonProperty("key")

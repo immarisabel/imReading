@@ -13,6 +13,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Type__1 {
 
     @SerializedName("key")

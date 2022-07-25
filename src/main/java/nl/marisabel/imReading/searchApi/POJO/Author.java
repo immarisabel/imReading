@@ -13,9 +13,11 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Author {
 
     @SerializedName("type")
+    @Expose
     private Type type;
     @SerializedName("author")
     @Expose

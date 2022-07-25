@@ -4,6 +4,8 @@ import nl.marisabel.imReading.shelves.ShelvesEntity;
 import nl.marisabel.imReading.shelves.ShelvesService;
 import nl.marisabel.imReading.searchApi.AddBookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -93,5 +95,13 @@ public class EditBooksController {
         return "redirect:/books";
     }
 
+
+    @ExceptionHandler(value = IllegalStateException.class)
+    public String handleIllegalStateExceptionForAuthor(final Model model) {
+
+        String text = "Author information could not be parsed or found. Please select a different book or add it manually.";
+        model.addAttribute("error", text);
+        return "ExceptionPage";
+    }
 
 }

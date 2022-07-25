@@ -29,7 +29,7 @@ public class BooksEntity {
     private String title;
     private String author;
     @Column(nullable = false)
-    private String thumbnailUrl = "/images/no-image.png";
+    private String thumbnailUrl;
     private String status;
     private int rating = 0;
     private boolean favorite;
