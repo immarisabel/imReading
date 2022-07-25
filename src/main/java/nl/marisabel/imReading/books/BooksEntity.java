@@ -42,5 +42,4 @@ public class BooksEntity {
     @ManyToMany(mappedBy = "books")
     private Set<ShelvesEntity> shelves = new HashSet<>();
 
-
 }

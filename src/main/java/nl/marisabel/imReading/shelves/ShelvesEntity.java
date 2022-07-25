@@ -30,7 +30,6 @@ public class ShelvesEntity {
             inverseJoinColumns = @JoinColumn(name = "books_id"))
     private Set<BooksEntity> books = new HashSet<>();
 
-
     @PreRemove
     private void removeBooksFromShelf() {
         getBooks().clear();
