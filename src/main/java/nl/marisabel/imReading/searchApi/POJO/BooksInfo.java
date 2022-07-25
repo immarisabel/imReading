@@ -17,7 +17,6 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BooksInfo {
 
-
     @SerializedName("title")
     @Expose
     private String title;

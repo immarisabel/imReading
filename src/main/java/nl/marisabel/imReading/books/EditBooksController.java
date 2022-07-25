@@ -44,14 +44,13 @@ public class EditBooksController {
         return "book-form";
     }
 
-// TODO Cannot invoke "java.util.List.get(int)" because the return value of "nl.marisabel.imReading.searchApi.POJO.BooksInfo.getCovers()" is null
-
 
     @RequestMapping("/newbook/{OLid}")
     public String showFormToUpdateBook(@PathVariable(value = "OLid", required = false) String OLid, BooksEntity book, Model model) throws IOException, InterruptedException {
 
         newBookService.addNewBookFromApi(OLid, book);
         model.addAttribute("books", book);
+
         List<ShelvesEntity> shelves = shelvesService.getShelves();
         model.addAttribute("shelves", shelves);
 
