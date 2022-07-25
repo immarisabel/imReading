@@ -29,17 +29,17 @@
 
             <div class="row">
                 <div class="col-1 me-5 text-center ">
-                    <img th:src="${l.bookId.thumbnailUrl}" class=" img-thumbnail">
+                    <a th:href="'/logs/'+${l.id}"><img th:src="${l.bookId.thumbnailUrl}" class=" img-thumbnail"></a>
                     <p></p>
                     <div class="col-1" style="display:inline;">
 
-                        <a th:href="@{/book-log/updateLog(id=${l.id})}"
+                        <a th:href="@{/logs/update(id=${l.id})}"
                            class="link-primary p-2">
                             <div th:replace="icons/edit-icon">x</div>
                         </a>
 
                         <a onclick="if(!(confirm('do you want to delete this log?'))) return false"
-                           th:href="@{/book-log/deleteLogs(id=${l.id})}" class="link-primary">
+                           th:href="@{/logs/delete(id=${l.id})}" class="link-primary">
                         <div th:replace="icons/del-icon">x</div>
                     </a>
 
@@ -52,7 +52,7 @@
                     <span th:text="${l.bookId.title}"></span><br>
                     <span th:text="${l.mood}"></span><br>
                     <span th:text="'Page: ' + ${l.page}"></span><br>
-                    <span th:text="${l.date}"></span>
+                    <p th:text="${#dates.format(l.date,'dd-MMMM-yyyy')}"></p>
                 </div>
             </div>
 <hr>

@@ -11,7 +11,7 @@
             <div th:each="b: ${read}"
                  class="col-md-2 col-sm-2 col-lg-2 col-xs-2 col-xl-2 control-label text-center "
                  style="border:0px solid #000000;min-width:200px;">
-                <a href="#" th:href="@{'/logs/' + ${b.id}}"><img class="img-responsive img-thumbnail" th:src="${b.thumbnailUrl}" width="150vh " alt="${b.title}"></a>
+                <a href="#" th:href="@{'/logs/book/' + ${b.id}}"><img class="img-responsive img-thumbnail" th:src="${b.thumbnailUrl}" width="150vh " alt="${b.title}"></a>
 
             </div>
 

@@ -15,6 +15,7 @@ $(document).ready(function() {
   $('span.stars').stars();
 });
 
+
 </script>
 <body>
 
@@ -24,7 +25,7 @@ $(document).ready(function() {
     <div th:replace="fragments/navigation">navigation</div>
 
     <div class="container-fluid p-2 !direction !spacing">
-        <div class="container text-star" style="width:14rem;">
+        <div class="container text-star" style="width:17.5rem;">
             <span th:text="${rating}" class="stars"></span>
         </div>
         <p></p>
@@ -48,7 +49,7 @@ $(document).ready(function() {
 
             <div class="text-center">
                 <ul th:each="s: ${shelves}" style="list-style-type: none; display:inline;">
-                    <a th:href="'/books/'+${s.id}" class="link-primary link-light">
+                    <a th:href="'/shelves/shelf/'+${s.id}" class="link-primary link-light">
                         <li style="display:inline;" class="bg-secondary p-2 rounded-4" th:text="${s.name}"></li>
                     </a>
                 </ul>
@@ -61,10 +62,10 @@ $(document).ready(function() {
 
                 <div class="m-5">
                     <a onclick="if(!(confirm('delete book and logs?'))) return false"
-                       th:href="@{/book-log/deleteBook(id=${id})}"
+                       th:href="@{/books/delete(id=${id})}"
                        class="link-primary p-2">
                         <div th:replace="icons/del-icon">x</div>
-                    </a><a th:href="@{/book-log/updateBook(id=${id})}"
+                    </a><a th:href="@{/books/update(id=${id})}"
                            class="link-primary p-2">
                     <div th:replace="icons/edit-icon">x</div>
                 </a>
@@ -81,7 +82,7 @@ $(document).ready(function() {
 
             <!--        LOGS        -->
             <p></p>
-            <a th:href="'/book-log/add-log/'+${id}" class="btn btn-primary">
+            <a th:href="'/logs/add/'+${id}" class="btn btn-primary">
                 add a log
             </a>
             <div th:each="l: ${logs}">
@@ -89,15 +90,15 @@ $(document).ready(function() {
                     <div class="row pt-3">
                         <div class="col">
 
-                            <p th:text="${l.mood} + ' • Page: ' +  ${l.page} + ' • Date: ' + ${l.date}"></p>
+                            <p th:text="${l.mood} + ' • Page: ' +  ${l.page} + ' • Date: ' + ${#dates.format(l.date,'dd-MMMM-yyyy')}"></p>
                         </div>
 
                         <div class="col-1 text-end">
-                            <a th:href="@{/book-log/updateLog(id=${l.id})}"
+                            <a th:href="@{/logs/update(id=${l.id})}"
                                class="link-primary p-2">
                                 <div th:replace="icons/edit-icon">x</div>
                             </a><a onclick="if(!(confirm('do you want to delete this log?'))) return false"
-                                   th:href="@{/book-log/deleteLog(id=${l.id})}" class="link-primary">
+                                   th:href="@{/logs/delete(id=${l.id})}" class="link-primary">
                             <div th:replace="icons/del-icon">x</div>
                         </a>
                         </div>

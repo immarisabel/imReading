@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Controller
+@RequestMapping("/books")
 public class EditBooksController {
 
     @Autowired
@@ -35,7 +36,7 @@ public class EditBooksController {
     }
 
 
-    @RequestMapping("/newbook")
+    @RequestMapping("/add")
     String addNewBookForm(Model model, @ModelAttribute("books") BooksEntity book) throws IOException, InterruptedException {
         List<BooksEntity> books = booksService.getBooks();
         model.addAttribute("books", books);
@@ -47,7 +48,7 @@ public class EditBooksController {
     }
 
 
-    @RequestMapping("/newbook/{OLid}")
+    @RequestMapping("/add/{OLid}")
     public String showFormToUpdateBook(@PathVariable(value = "OLid", required = false) String OLid, BooksEntity book, Model model) throws IOException, InterruptedException {
 
         newBookService.addNewBookFromApi(OLid, book);
@@ -60,7 +61,7 @@ public class EditBooksController {
     }
 
 
-    @GetMapping("/updateBook")
+    @GetMapping("/update")
     public String showBookFormForUpdate(@RequestParam("id") int id, Model model) {
 
         BooksEntity book = booksService.getBook(id);
@@ -75,7 +76,7 @@ public class EditBooksController {
 
 //    CRUD FUNCTIONS
 
-    @PostMapping("/books_saved")
+    @PostMapping("/save")
     String saveBook(Model model, @ModelAttribute("book") BooksEntity book, ShelvesEntity shelf) {
 
         booksService.saveOrUpdate(book);
@@ -89,7 +90,7 @@ public class EditBooksController {
         return "books";
     }
 
-    @GetMapping("/deleteBook")
+    @GetMapping("/delete")
     public String deleteBook(@RequestParam("id") int id) {
         booksService.deleteBook(id);
         return "redirect:/books";
@@ -98,7 +99,6 @@ public class EditBooksController {
 
     @ExceptionHandler(value = IllegalStateException.class)
     public String handleIllegalStateExceptionForAuthor(final Model model) {
-
         String text = "Author information could not be parsed or found. Please select a different book or add it manually.";
         model.addAttribute("error", text);
         return "ExceptionPage";

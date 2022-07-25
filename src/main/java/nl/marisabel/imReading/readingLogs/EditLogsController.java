@@ -12,7 +12,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Controller
-@RequestMapping("/book-log")
+@RequestMapping("/logs")
 public class EditLogsController {
 
     @Autowired
@@ -30,7 +30,7 @@ public class EditLogsController {
     }
 
 
-    @GetMapping("/new-log")
+    @GetMapping("/add")
     String newLogForm(Model model, @ModelAttribute("log") LogEntity log) {
         List<BooksEntity> books = booksService.byStatus("reading");
         model.addAttribute("books", books);
@@ -39,7 +39,7 @@ public class EditLogsController {
     }
 
 
-    @GetMapping("/add-log/{id}")
+    @GetMapping("/add/{id}")
     String newLogFormFromTheBookPage(Model model, @ModelAttribute("log") LogEntity log, @PathVariable(value = "id", required = false) int id ) {
         List<BooksEntity> books = Collections.singletonList(booksService.getBook(id));
         model.addAttribute("books", books);
@@ -48,7 +48,7 @@ public class EditLogsController {
     }
 
 
-    @PostMapping("/new-log-added")
+    @PostMapping("/save")
     String saveNewLog(Model model, @ModelAttribute("log") LogEntity log) {
         logsService.saveOrUpdate(log);
         List<LogEntity> list = logsService.getLogs();
@@ -57,7 +57,7 @@ public class EditLogsController {
     }
 
 
-    @GetMapping("/updateLog")
+    @GetMapping("/update")
     public String showFormForUpdate(@RequestParam("id") int id, Model model) {
         LogEntity log = logsService.getLog(id);
         model.addAttribute("bookId", log);
@@ -71,7 +71,7 @@ public class EditLogsController {
     }
 
 
-    @GetMapping("/deleteLog")
+    @GetMapping("/delete")
     public String deleteLog(@RequestParam("id") int id, HttpServletRequest request) {
         logsService.deleteLog(id);
         String referer = request.getHeader("Referer");
@@ -79,19 +79,5 @@ public class EditLogsController {
     }
 
 
-    @GetMapping("/deleteLogs")
-    public String deleteLogFromLogList(@RequestParam("id") int id, HttpServletRequest request) {
-        logsService.deleteLog(id);
-        String referer = request.getHeader("Referer");
-        return "redirect:/logs";
-    }
 
-
-//    @PostMapping("/update-log")
-//    String updateLog(Model model, @ModelAttribute("log") LogEntity log, @RequestParam("id") int id) {
-//        logsService.saveOrUpdate(log);
-//        List<LogEntity> list = logsService.getLogs();
-//        model.addAttribute("logs", list);
-//        return "logs";
-//    }
 }

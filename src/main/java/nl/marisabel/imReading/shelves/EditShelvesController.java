@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Controller
+@RequestMapping("/shelves")
 public class EditShelvesController {
 
     @Autowired
@@ -22,32 +23,23 @@ public class EditShelvesController {
     public BooksEntity books() {
         return new BooksEntity();
     }
-
     @ModelAttribute("shelvesEntity")
     public ShelvesEntity shelves() {
         return new ShelvesEntity();
     }
 
 
-    @RequestMapping("/shelves")
-    String editShelves(Model model, ShelvesEntity shelf) {
-
-        List<ShelvesEntity> shelves = shelvesService.getShelves();
-        model.addAttribute("shelves", shelves);
-        return "edit-shelves";
-    }
-
-    @PostMapping("/new-shelf")
+    @PostMapping("/add")
     String addNewShelf(Model model, @ModelAttribute("shelf") ShelvesEntity shelf) {
         shelvesService.saveOrUpdate(shelf);
         model.addAttribute("shelvesEntity", shelf);
 
         List<ShelvesEntity> shelves = shelvesService.getShelves();
         model.addAttribute("shelves", shelves);
-        return "redirect:/shelves";
+        return "redirect:/shelves/manage";
     }
 
-    @GetMapping("/updateShelf")
+    @GetMapping("/update")
     public String showFormForUpdatingShelf(@RequestParam("id") int id, Model model) {
         ShelvesEntity shelf = shelvesService.getShelf(id);
         List<ShelvesEntity> shelves = Collections.singletonList((shelvesService.getShelf(shelf.getId())));
@@ -60,12 +52,17 @@ public class EditShelvesController {
         return "edit-shelves";
     }
 
+    // TODO org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException:
+    //  Referential integrity constraint violation:
+    //  "FKG756FRR1DH7I63X7HVRPD133I:
+    //  PUBLIC.SHELVED_BOOKS FOREIGN KEY(SHELVES_ID) REFERENCES PUBLIC.SHELVES(ID) (1)";
+    //  SQL statement delete from shelves where id=? [23503-200]
 
-    @GetMapping("/deleteShelf")
+    @GetMapping("/delete")
     public String deleteShelf(@RequestParam("id") int id, Model model, BooksEntity books) {
         System.out.println(">>>>>>>>>>>>>>>>>>>>>> SHELF ID: " +id);
         shelvesService.deleteShelf(id);
-        return "redirect:/shelves";
+        return "redirect:/shelves/manage";
     }
 
 

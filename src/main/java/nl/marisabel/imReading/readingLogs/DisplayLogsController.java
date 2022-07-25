@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Set;
 
 @Controller
-@RequestMapping("/book-log")
+@RequestMapping("/logs")
 public class DisplayLogsController {
 
     @Autowired
@@ -31,14 +31,14 @@ public class DisplayLogsController {
         return new BooksEntity();
     }
 
-    @GetMapping("/logs")
+    @GetMapping("/all_logs")
     String displayAllLogs(Model model, @ModelAttribute("log") LogEntity log) {
         List<LogEntity> list = logsService.getLogs();
         model.addAttribute("logs", list);
         return "logs";
     }
 
-    @GetMapping("/logs/{bookId}")
+    @GetMapping("/book/{bookId}")
     String displayBookLog(@PathVariable("bookId") BooksEntity bookId, Model model) {
         // BOOK INFO
         model.addAttribute("title", bookId.getTitle());
@@ -59,16 +59,12 @@ public class DisplayLogsController {
         return "book-logs";
     }
 
-
-
-
-    // Book registry
-    //TODO study wtf this is :D ...
-    public void addInterceptors(InterceptorRegistry registry) {
-        LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
-        localeChangeInterceptor.setParamName("lang");
-        registry.addInterceptor(localeChangeInterceptor);
-    }
+//    //TODO study wtf this is :D ...
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
+//        localeChangeInterceptor.setParamName("lang");
+//        registry.addInterceptor(localeChangeInterceptor);
+//    }
 
 
 

@@ -25,7 +25,7 @@
                 <tbody th:each="s: ${shelves}">
                 <tr>
                     <td class="col-5 text-center pt-3">
-                        <a class="link-primary" href="#" th:href="@{'/books/' + ${s.id}}">
+                        <a class="link-primary" href="#" th:href="@{'/shelves/shelf/' + ${s.id}}">
                             <li class="libraries-list-item" th:text="${s.name}"></li>
                         </a>
                     </td>
@@ -33,14 +33,14 @@
                         <p th:text="${s.books.size()}"></p>
                     </td>
                     <td class="col-1 text-center">
-                        <a th:href="@{/updateShelf(id=${s.id})}"
+                        <a th:href="@{/shelves/update(id=${s.id})}"
                            class="link-primary" alt="delete ${s.name}">
                             <div th:replace="icons/edit-icon">update</div>
                         </a>
                     </td>
                     <td class="col-1 text-center">
                         <a onclick="if(!(confirm('delete shelf?'))) return false"
-                           th:href="@{/deleteShelf(id=${s.id})}"
+                           th:href="@{/shelves/delete(id=${s.id})}"
                            class="link-primary">
                             <div th:replace="icons/del-icon">delete</div>
                         </a>

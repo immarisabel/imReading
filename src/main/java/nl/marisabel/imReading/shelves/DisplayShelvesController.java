@@ -12,6 +12,7 @@ import java.util.List;
 
 @Controller
 @Log4j2
+@RequestMapping("/shelves")
 public class DisplayShelvesController {
 
     @Autowired
@@ -38,8 +39,15 @@ public class DisplayShelvesController {
         return "books";
     }
 
+    @RequestMapping("/manage")
+    String editShelves(Model model, ShelvesEntity shelf) {
 
-    @GetMapping("/books/status/{status}")
+        List<ShelvesEntity> shelves = shelvesService.getShelves();
+        model.addAttribute("shelves", shelves);
+        return "edit-shelves";
+    }
+
+    @GetMapping("/status/{status}")
     String displayBooksByStatus(@PathVariable("status") String status, Model model) {
         List<BooksEntity> books = booksService.byStatus(status);
         model.addAttribute("books", books);
@@ -48,7 +56,7 @@ public class DisplayShelvesController {
         return "books";
     }
 
-    @GetMapping("/books/favorites")
+    @GetMapping("/favorites")
     String displayFavoriteBooks (Model model, BooksEntity book) {
         List<BooksEntity> books = booksService.isFavorite(true);
         model.addAttribute("books", books);
@@ -58,7 +66,7 @@ public class DisplayShelvesController {
     }
 
 
-    @GetMapping("/books/shelf/{shelfId}")
+    @GetMapping("/shelf/{shelfId}")
     String displayBookByShelf(@PathVariable("shelfId") int shelfId, Model model) {
         List<BooksEntity> books = booksService.byShelf(shelfId);
         model.addAttribute("books", books);
@@ -67,7 +75,7 @@ public class DisplayShelvesController {
         return "books";
     }
 
-    @GetMapping("/books/rating/{rating}")
+    @GetMapping("/rating/{rating}")
     String displayBooksByRating(@PathVariable("rating") int rating, Model model) {
         List<BooksEntity> books = booksService.byRating(rating);
         model.addAttribute("books", books);

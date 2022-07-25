@@ -4,8 +4,10 @@ import lombok.Data;
 import nl.marisabel.imReading.books.BooksEntity;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @NamedQuery(name = "LogEntity.byBookId", query = "FROM LogEntity WHERE bookId = ?1")
@@ -22,8 +24,10 @@ public class LogEntity {
     private BooksEntity bookId;
     @Column(columnDefinition = "TEXT")
     private String content;
-    private String date;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date date;
     private String mood;
+    @Column(nullable = false)
     private int page;
 
 
