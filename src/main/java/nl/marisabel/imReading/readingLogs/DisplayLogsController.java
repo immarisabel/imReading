@@ -59,12 +59,6 @@ public class DisplayLogsController {
         return "book-logs";
     }
 
-//    //TODO study wtf this is :D ...
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
-//        localeChangeInterceptor.setParamName("lang");
-//        registry.addInterceptor(localeChangeInterceptor);
-//    }
 
 
 
