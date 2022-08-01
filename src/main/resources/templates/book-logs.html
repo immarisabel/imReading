@@ -16,6 +16,7 @@ $(document).ready(function() {
 });
 
 
+
 </script>
 <body>
 
@@ -24,97 +25,125 @@ $(document).ready(function() {
 
     <div th:replace="fragments/navigation">navigation</div>
 
-    <div class="container-fluid p-2 !direction !spacing">
-        <div class="container text-star" style="width:17.5rem;">
-            <span th:text="${rating}" class="stars"></span>
-        </div>
-        <p></p>
-
-        <div class="col  m-5 text-center">
-              <span class="on-cover text-black ms-1" th:if="${favorite == true}">
-         <div th:replace="icons/favbook-icon"></div>
-        </span>
-
-            <span th:unless="${favorite == true}"></span>
-
-            <img class="img-thumbnail" th:src="${cover}" width="200rem" src="">
-
-        </div>
-
-        <p class="m-5"></p>
-
-        <div class="row">
-
-            <!-- TODO would like to make the cover and title float left when on full screen-->
-
-            <div class="text-center">
-                <ul th:each="s: ${shelves}" style="list-style-type: none; display:inline;">
-                    <a th:href="'/shelves/shelf/'+${s.id}" class="link-primary link-light">
-                        <li style="display:inline;" class="bg-secondary p-2 rounded-4" th:text="${s.name}"></li>
-                    </a>
-                </ul>
-                <p></p>
 
 
-                <h1 th:text="${title}"></h1>
-                <h3 th:text="'By: '+ ${author}"></h3>
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-lg-9 col-xl-7">
+                    <div class="card">
 
+                        <div class="rounded-top text-white d-flex flex-row bg-primary">
 
-                <div class="m-5">
-                    <a onclick="if(!(confirm('delete book and logs?'))) return false"
-                       th:href="@{/books/delete(id=${id})}"
-                       class="link-primary p-2">
-                        <div th:replace="icons/del-icon">x</div>
-                    </a><a th:href="@{/books/update(id=${id})}"
-                           class="link-primary p-2">
-                    <div th:replace="icons/edit-icon">x</div>
-                </a>
-                </div>
+                            <!--THUMBNAIL-->
+                            <div class="d-flex flex-column w-50">
+                                <div class="col m-5 text-center">
+                                    <span class="on-cover text-black ms-1" th:if="${favorite == true}">
+                                        <div th:replace="icons/favbook-icon"></div>
+                                    </span>
+                                    <span th:unless="${favorite == true}"></span>
+                                    <img class="img-thumbnail" th:src="${cover}" width="200rem" src="">
+                                   <div class="mt-2">
+                                    <a onclick="if(!(confirm('delete book and logs?'))) return false"
+                                       th:href="@{/books/delete(id=${id})}"
+                                       class="link-primary p-2">
+                                        <div th:replace="icons/del-icon">x</div>
+                                    </a><a th:href="@{/books/update(id=${id})}"
+                                           class="link-primary p-2">
+                                    <div th:replace="icons/edit-icon">x</div>
+                                </a>
+                                   </div>
+                                </div>
+                            </div>
 
-                <span th:hidden="${status} != 'read'">
-            <p th:text="'Read from ' + ${#dates.format(started,'dd-MMMM-yyyy')} + ' to ' + ${#dates.format(finished,'dd-MMMM-yyyy')}"></p>
+                            <!--INFORMATION-->
+
+                            <div class="ms-2 mt-5 pt-3">
+                                <h3 th:text="${title}"></h3>
+                                <p th:text="'By: '+ ${author}"></p>
+
+<div class="text-muted mt-5 fs-6 font-monospace">
+                                <span th:hidden="${status} != 'read'">
+            <p th:text="${#dates.format(started,'dd/MMM/yyyy')} + ' - ' + ${#dates.format(finished,'dd/MMM/yyyy')}"></p>
             </span>
-                <span th:hidden="${status} != reading">
-                    <p th:text="'Started on ' + ${#dates.format(started,'dd-MMMM-yyyy')}"></p>
-            <p class="btn-secondary" th:text="'Currently Reading'">Reading</p>
+                                <span th:hidden="${status} != reading">
+                    <p th:text="'Started on ' + ${#dates.format(started,'dd/MMM/yyyy')}"></p>
+            <p class="bg-light rounded p-2" th:text="'Currently Reading'">Reading</p>
             </span>
-            </div>
+</div>
+                            </div>
 
-            <!--        LOGS        -->
-            <p></p>
-            <a th:href="'/logs/add/'+${id}" class="btn btn-primary">
-                add a log
-            </a>
-            <div th:each="l: ${logs}">
-                <div class="row bg-light my-sm-3">
-                    <div class="row pt-3">
-                        <div class="col">
-
-                            <p th:text="${l.mood} + ' • Page: ' +  ${l.page} + ' • Date: ' + ${#dates.format(l.date,'dd-MMMM-yyyy')}"></p>
                         </div>
 
-                        <div class="col-1 text-end">
-                            <a th:href="@{/logs/update(id=${l.id})}"
-                               class="link-primary p-2">
-                                <div th:replace="icons/edit-icon">x</div>
-                            </a><a onclick="if(!(confirm('do you want to delete this log?'))) return false"
-                                   th:href="@{/logs/delete(id=${l.id})}" class="link-primary">
-                            <div th:replace="icons/del-icon">x</div>
-                        </a>
-                        </div>
+                        <!--                        stars and tags -->
 
                     </div>
-                </div>
+                    <div class="text-light bg-light pt-3 pb-5">
 
-                <div class="row">
-                    <p th:utext="${l.content}"></p>
-                </div>
+                        <div  class="float-start d-flex text-primary  px-4">
+                            <div class="float-start text-star pt-1">
+                                <span th:text="${rating}" class="stars" ></span>
+                            </div>
+                        </div>
+                            <div class="float-end d-flex text-primary px-4 pt-1">
 
+                            <ul th:each="s: ${shelves}" style="list-style-type: none; display:inline;">
+                                <a th:href="'/shelves/shelf/'+${s.id}" class="link-primary link-light">
+                                    <li style="display:inline;" class="bg-secondary p-2 rounded-4 me-1" th:text="${s.name}"></li>
+                                </a>
+                            </ul>
+                        </div>
+                    </div>
+
+<!-- LOGS -->
+
+
+                    <div class="card-body border border-1 border-light  p-2 text-black">
+
+
+                        <div class="mb-5 fs-6">
+                            <div th:each="l: ${logs}">
+                                <div class="p-4 mb-4" style="background-color: #f8f9fa;">
+                                    <p th:text="${l.mood} + ' • Page: ' +  ${l.page} + ' • Date: ' + ${#dates.format(l.date,'dd-MMMM-yyyy')}">
+
+                                        <a th:href="@{/logs/update(id=${l.id})}"
+                                           class="link-primary p-2">
+                                            <div th:replace="icons/edit-icon">x</div>
+                                        </a><a onclick="if(!(confirm('do you want to delete this log?'))) return false"
+                                               th:href="@{/logs/delete(id=${l.id})}" class="link-primary">
+                                        <div th:replace="icons/del-icon">x</div>
+                                </a></p>
+                                    <p th:utext="${l.content}"> </p>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                        <div class="my-5">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <p class="lead fw-normal mb-0 text-secondary"><b>Personal Hobbies:</b></p>
+                            </div>
+
+
+                            <b th:text="" class="btn btn-primary mb-2">
+                                hobby
+                            </b>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
             </div>
         </div>
 
-    </div>
-</div>
+
 
 </body>
 </html>

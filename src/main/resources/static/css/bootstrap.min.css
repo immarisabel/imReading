@@ -6731,7 +6731,7 @@ ALIGN TEXT
 }
 
 .border-primary {
-    border-color: #0d6efd!important
+    border-color:var (--bs-primary) !important
 }
 
 .border-secondary {
